@@ -34,13 +34,27 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/bootstrap.min.css",
+              "src/assets/css/plugins.min.css",
+              "src/assets/css/kaiadmin.min.css"
             ],
             "scripts": [
-
+              "src/assets/js/core/jquery-3.7.1.min.js",
+              "src/assets/js/core/popper.min.js",
+              "src/assets/js/core/bootstrap.min.js",
+              "src/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js",
+              "src/assets/js/plugin/chart-circle/circles.min.js",
+              "src/assets/js/plugin/datatables/datatables.min.js",
+              "src/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js",
+              "src/assets/js/plugin/jsvectormap/jsvectormap.min.js",
+              "src/assets/js/plugin/jsvectormap/world.js",
+              "src/assets/js/plugin/sweetalert/sweetalert.min.js",
+              "src/assets/js/kaiadmin.min.js"
             ],
             "server": "src/main.server.ts",
             "prerender": true,
