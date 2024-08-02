@@ -1,0 +1,47 @@
+<app-page-header [pageTitle]="pageTitle" [breadcrumbs]="breadcrumbs"></app-page-header>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <!--<div class="card-sub">
+          Caption
+        </div>-->
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+              <th>SL</th>
+              <th>Name</th>
+              <th>Contact No.</th>
+              <th>Email</th>
+              <th>Address</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let user of users; let i = index;">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ user.getFullName() || '-' }}</td>
+              <td>{{ user.cell || '-' }}</td>
+              <td>{{ user.email || '-' }}</td>
+              <td>{{ user.address || '-' }}</td>
+              <td>{{ user.status || '-' }}</td>
+              <td>
+                <div class="button-group">
+                  <button (click)="editUser(user.id)" class="btn btn-warning btn-sm">
+                    <i class="fa fa-edit"></i> Edit
+                  </button>
+                  <button (click)="deleteUser(user.id)" class="btn btn-danger btn-sm">
+                    <i class="fa fa-trash"></i> Delete
+                  </button>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
