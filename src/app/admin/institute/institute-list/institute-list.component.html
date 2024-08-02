@@ -13,42 +13,33 @@
           <table class="table table-bordered table-hover">
             <thead>
             <tr>
-              <th>#</th>
-              <th>Table heading</th>
-              <th>Table heading</th>
-              <th>Table heading</th>
-              <th>Table heading</th>
-              <th>Table heading</th>
-              <th>Table heading</th>
+              <th>SL</th>
+              <th>Name</th>
+              <th>Contact No.</th>
+              <th>Email</th>
+              <th>Established Year</th>
+              <th>Address</th>
+              <th></th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
+            <tr *ngFor="let institute of institutes; let i = index;">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ institute.name || '-' }}</td>
+              <td>{{ institute.address || '-' }}</td>
+              <td>{{ institute.contactNumber || '-' }}</td>
+              <td>{{ institute.email || '-' }}</td>
+              <td>{{ institute.establishedYear || '-' }}</td>
+              <td>
+                <div class="button-group">
+                  <button (click)="editInstitute(institute.id)" class="btn btn-warning btn-sm">
+                    <i class="fa fa-edit"></i> Edit
+                  </button>
+                  <button (click)="deleteInstitute(institute.id)" class="btn btn-danger btn-sm">
+                    <i class="fa fa-trash"></i> Delete
+                  </button>
+                </div>
+              </td>
             </tr>
             </tbody>
           </table>

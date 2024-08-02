@@ -12,6 +12,11 @@ import {InstituteListComponent} from "./admin/institute/institute-list/institute
 import {InstituteViewComponent} from "./admin/institute/institute-view/institute-view.component";
 import {InstituteCreateComponent} from "./admin/institute/institute-create/institute-create.component";
 import { PageHeaderComponent } from './template/page-header/page-header.component';
+import { UserListComponent } from './admin/user/user-list/user-list.component';
+import { UserCreateComponent } from './admin/user/user-create/user-create.component';
+import { UserViewComponent } from './admin/user/user-view/user-view.component';
+import { PageNotFoundComponent } from './template/page-not-found/page-not-found.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +27,12 @@ import { PageHeaderComponent } from './template/page-header/page-header.componen
     InstituteListComponent,
     InstituteViewComponent,
     InstituteCreateComponent,
-    PageHeaderComponent
+    PageHeaderComponent,
+    UserListComponent,
+    UserCreateComponent,
+    UserViewComponent,
+    PageNotFoundComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

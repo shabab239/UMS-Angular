@@ -1,0 +1,90 @@
+{
+  "institutes": [
+    {
+      "id": 1,
+      "name": "Greenwood University",
+      "address": "123 Elm Street, Springfield, IL",
+      "contactNumber": "+1-555-1234",
+      "email": "info@greenwood.edu",
+      "establishedYear": 1985
+    },
+    {
+      "id": 2,
+      "name": "Riverdale College",
+      "address": "456 Oak Avenue, Rivertown, TX",
+      "contactNumber": "+1-555-5678",
+      "email": "contact@riverdale.edu",
+      "establishedYear": 1990
+    },
+    {
+      "id": 3,
+      "name": "Summit Tech Institute",
+      "address": "789 Pine Road, Summit City, CA",
+      "contactNumber": "+1-555-9012",
+      "email": "support@summittech.edu",
+      "establishedYear": 2000
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "type": "user",
+      "firstName": "John",
+      "lastName": "Doe",
+      "cell": "+1-555-0101",
+      "email": "john.doe@example.com",
+      "address": "456 Maple Drive, Springfield, IL",
+      "status": "Active",
+      "dateOfBirth": "1990-05-15",
+      "bloodGroup": "A+",
+      "joiningDate": "2021-09-01",
+      "avatar": "john_doe.jpg",
+      "instituteId": 1
+    },
+    {
+      "id": 2,
+      "type": "user",
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "cell": "+1-555-0202",
+      "email": "jane.smith@example.com",
+      "address": "789 Oak Lane, Rivertown, TX",
+      "status": "Inactive",
+      "dateOfBirth": "1985-11-25",
+      "bloodGroup": "B-",
+      "joiningDate": "2018-01-15",
+      "avatar": "jane_smith.jpg",
+      "instituteId": 2
+    },
+    {
+      "id": 3,
+      "type": "user",
+      "firstName": "Alice",
+      "lastName": "Johnson",
+      "cell": "+1-555-0303",
+      "email": "alice.johnson@example.com",
+      "address": "123 Pine Street, Summit City, CA",
+      "status": "Disabled",
+      "dateOfBirth": "1975-03-30",
+      "bloodGroup": "O+",
+      "joiningDate": "2015-07-01",
+      "avatar": "alice_johnson.jpg",
+      "instituteId": 3
+    },
+    {
+      "id": 4,
+      "type": "user",
+      "firstName": "Robert",
+      "lastName": "Brown",
+      "cell": "+1-555-0404",
+      "email": "robert.brown@example.com",
+      "address": "234 Elm Street, Springfield, IL",
+      "status": "Active",
+      "dateOfBirth": "1995-02-20",
+      "bloodGroup": "AB-",
+      "joiningDate": "2022-06-01",
+      "avatar": "robert_brown.jpg",
+      "instituteId": 1
+    }
+  ]
+}

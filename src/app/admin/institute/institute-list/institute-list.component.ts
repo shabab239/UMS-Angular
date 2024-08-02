@@ -14,7 +14,7 @@ export class InstituteListComponent implements OnInit {
 
   institutes: Institute[] = [];
 
-  constructor(private instituteService: InstituteService) {
+  constructor(private instituteService: InstituteService) { //TODO should only be avaialable for high level admins and system engineers
 
   }
 
@@ -24,13 +24,21 @@ export class InstituteListComponent implements OnInit {
 
   loadInstitutes(): void {
     this.instituteService.getInstitutes().subscribe({
-      next: data => {
-        this.institutes = data;
+      next: response => {
+        this.institutes = JSON.parse(JSON.stringify(response));
       },
       error: error => {
 
       }
     });
+  }
+
+  editInstitute(instituteId?: number){
+
+  }
+
+  deleteInstitute(instituteId?: number){
+
   }
 
 
