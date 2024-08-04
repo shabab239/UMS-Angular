@@ -17,6 +17,7 @@ import { UserCreateComponent } from './admin/user/user-create/user-create.compon
 import { UserViewComponent } from './admin/user/user-view/user-view.component';
 import { PageNotFoundComponent } from './template/page-not-found/page-not-found.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { LoginComponent } from './security/login/login.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
     UserCreateComponent,
     UserViewComponent,
     PageNotFoundComponent,
-    DashboardComponent
+    DashboardComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

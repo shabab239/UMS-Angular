@@ -1,16 +1,17 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {AppComponent} from "./app.component";
 import {InstituteListComponent} from "./admin/institute/institute-list/institute-list.component";
 import {DashboardComponent} from "./admin/dashboard/dashboard.component";
 import {PageNotFoundComponent} from "./template/page-not-found/page-not-found.component";
 import {InstituteCreateComponent} from "./admin/institute/institute-create/institute-create.component";
 import {InstituteViewComponent} from "./admin/institute/institute-view/institute-view.component";
 import {UserListComponent} from "./admin/user/user-list/user-list.component";
+import {LoginComponent} from "./security/login/login.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
 
+  {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent},
 
   {path: 'institute-list', component: InstituteListComponent},

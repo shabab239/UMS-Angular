@@ -39,22 +39,16 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/assets/css/bootstrap.min.css",
-              "src/assets/css/plugins.min.css",
-              "src/assets/css/kaiadmin.min.css"
+              "src/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css",
+              "src/assets/plugins/global/plugins.bundle.css",
+              "src/assets/css/style.bundle.css"
             ],
             "scripts": [
-              "src/assets/js/core/jquery-3.7.1.min.js",
-              "src/assets/js/core/popper.min.js",
-              "src/assets/js/core/bootstrap.min.js",
-              "src/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js",
-              "src/assets/js/plugin/chart-circle/circles.min.js",
-              "src/assets/js/plugin/datatables/datatables.min.js",
-              "src/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js",
-              "src/assets/js/plugin/jsvectormap/jsvectormap.min.js",
-              "src/assets/js/plugin/jsvectormap/world.js",
-              "src/assets/js/plugin/sweetalert/sweetalert.min.js",
-              "src/assets/js/kaiadmin.min.js"
+              "src/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js",
+              "src/assets/js/custom/widgets.js",
+              "src/assets/js/custom/apps/chat/chat.js",
+              "src/assets/js/custom/modals/create-app.js",
+              "src/assets/js/custom/modals/upgrade-plan.js"
             ],
             "server": "src/main.server.ts",
             "prerender": true,
