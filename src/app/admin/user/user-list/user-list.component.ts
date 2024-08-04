@@ -1,19 +1,18 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from "../model/user.model";
 import {UserService} from "../user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.css'
 })
-export class UserListComponent {
-  pageTitle: string = 'User List';
-  breadcrumbs: string[] = ['Home', 'Users'];
+export class UserListComponent implements OnInit{
 
   users: User[] = [];
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
 
   }
 
@@ -31,6 +30,11 @@ export class UserListComponent {
 
       }
     });
+  }
+
+
+  createUser() {
+    this.router.navigate(['/user-create']);
   }
 
   editUser(userId?: number) {

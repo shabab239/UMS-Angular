@@ -9,9 +9,6 @@ import {InstituteService} from "../institute.service";
 })
 export class InstituteListComponent implements OnInit {
 
-  pageTitle: string = 'Institute List';
-  breadcrumbs: string[] = ['Home', 'Institutes'];
-
   institutes: Institute[] = [];
 
   constructor(private instituteService: InstituteService) { //TODO should only be avaialable for high level admins and system engineers

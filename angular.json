@@ -44,11 +44,7 @@
               "src/assets/css/style.bundle.css"
             ],
             "scripts": [
-              "src/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js",
-              "src/assets/js/custom/widgets.js",
-              "src/assets/js/custom/apps/chat/chat.js",
-              "src/assets/js/custom/modals/create-app.js",
-              "src/assets/js/custom/modals/upgrade-plan.js"
+              "src/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"
             ],
             "server": "src/main.server.ts",
             "prerender": true,
