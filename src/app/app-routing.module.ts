@@ -12,7 +12,7 @@ import {UserViewComponent} from "./admin/user/user-view/user-view.component";
 import {BreadcrumbService} from "./util/breadcrumb.service";
 
 const routes: Routes = [
-  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
 
   {path: 'login', component: LoginComponent},
 

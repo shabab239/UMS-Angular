@@ -99,5 +99,27 @@
       "joiningDate": "2024-08-07",
       "avatar": "C:\\fakepath\\wallpapersden.com_deadpool-x-wolverine-minimal_5120x2880.jpg"
     }
+  ],
+  "tokens": [
+    {
+      "id": "9118",
+      "username": "shabab",
+      "password": "123",
+      "token": "vxczxvcxvcvxcvcxcvcvxcvzcxvxcvzcvxxvc",
+      "email": "sabab239.1@gmail.com",
+      "user": {
+        "id": "9118",
+        "firstName": "Shabab",
+        "lastName": "Ahmed",
+        "cell": "01710295968",
+        "email": "sabab239.1@gmail.com",
+        "address": "Pobohati, Jhenaidah",
+        "status": "Active",
+        "dateOfBirth": "2024-08-31",
+        "bloodGroup": "A+",
+        "joiningDate": "2024-08-07",
+        "avatar": "C:\\fakepath\\wallpapersden.com_deadpool-x-wolverine-minimal_5120x2880.jpg"
+      }
+    }
   ]
 }

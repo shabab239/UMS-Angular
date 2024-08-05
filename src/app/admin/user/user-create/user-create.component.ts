@@ -42,7 +42,7 @@ export class UserCreateComponent implements OnInit {
 
   //todo set status, instId, check base64 encoding
   createUser(): void {
-    this.userService.addUser(this.user).subscribe({
+    this.userService.createUser(this.user).subscribe({
       next: response => {
         console.log('User created successfully:', response);
         // Handle successful user creation
