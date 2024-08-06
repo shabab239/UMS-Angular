@@ -32,7 +32,7 @@ import { LoginComponent } from './security/login/login.component';
     UserViewComponent,
     PageNotFoundComponent,
     DashboardComponent,
-    LoginComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

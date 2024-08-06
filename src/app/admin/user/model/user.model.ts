@@ -6,6 +6,7 @@ export class User {
     public lastName?: string,
     public cell?: string,
     public email?: string,
+    public gender?: string,
     public address?: string,
     public status?: string,
     public dateOfBirth?: string,

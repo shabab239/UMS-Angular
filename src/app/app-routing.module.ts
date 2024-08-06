@@ -10,26 +10,58 @@ import {LoginComponent} from "./security/login/login.component";
 import {UserCreateComponent} from "./admin/user/user-create/user-create.component";
 import {UserViewComponent} from "./admin/user/user-view/user-view.component";
 import {BreadcrumbService} from "./util/breadcrumb.service";
+import {AuthGuard} from "./security/auth/guard/auth.guard";
 
 const routes: Routes = [
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
 
   {path: 'login', component: LoginComponent},
 
   {
     path: 'dashboard',
     component: DashboardComponent,
-    data: { title: "Dashboard", breadcrumbs: "Dashboard" },
+    canActivate: [AuthGuard],
+    data: {pageTitle: "Dashboard", breadcrumbs: "Dashboard"},
     children: []
   },
 
-  {path: 'institute-list', component: InstituteListComponent, data: { title: "Institute List", breadcrumbs: "Institute List" }},
-  {path: 'institute-create', component: InstituteCreateComponent, data: { title: "Create Institute", breadcrumbs: "Create Institute" }},
-  {path: 'institute-view', component: InstituteViewComponent, data: { title: "View Institute", breadcrumbs: "View Institute" }},
+  {
+    path: 'institute-list',
+    component: InstituteListComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "Institute List", breadcrumbs: "Institute List"}
+  },
+  {
+    path: 'institute-create',
+    component: InstituteCreateComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "Create Institute", breadcrumbs: "Create Institute"}
+  },
+  {
+    path: 'institute-view',
+    component: InstituteViewComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "View Institute", breadcrumbs: "View Institute"}
+  },
 
-  {path: 'user-list', component: UserListComponent, data: {title: "User List", breadcrumbs: "User List"}},
-  {path: 'user-create', component: UserCreateComponent, data: {title: "Create User", breadcrumbs: "Create User"}},
-  {path: 'user-view', component: UserViewComponent, data: {title: "View User", breadcrumbs: "View User"}},
+  {
+    path: 'user-list',
+    component: UserListComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "User List", breadcrumbs: "User List"}
+  },
+  {
+    path: 'user-create',
+    component: UserCreateComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "Create User", breadcrumbs: "Create User"}
+  },
+  {
+    path: 'user-view',
+    component: UserViewComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "View User", breadcrumbs: "View User"}
+  },
 
   {path: '**', component: PageNotFoundComponent}, // This has to be at the end
 ];

@@ -1,14 +1,27 @@
+// app.component.ts
 import {Component, OnInit} from '@angular/core';
+import {AuthService} from './security/auth/auth.service';
+import {BreadcrumbService} from "./util/breadcrumb.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
-  title = 'UniversityManagementSystem';
+export class AppComponent implements OnInit{
 
-  ngOnInit(): void {
+  protected pageTitle: string = '';
 
+  constructor(
+    protected authService: AuthService,
+    private breadcrumbService: BreadcrumbService
+  ) {}
+
+  ngOnInit() {
+    this.breadcrumbService.pageTitle.subscribe(title => {
+      this.pageTitle = title;
+    });
   }
+
 }
