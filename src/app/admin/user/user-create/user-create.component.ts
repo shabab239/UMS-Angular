@@ -1,57 +1,99 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "../model/user.model";
-import {UserService} from "../user.service";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {User} from '../model/user.model';
+import {UserService} from '../user.service';
+import {AuthService} from "../../../security/auth/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-create',
   templateUrl: './user-create.component.html',
-  styleUrl: './user-create.component.css'
+  styleUrls: ['./user-create.component.css']
 })
 export class UserCreateComponent implements OnInit {
+  userForm!: FormGroup;
 
-  user!: User;
+  genderOptions: { value: string, label: string }[] = [];
+  statusOptions: { value: string, label: string }[] = [];
+  bloodGroupOptions: { value: string, label: string }[] = [];
 
-  constructor(private userService: UserService) {
+  successMessage?: string;
+  errorMessage?: string;
+
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private authService: AuthService,
+    private router: Router,
+  ) {
   }
 
   ngOnInit(): void {
-    this.user = new User();
+    this.loadOptions();
+    this.createForm();
   }
 
-  handleFileInput(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
-      this.convertFileToBase64(file).then((base64: string) => {
-        this.user.avatar = base64;
+  createForm() {
+    this.userForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(60)]],
+      cell: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
+      email: ['', Validators.email],
+      gender: ['', Validators.required],
+      address: [''],
+      status: ['', Validators.required],
+      dateOfBirth: [''],
+      bloodGroup: [''],
+      joiningDate: ['']
+    });
+  }
+
+
+  loadOptions() {
+    // Will fetch these options from the server later
+    this.genderOptions = [
+      {value: 'Male', label: 'Male'},
+      {value: 'Female', label: 'Female'},
+      {value: 'Other', label: 'Other'}
+    ];
+
+    this.statusOptions = [
+      {value: 'Active', label: 'Active'},
+      {value: 'Inactive', label: 'Inactive'},
+      {value: 'Pending', label: 'Pending'},
+      {value: 'Suspended', label: 'Suspended'},
+      {value: 'Archived', label: 'Archived'}
+    ];
+
+    this.bloodGroupOptions = [
+      {value: 'A+', label: 'A+'},
+      {value: 'A-', label: 'A-'},
+      {value: 'B+', label: 'B+'},
+      {value: 'B-', label: 'B-'},
+      {value: 'AB+', label: 'AB+'},
+      {value: 'AB-', label: 'AB-'},
+      {value: 'O+', label: 'O+'},
+      {value: 'O-', label: 'O-'}
+    ];
+
+  }
+
+  createUser(): void {
+    if (this.userForm.valid) {
+      let user: User = this.userForm.value;
+      user.type = 'user';
+      user.instituteId = this.authService.getSessionInstituteId();
+
+      this.userService.createUser(user).subscribe({
+        next: response => {
+          this.successMessage = 'User created successfully!';
+          this.userForm.reset();
+          this.router.navigate(["/user-list"]);
+        },
+        error: error => {
+          console.error('Error creating user:', error);
+          this.errorMessage = 'An error occurred while creating the user.';
+        }
       });
     }
   }
-
-  private convertFileToBase64(file: File): Promise<string> {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        resolve(reader.result as string);
-      };
-      reader.onerror = (error) => {
-        reject(error);
-      };
-      reader.readAsDataURL(file);
-    });
-  }
-
-  //todo set status, instId, check base64 encoding
-  createUser(): void {
-    this.userService.createUser(this.user).subscribe({
-      next: response => {
-        console.log('User created successfully:', response);
-        // Handle successful user creation
-      },
-      error: error => {
-        console.error('Error creating user:', error);
-        // Handle error
-      }
-    });
-  }
-
 }

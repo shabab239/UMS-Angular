@@ -18,7 +18,7 @@
             <tbody>
             <tr *ngFor="let user of users; let i = index;">
               <td>{{ i + 1 }}</td>
-              <td>{{ user.getFullName() || '-' }}</td>
+              <td>{{ user.name || '-' }}</td>
               <td>{{ user.cell || '-' }}</td>
               <td>{{ user.address || '-' }}</td>
               <td>
