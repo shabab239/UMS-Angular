@@ -6,6 +6,7 @@ export class User {
   public email?: string;
   public gender?: string;
   public address?: string;
+  public avatar?: any;
   public status?: string;
   public dateOfBirth?: string;
   public bloodGroup?: string;

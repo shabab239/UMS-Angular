@@ -10,16 +10,11 @@
             <div class="col-md-6">
 
               <div [ngClass]="{'has-error': userForm.get('name')?.invalid && userForm.get('name')?.touched}"
-                   class="form-group">
+                class="form-group">
                 <label for="name">Name</label>
-                <input
-                  class="form-control"
-                  formControlName="name"
-                  id="name"
-                  type="text"
-                />
+                <input class="form-control" formControlName="name" id="name" type="text" />
                 <small *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched"
-                       class="form-text text-danger">
+                  class="form-text text-danger">
                   <ng-container *ngIf="userForm.get('name')?.errors?.['required']">Name is required</ng-container>
                   <ng-container *ngIf="userForm.get('name')?.errors?.['minlength']">Name must be at least 3 characters
                     long
@@ -30,16 +25,11 @@
               </div>
 
               <div [ngClass]="{'has-error': userForm.get('cell')?.invalid && userForm.get('cell')?.touched}"
-                   class="form-group">
+                class="form-group">
                 <label for="cell">Cell</label>
-                <input
-                  class="form-control"
-                  formControlName="cell"
-                  id="cell"
-                  type="text"
-                />
+                <input class="form-control" formControlName="cell" id="cell" type="text" />
                 <small *ngIf="userForm.get('cell')?.invalid && userForm.get('cell')?.touched"
-                       class="form-text text-danger">
+                  class="form-text text-danger">
                   <ng-container *ngIf="userForm.get('cell')?.errors?.['required']">Cell is required</ng-container>
                   <ng-container *ngIf="userForm.get('cell')?.errors?.['minlength']">Cell must be 11 digits long
                   </ng-container>
@@ -50,16 +40,11 @@
 
 
               <div [ngClass]="{'has-error': userForm.get('email')?.invalid && userForm.get('email')?.touched}"
-                   class="form-group">
+                class="form-group">
                 <label for="email">Email</label>
-                <input
-                  class="form-control"
-                  formControlName="email"
-                  id="email"
-                  type="text"
-                />
+                <input class="form-control" formControlName="email" id="email" type="text" />
                 <small *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched"
-                       class="form-text text-danger">
+                  class="form-text text-danger">
                   <ng-container *ngIf="userForm.get('email')?.errors?.['required']">Email is required</ng-container>
                   <ng-container *ngIf="userForm.get('email')?.errors?.['email']">Invalid email format</ng-container>
                 </small>
@@ -67,80 +52,64 @@
 
 
               <div [ngClass]="{'has-error': userForm.get('gender')?.invalid && userForm.get('gender')?.touched}"
-                   class="form-group">
-                <label>Gender</label><br/>
+                class="form-group">
+                <label>Gender</label><br />
                 <div class="d-flex">
                   <div *ngFor="let option of genderOptions" class="form-check">
-                    <input
-                      [value]="option.value"
-                      class="form-check-input"
-                      formControlName="gender"
-                      id="{{ option.value }}"
-                      type="radio"
-                    />
+                    <input [value]="option.value" class="form-check-input" formControlName="gender"
+                      id="{{ option.value }}" type="radio" />
                     <label class="form-check-label">
                       {{ option.label }}
                     </label>
                   </div>
                 </div>
                 <small *ngIf="userForm.get('gender')?.invalid && userForm.get('gender')?.touched"
-                       class="form-text text-danger">
+                  class="form-text text-danger">
                   Gender is required
                 </small>
               </div>
 
 
-              <div [ngClass]="{'has-error': userForm.get('dateOfBirth')?.invalid && userForm.get('dateOfBirth')?.touched}"
-                   class="form-group">
+              <div
+                [ngClass]="{'has-error': userForm.get('dateOfBirth')?.invalid && userForm.get('dateOfBirth')?.touched}"
+                class="form-group">
                 <label for="dateOfBirth">Date of Birth</label>
-                <input
-                  class="form-control"
-                  formControlName="dateOfBirth"
-                  id="dateOfBirth"
-                  type="date"
-                />
+                <input class="form-control" formControlName="dateOfBirth" id="dateOfBirth" type="date" />
               </div>
 
             </div>
 
             <div class="col-md-6">
 
-              <div [ngClass]="{'has-error': userForm.get('joiningDate')?.invalid && userForm.get('joiningDate')?.touched}"
-                   class="form-group">
-                <label for="joiningDate">Joining Date</label>
-                <input
-                  class="form-control"
-                  formControlName="joiningDate"
-                  id="joiningDate"
-                  type="date"
-                />
+              <div class="form-group">
+                <label for="avatar">Avatar</label>
+                <br>
+                <input type="file" (change)="onAvatarPicked($event)" formControlName="avatar" class="form-control-file" id="avatar" accept=".png, .jpg, .jpeg">
               </div>
 
-              <div class="form-group" [ngClass]="{'has-error': userForm.get('status')?.invalid && userForm.get('status')?.touched}">
+              <div class="form-group">
+                <label for="joiningDate">Joining Date</label>
+                <input class="form-control" formControlName="joiningDate" id="joiningDate" type="date" />
+              </div>
+
+              <div class="form-group"
+                [ngClass]="{'has-error': userForm.get('status')?.invalid && userForm.get('status')?.touched}">
                 <label for="status">Status</label>
-                <select
-                  id="status"
-                  class="form-select"
-                  formControlName="status"
-                >
+                <select id="status" class="form-select" formControlName="status">
                   <option value="" disabled>Select Status</option>
                   <option *ngFor="let option of statusOptions" [value]="option.value">
                     {{ option.label }}
                   </option>
                 </select>
                 <small *ngIf="userForm.get('status')?.invalid && userForm.get('status')?.touched"
-                       class="form-text text-danger">
+                  class="form-text text-danger">
                   Status is required
                 </small>
               </div>
 
-              <div class="form-group" [ngClass]="{'has-error': userForm.get('bloodGroup')?.invalid && userForm.get('bloodGroup')?.touched}">
+              <div class="form-group">
                 <label for="bloodGroup">Blood Group</label>
-                <select
-                  id="bloodGroup"
-                  class="form-select"
-                  formControlName="bloodGroup"
-                >
+                <select id="bloodGroup" class="form-select" formControlName="bloodGroup">
                   <option value="" disabled>Select Blood Group</option>
                   <option *ngFor="let option of bloodGroupOptions" [value]="option.value">
                     {{ option.label }}
@@ -150,12 +119,7 @@
 
               <div class="form-group">
                 <label for="address">Address</label>
-                <textarea
-                  id="address"
-                  class="form-control"
-                  formControlName="address"
-                  rows="5"
-                ></textarea>
+                <textarea id="address" class="form-control" formControlName="address" rows="5"></textarea>
               </div>
 
             </div>

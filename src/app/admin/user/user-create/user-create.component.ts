@@ -1,9 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {User} from '../model/user.model';
-import {UserService} from '../user.service';
-import {AuthService} from "../../../security/auth/auth.service";
-import {Router} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from '../model/user.model';
+import { UserService } from '../user.service';
+import { AuthService } from "../../../security/auth/auth.service";
+import { Router } from "@angular/router";
+import { FormUtils } from '../../../util/form.util';
+import { FileUtils } from '../../../util/file.util';
 
 @Component({
   selector: 'app-user-create',
@@ -43,7 +45,8 @@ export class UserCreateComponent implements OnInit {
       status: ['', Validators.required],
       dateOfBirth: [''],
       bloodGroup: [''],
-      joiningDate: ['']
+      joiningDate: [''],
+      avatar: []
     });
   }
 
@@ -51,49 +54,71 @@ export class UserCreateComponent implements OnInit {
   loadOptions() {
     // Will fetch these options from the server later
     this.genderOptions = [
-      {value: 'Male', label: 'Male'},
-      {value: 'Female', label: 'Female'},
-      {value: 'Other', label: 'Other'}
+      { value: 'Male', label: 'Male' },
+      { value: 'Female', label: 'Female' },
+      { value: 'Other', label: 'Other' }
     ];
 
     this.statusOptions = [
-      {value: 'Active', label: 'Active'},
-      {value: 'Inactive', label: 'Inactive'},
-      {value: 'Pending', label: 'Pending'},
-      {value: 'Suspended', label: 'Suspended'},
-      {value: 'Archived', label: 'Archived'}
+      { value: 'Active', label: 'Active' },
+      { value: 'Inactive', label: 'Inactive' },
+      { value: 'Pending', label: 'Pending' },
+      { value: 'Suspended', label: 'Suspended' },
+      { value: 'Archived', label: 'Archived' }
     ];
 
     this.bloodGroupOptions = [
-      {value: 'A+', label: 'A+'},
-      {value: 'A-', label: 'A-'},
-      {value: 'B+', label: 'B+'},
-      {value: 'B-', label: 'B-'},
-      {value: 'AB+', label: 'AB+'},
-      {value: 'AB-', label: 'AB-'},
-      {value: 'O+', label: 'O+'},
-      {value: 'O-', label: 'O-'}
+      { value: 'A+', label: 'A+' },
+      { value: 'A-', label: 'A-' },
+      { value: 'B+', label: 'B+' },
+      { value: 'B-', label: 'B-' },
+      { value: 'AB+', label: 'AB+' },
+      { value: 'AB-', label: 'AB-' },
+      { value: 'O+', label: 'O+' },
+      { value: 'O-', label: 'O-' }
     ];
 
   }
 
-  createUser(): void {
-    if (this.userForm.valid) {
-      let user: User = this.userForm.value;
-      user.type = 'user';
-      user.instituteId = this.authService.getSessionInstituteId();
-
-      this.userService.createUser(user).subscribe({
-        next: response => {
-          this.successMessage = 'User created successfully!';
-          this.userForm.reset();
-          this.router.navigate(["/user-list"]);
-        },
-        error: error => {
-          console.error('Error creating user:', error);
-          this.errorMessage = 'An error occurred while creating the user.';
-        }
-      });
-    }
+  onAvatarPicked(event: Event) {
+    const file = (event.target as HTMLInputElement).files![0];
+    this.userForm.patchValue({ avatar: file });
   }
+
+  async createUser(): Promise<void> {
+
+    FormUtils.markFormGroupTouched(this.userForm);
+
+    if (this.userForm.invalid) {
+      return;
+    }
+
+    let user: User = this.userForm.value;
+    user.type = 'user';
+    user.instituteId = this.authService.getSessionInstituteId();
+
+    if (user.avatar instanceof File) {
+      try {
+        user.avatar = await FileUtils.convertFileToBase64(user.avatar);
+      } catch (error) {
+        console.error('Error converting file to base64:', error);
+        this.errorMessage = 'An error occurred while processing the avatar.';
+        return;
+      }
+    }
+    this.userService.createUser(user).subscribe({
+      next: response => {
+        this.successMessage = 'User created successfully!';
+        this.userForm.reset();
+        this.router.navigate(["/user-list"]);
+      },
+      error: error => {
+        console.error('Error creating user:', error);
+        this.errorMessage = 'An error occurred while creating the user.';
+      }
+    });
+
+  }
+
+
 }

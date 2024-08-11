@@ -9,18 +9,24 @@
           >
             <thead>
             <th class="col-md-1">SL</th>
+            <th></th>
             <th>Name</th>
             <th>Contact No.</th>
-            <th>Address</th>
-            <th>Status</th>
+            <th>Email</th>
+            <th class="text-center col-md-1">Status</th>
             <th class="text-center col-md-1">Action</th>
             </thead>
             <tbody>
             <tr *ngFor="let user of users; let i = index;">
               <td>{{ i + 1 }}</td>
+              <td>
+                <div class="avatar">
+                  <img [src]="user.avatar" alt="Avatar" class="avatar-img rounded">
+                </div>
+              </td>
               <td>{{ user.name || '-' }}</td>
               <td>{{ user.cell || '-' }}</td>
-              <td>{{ user.address || '-' }}</td>
+              <td>{{ user.email || '-' }}</td>
               <td>
                 <ng-container *ngIf="user.status === 'Active'; else inactive">
                   <div class="badge badge-success">{{ user.status || '-' }}</div>
