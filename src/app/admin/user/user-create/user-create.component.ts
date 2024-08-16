@@ -6,6 +6,7 @@ import { AuthService } from "../../../security/auth/auth.service";
 import { Router } from "@angular/router";
 import { FormUtils } from '../../../util/form.util';
 import { FileUtils } from '../../../util/file.util';
+import {AlertService} from "../../../util/alert.service";
 
 @Component({
   selector: 'app-user-create',
@@ -19,14 +20,12 @@ export class UserCreateComponent implements OnInit {
   statusOptions: { value: string, label: string }[] = [];
   bloodGroupOptions: { value: string, label: string }[] = [];
 
-  successMessage?: string;
-  errorMessage?: string;
-
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
     private authService: AuthService,
     private router: Router,
+    private alertService: AlertService
   ) {
   }
 
@@ -101,20 +100,18 @@ export class UserCreateComponent implements OnInit {
       try {
         user.avatar = await FileUtils.convertFileToBase64(user.avatar);
       } catch (error) {
-        console.error('Error converting file to base64:', error);
-        this.errorMessage = 'An error occurred while processing the avatar.';
+        this.alertService.success('An error occurred while processing the avatar.');
         return;
       }
     }
     this.userService.createUser(user).subscribe({
       next: response => {
-        this.successMessage = 'User created successfully!';
+        this.alertService.success('User created successfully!');
         this.userForm.reset();
         this.router.navigate(["/user-list"]);
       },
       error: error => {
-        console.error('Error creating user:', error);
-        this.errorMessage = 'An error occurred while creating the user.';
+        this.alertService.error('An error occurred while creating the user.');
       }
     });
 

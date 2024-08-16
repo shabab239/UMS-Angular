@@ -37,22 +37,10 @@
               </td>
               <td>
                 <div class="form-button-action">
-                  <button
-                    class="btn btn-link btn-primary btn-lg"
-                    data-bs-toggle="tooltip"
-                    data-original-title="Edit Task"
-                    title=""
-                    type="button"
-                  >
+                  <button [routerLink]="['/user-update', user.id]" class="btn btn-link btn-primary btn-lg" title="Edit" type="button">
                     <i class="fa fa-edit"></i>
                   </button>
-                  <button
-                    class="btn btn-link btn-danger"
-                    data-bs-toggle="tooltip"
-                    data-original-title="Remove"
-                    title=""
-                    type="button"
-                  >
+                  <button (click)="deleteUser(user.id)" class="btn btn-link btn-danger" title="Delete" type="button">
                     <i class="fa fa-times"></i>
                   </button>
                 </div>

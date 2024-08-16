@@ -1,0 +1,2 @@
+handle avatar in user-update
+instituteId - move into encrypted token, will be extracted by backend

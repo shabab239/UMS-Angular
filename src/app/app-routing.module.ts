@@ -11,6 +11,7 @@ import {UserCreateComponent} from "./admin/user/user-create/user-create.componen
 import {UserViewComponent} from "./admin/user/user-view/user-view.component";
 import {BreadcrumbService} from "./util/breadcrumb.service";
 import {AuthGuard} from "./security/auth/guard/auth.guard";
+import {UserUpdateComponent} from "./admin/user/user-update/user-update.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -55,6 +56,12 @@ const routes: Routes = [
     component: UserCreateComponent,
     canActivate: [AuthGuard],
     data: {pageTitle: "Create User", breadcrumbs: "Create User"}
+  },
+  {
+    path: 'user-update/:id',
+    component: UserUpdateComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "Update User", breadcrumbs: "Update User"}
   },
   {
     path: 'user-view',

@@ -2,17 +2,22 @@ import {Component, OnInit} from '@angular/core';
 import {User} from "../model/user.model";
 import {UserService} from "../user.service";
 import {Router} from "@angular/router";
+import {AlertService} from "../../../util/alert.service";
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.css'
 })
-export class UserListComponent implements OnInit{
+export class UserListComponent implements OnInit {
 
   users: User[] = [];
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private alertService: AlertService
+  ) {
 
   }
 
@@ -37,11 +42,15 @@ export class UserListComponent implements OnInit{
     this.router.navigate(['/user-create']);
   }
 
-  editUser(userId?: number) {
-
-  }
-
-  deleteUser(userId?: number) {
-
+  deleteUser(id: number) {
+    this.userService.deleteUser(id).subscribe({
+      next: response => {
+        this.alertService.warning('User deleted successfully!');
+        this.loadUsers();
+      },
+      error: error => {
+        this.alertService.error('Could not delete user.');
+      }
+    })
   }
 }

@@ -17,6 +17,7 @@ import { UserViewComponent } from './admin/user/user-view/user-view.component';
 import { PageNotFoundComponent } from './template/page-not-found/page-not-found.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { LoginComponent } from './security/login/login.component';
+import { UserUpdateComponent } from './admin/user/user-update/user-update.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { LoginComponent } from './security/login/login.component';
     UserViewComponent,
     PageNotFoundComponent,
     DashboardComponent,
-    LoginComponent
+    LoginComponent,
+    UserUpdateComponent
   ],
   imports: [
     BrowserModule,

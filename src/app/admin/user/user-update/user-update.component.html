@@ -1,0 +1,116 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">User Information</div>
+      </div>
+      <form (ngSubmit)="updateUser()">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+
+              <div [ngClass]="{'has-error': errors.has('name')}" class="form-group">
+                <label for="name">Name</label>
+                <input class="form-control" name="name" id="name" [(ngModel)]="user.name" type="text"/>
+                <small *ngIf="errors.has('name')" class="form-text text-danger">
+                  {{ errors.get('name') }}
+                </small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors.has('cell')}"
+                   class="form-group">
+                <label for="cell">Cell</label>
+                <input class="form-control" name="cell" id="cell" [(ngModel)]="user.cell" type="text"/>
+                <small *ngIf="errors.has('cell')" class="form-text text-danger">
+                  {{ errors.get('cell') }}
+                </small>
+              </div>
+
+
+              <div [ngClass]="{'has-error': errors.has('email')}" class="form-group">
+                <label for="email">Email</label>
+                <input class="form-control" name="email" [(ngModel)]="user.email" id="email" type="text"/>
+                <small *ngIf="errors.has('email')" class="form-text text-danger">
+                  {{ errors.get('email') }}</small>
+              </div>
+
+
+              <div [ngClass]="{'has-error': errors.has('gender')}" class="form-group">
+                <label>Gender</label><br/>
+                <div class="d-flex">
+                  <div *ngFor="let option of genderOptions" class="form-check">
+                    <input [value]="option.value" class="form-check-input" name="gender" [(ngModel)]="user.gender"
+                           id="{{ option.value }}" type="radio"/>
+                    <label class="form-check-label">
+                      {{ option.label }}
+                    </label>
+                  </div>
+                </div>
+                <small *ngIf="errors.has('gender')" class="form-text text-danger">
+                  {{ errors.get('gender') }}
+                </small>
+              </div>
+
+
+              <div class="form-group">
+                <label for="dateOfBirth">Date of Birth</label>
+                <input class="form-control" name="dateOfBirth" [(ngModel)]="user.dateOfBirth" id="dateOfBirth" type="date"/>
+              </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+              <div class="form-group">
+                <label for="avatar">Avatar</label>
+                <br>
+                <input accept=".png, .jpg, .jpeg" class="form-control-file"
+                       name="avatar" [(ngModel)]="user.avatar"
+                       id="avatar" type="file">
+              </div>
+
+              <div class="form-group">
+                <label for="joiningDate">Joining Date</label>
+                <input class="form-control" name="joiningDate" [(ngModel)]="user.joiningDate" id="joiningDate" type="date"/>
+              </div>
+
+              <div [ngClass]="{'has-error': errors.has('status')}"
+                   class="form-group">
+                <label for="status">Status</label>
+                <select class="form-select" name="status" [(ngModel)]="user.status" id="status">
+                  <option disabled value="">Select Status</option>
+                  <option *ngFor="let option of statusOptions" [value]="option.value">
+                    {{ option.label }}
+                  </option>
+                </select>
+                <small *ngIf="errors.has('status')"
+                       class="form-text text-danger">
+                  {{ errors.get('status') }}
+                </small>
+              </div>
+
+              <div class="form-group">
+                <label for="bloodGroup">Blood Group</label>
+                <select class="form-select" name="bloodGroup" [(ngModel)]="user.bloodGroup" id="bloodGroup">
+                  <option disabled value="">Select Blood Group</option>
+                  <option *ngFor="let option of bloodGroupOptions" [value]="option.value">
+                    {{ option.label }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="address">Address</label>
+                <textarea class="form-control" name="address" [(ngModel)]="user.address" id="address" rows="5"></textarea>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="card-action">
+          <button class="btn btn-success me-2">Update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

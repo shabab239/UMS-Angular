@@ -70,9 +70,7 @@
               </div>
 
 
-              <div
-                [ngClass]="{'has-error': userForm.get('dateOfBirth')?.invalid && userForm.get('dateOfBirth')?.touched}"
-                class="form-group">
+              <div class="form-group">
                 <label for="dateOfBirth">Date of Birth</label>
                 <input class="form-control" formControlName="dateOfBirth" id="dateOfBirth" type="date" />
               </div>
@@ -127,7 +125,6 @@
         </div>
         <div class="card-action">
           <button class="btn btn-success me-2">Save</button>
-          <button class="btn btn-danger">Cancel</button>
         </div>
       </form>
     </div>

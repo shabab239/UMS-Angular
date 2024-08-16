@@ -10,7 +10,7 @@ import {API_URLS} from "../../config/urls";
 export class AuthService {
 
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
-  public isAuthenticated = this.isAuthenticatedSubject.asObservable();
+  public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
   constructor(
     private httpClient: HttpClient
