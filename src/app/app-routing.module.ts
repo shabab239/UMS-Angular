@@ -12,6 +12,9 @@ import {UserViewComponent} from "./admin/user/user-view/user-view.component";
 import {BreadcrumbService} from "./util/breadcrumb.service";
 import {AuthGuard} from "./security/auth/guard/auth.guard";
 import {UserUpdateComponent} from "./admin/user/user-update/user-update.component";
+import {DepartmentCreateComponent} from "./academy/department/department-create/department-create.component";
+import {DepartmentListComponent} from "./academy/department/department-list/department-list.component";
+import {DepartmentUpdateComponent} from "./academy/department/department-update/department-update.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -68,6 +71,24 @@ const routes: Routes = [
     component: UserViewComponent,
     canActivate: [AuthGuard],
     data: {pageTitle: "View User", breadcrumbs: "View User"}
+  },
+  {
+    path: 'department-create',
+    component: DepartmentCreateComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "Create Department", breadcrumbs: "Create Department"}
+  },
+  {
+    path: 'department-list',
+    component: DepartmentListComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "Department List", breadcrumbs: "Department List"}
+  },
+  {
+    path: 'department-update/:id',
+    component: DepartmentUpdateComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "Create Department", breadcrumbs: "Create Department"}
   },
 
   {path: '**', component: PageNotFoundComponent}, // This has to be at the end
