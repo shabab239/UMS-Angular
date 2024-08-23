@@ -96,14 +96,16 @@ export class UserCreateComponent implements OnInit {
     user.type = 'user';
     user.instituteId = this.authService.getSessionInstituteId();
 
-    if (user.avatar instanceof File) {
+    user.avatar = undefined;
+    /*if (user.avatar instanceof File) {
       try {
         user.avatar = await FileUtils.convertFileToBase64(user.avatar);
       } catch (error) {
         this.alertService.error('An error occurred while processing the avatar.');
         return;
       }
-    }
+    }*/
+
     this.userService.createUser(user).subscribe({
       next: response => {
         this.alertService.success('User created successfully!');

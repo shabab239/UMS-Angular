@@ -5,5 +5,6 @@ export const API_URLS = {
   users: `${baseUrl}/users`,
   faculties: `${baseUrl}/faculties`,
   departments: `${baseUrl}/departments`,
+  students: `${baseUrl}/students`,
   tokens: `${baseUrl}/tokens`,
 };

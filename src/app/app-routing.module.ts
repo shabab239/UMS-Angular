@@ -16,6 +16,9 @@ import {DepartmentFormComponent} from "./academy/department/department-form/depa
 import {DepartmentListComponent} from "./academy/department/department-list/department-list.component";
 import {FacultyFormComponent} from "./academy/faculty/faculty-form/faculty-form.component";
 import {FacultyListComponent} from "./academy/faculty/faculty-list/faculty-list.component";
+import {StudentFormComponent} from "./academy/student/student-form/student-form.component";
+import {StudentListComponent} from "./academy/student/student-list/student-list.component";
+import {StudentViewComponent} from "./academy/student/student-view/student-view.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -29,7 +32,6 @@ const routes: Routes = [
     data: {pageTitle: "Dashboard", breadcrumbs: ["Dashboard"]},
     children: []
   },
-
   {
     path: 'institute-list',
     component: InstituteListComponent,
@@ -48,7 +50,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {pageTitle: "View Institute", breadcrumbs: ["View Institute"]}
   },
-
   {
     path: 'user-list',
     component: UserListComponent,
@@ -92,22 +93,46 @@ const routes: Routes = [
     data: {pageTitle: "Update Department", breadcrumbs: ["Department List", "Update Department"]}
   },
   {
+    path: 'faculty-list',
+    component: FacultyListComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "Faculty List", breadcrumbs: ["Faculty List"]}
+  },
+  {
     path: 'faculty-form',
     component: FacultyFormComponent,
     canActivate: [AuthGuard],
-    data: {pageTitle: "Create Faculty", breadcrumbs: ["Create Faculty"]}
+    data: {pageTitle: "Create Faculty", breadcrumbs: ["Faculty List", "Create Faculty"]}
   },
   {
     path: 'faculty-form/:id',
     component: FacultyFormComponent,
     canActivate: [AuthGuard],
-    data: {pageTitle: "Update Faculty", breadcrumbs: ["Update Faculty"]}
+    data: {pageTitle: "Update Faculty", breadcrumbs: ["Faculty List", "Update Faculty"]}
   },
   {
-    path: 'faculty-list',
-    component: FacultyListComponent,
+    path: 'student-list',
+    component: StudentListComponent,
     canActivate: [AuthGuard],
-    data: {pageTitle: "Faculty List", breadcrumbs: ["Faculty List"]}
+    data: {pageTitle: "Student List", breadcrumbs: ["Student List"]}
+  },
+  {
+    path: 'student-form',
+    component: StudentFormComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "Create Student", breadcrumbs: ["Student List", "Create Student"]}
+  },
+  {
+    path: 'student-form/:id',
+    component: StudentFormComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "Update Student", breadcrumbs: ["Student List", "Update Student"]}
+  },
+  {
+    path: 'student-view/:id',
+    component: StudentViewComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "View Student", breadcrumbs: ["Student List", "View Student"]}
   },
 
   {path: '**', component: PageNotFoundComponent}, // This has to be at the end

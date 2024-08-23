@@ -27,7 +27,7 @@
               <td>{{ faculty.name || '-' }}</td>
               <td>{{ faculty.contact || '-' }}</td>
               <td>{{ faculty.email || '-' }}</td>
-              <td>{{ faculty.dean?.name || '-' }}</td>
+              <td>{{ faculty.dean.name || '-' }}</td>
               <td>
                 <div class="form-button-action">
                   <button [routerLink]="['/faculty-form', faculty.id]" class="btn btn-link btn-primary btn-lg"

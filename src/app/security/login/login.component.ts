@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../auth/auth.service';
-import { Token } from '../auth/token.model';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {AuthService} from '../auth/auth.service';
+import {Token} from '../auth/token.model';
+import {AlertService} from "../../util/alert.service";
 
 @Component({
   selector: 'app-login',
@@ -16,10 +17,13 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private alertService: AlertService,
+  ) {
+  }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
   login() {
     this.loading = true;
@@ -39,5 +43,9 @@ export class LoginComponent implements OnInit {
         this.errorMessage = 'An error occurred. Please try again.';
       }
     });
+  }
+
+  register() {
+    this.alertService.info('Coming Soon!');
   }
 }

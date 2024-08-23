@@ -1,0 +1,193 @@
+<form (ngSubmit)="submitStudent()">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Mandatory Information</div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+
+              <div [ngClass]="{'has-error': errors.has('idNo')}" class="form-group">
+                <label for="idNo">Name</label>
+                <input [(ngModel)]="student.idNo" class="form-control" id="idNo" name="idNo" type="number"/>
+                <small *ngIf="errors.has('idNo')" class="form-text text-danger">
+                  {{ errors.get('idNo') }}
+                </small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors.has('name')}" class="form-group">
+                <label for="name">Name</label>
+                <input [(ngModel)]="student.name" class="form-control" id="name" name="name" type="text"/>
+                <small *ngIf="errors.has('name')" class="form-text text-danger">
+                  {{ errors.get('name') }}
+                </small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors.has('cell')}" class="form-group">
+                <label for="cell">Cell</label>
+                <input [(ngModel)]="student.cell" class="form-control" id="cell" name="cell" type="text"/>
+                <small *ngIf="errors.has('cell')" class="form-text text-danger">
+                  {{ errors.get('cell') }}
+                </small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors.has('email')}" class="form-group">
+                <label for="email">Email</label>
+                <input [(ngModel)]="student.email" class="form-control" id="email" name="email" type="email"/>
+                <small *ngIf="errors.has('email')" class="form-text text-danger">
+                  {{ errors.get('email') }}
+                </small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors.has('department')}" class="form-group">
+                <label for="department">Department</label>
+                <select [(ngModel)]="student.department.id" class="form-select" id="department" name="department">
+                  <option disabled value="undefined">Select Department</option>
+                  <option *ngFor="let department of departments" [value]="department.id">
+                    {{ department.name }}
+                  </option>
+                </select>
+                <small *ngIf="errors.has('department')" class="form-text text-danger">
+                  {{ errors.get('department') }}
+                </small>
+              </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+              <div [ngClass]="{'has-error': errors.has('gender')}" class="form-group">
+                <label for="gender">Gender</label>
+                <select [(ngModel)]="student.gender" class="form-select" id="gender" name="gender">
+                  <option disabled value="undefined">Select Gender</option>
+                  <option *ngFor="let option of genderOptions" [value]="option.value">
+                    {{ option.label }}
+                  </option>
+                </select>
+                <small *ngIf="errors.has('gender')" class="form-text text-danger">
+                  {{ errors.get('gender') }}
+                </small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors.has('dateOfBirth')}" class="form-group">
+                <label for="dateOfBirth">Date of Birth</label>
+                <input [(ngModel)]="student.dateOfBirth" class="form-control" id="dateOfBirth" name="dateOfBirth"
+                       type="date"/>
+                <small *ngIf="errors.has('dateOfBirth')" class="form-text text-danger">
+                  {{ errors.get('dateOfBirth') }}
+                </small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors.has('admissionDate')}" class="form-group">
+                <label for="admissionDate">Admission Date</label>
+                <input [(ngModel)]="student.admissionDate" class="form-control" id="admissionDate" name="admissionDate"
+                       type="date"/>
+                <small *ngIf="errors.has('admissionDate')" class="form-text text-danger">
+                  {{ errors.get('admissionDate') }}
+                </small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors.has('session')}" class="form-group">
+                <label for="session">Session</label>
+                <select [(ngModel)]="student.session" class="form-select" id="session" name="session">
+                  <option disabled value="undefined">Select Session</option>
+                  <option *ngFor="let option of sessionOptions" [value]="option.value">
+                    {{ option.label }}
+                  </option>
+                </select>
+                <small *ngIf="errors.has('session')" class="form-text text-danger">
+                  {{ errors.get('session') }}
+                </small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors.has('status')}" class="form-group">
+                <label for="status">Status</label>
+                <select [(ngModel)]="student.status" class="form-select" id="status" name="status">
+                  <option disabled value="undefined">Select Status</option>
+                  <option *ngFor="let option of statusOptions" [value]="option.value">
+                    {{ option.label }}
+                  </option>
+                </select>
+                <small *ngIf="errors.has('status')" class="form-text text-danger">
+                  {{ errors.get('status') }}
+                </small>
+              </div>
+
+            </div>
+          </div>
+          <div class="card-action">
+            <button class="btn btn-success me-2">
+              <span *ngIf="student.id; else save">Update</span>
+              <ng-template #save>Save</ng-template>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Optional Information-->
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Optional Information</div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+
+              <div [ngClass]="{'has-error': errors.has('religion')}" class="form-group">
+                <label for="religion">Religion</label>
+                <select [(ngModel)]="student.religion" class="form-select" id="religion" name="religion">
+                  <option disabled value="undefined">Select Religion</option>
+                  <option *ngFor="let option of religionOptions" [value]="option.value">
+                    {{ option.label }}
+                  </option>
+                </select>
+                <small *ngIf="errors.has('religion')" class="form-text text-danger">
+                  {{ errors.get('religion') }}
+                </small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors.has('avatar')}" class="form-group">
+                <label for="avatar">Avatar</label> <br>
+                <input type="file" (change)="onAvatarPicked($event)" class="form-control-file" id="avatar" accept=".png, .jpg, .jpeg">
+                <small *ngIf="errors.has('avatar')" class="form-text text-danger">
+                  {{ errors.get('avatar') }}
+                </small>
+              </div>
+
+
+            </div>
+
+            <div class="col-md-6">
+
+              <div [ngClass]="{'has-error': errors.has('bloodGroup')}" class="form-group">
+                <label for="bloodGroup">Blood Group</label>
+                <select [(ngModel)]="student.bloodGroup" class="form-select" id="bloodGroup" name="bloodGroup">
+                  <option disabled value="undefined">Select Blood Group</option>
+                  <option *ngFor="let option of bloodGroupOptions" [value]="option.value">
+                    {{ option.label }}
+                  </option>
+                </select>
+                <small *ngIf="errors.has('bloodGroup')" class="form-text text-danger">
+                  {{ errors.get('bloodGroup') }}
+                </small>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="card-action">
+          <button class="btn btn-success me-2">
+            <span *ngIf="student.id; else save">Update</span>
+            <ng-template #save>Save</ng-template>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

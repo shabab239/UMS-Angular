@@ -32,7 +32,6 @@ export class BreadcrumbService {
         this.getBreadcrumbs(child, breadcrumbs);
       }
     }
-    console.log(breadcrumbs);
     return breadcrumbs;
   }
 
