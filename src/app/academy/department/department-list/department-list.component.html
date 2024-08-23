@@ -1,15 +1,22 @@
 <div class="row">
+  <div class="col-md-12 mb-2">
+    <div class="pull-right">
+      <button class="btn btn-success" [routerLink]="['/department-form']">
+        <i class="fa fa-plus"></i> Add New
+      </button>
+    </div>
+  </div>
+</div>
+<div class="row">
   <div class="col-md-12">
     <div class="card">
       <div class="card-body">
         <div class="table-responsive">
-          <table
-            class="display table table-striped table-hover"
-            id="add-row"
-          >
+          <table class="display table table-striped table-hover" id="add-row">
             <thead>
             <th class="col-md-1">SL</th>
             <th>Name</th>
+            <th>Head</th>
             <th>Faculty</th>
             <th class="text-center col-md-1">Action</th>
             </thead>
@@ -17,15 +24,19 @@
             <tr *ngFor="let department of departments; let i = index;">
               <td>{{ i + 1 }}</td>
               <td>{{ department.name || '-' }}</td>
-              <td>{{ department.faculty.name   || '-' }}</td>
+              <td>{{ department.head.name || '-' }}</td>
+              <td>{{ department.faculty.name || '-' }}</td>
               <td>
                 <div class="form-button-action">
-                  <button [routerLink]="['/department-update', department.id]" class="btn btn-link btn-primary btn-lg" title="Edit" type="button">
+                  <button [routerLink]="['/department-form', department.id]" class="btn btn-link btn-primary btn-lg"
+                          title="Edit"
+                          type="button">
                     <i class="fa fa-edit"></i>
                   </button>
-                  <!--<button (click)="deleteDepartment(department.id)" class="btn btn-link btn-danger" title="Delete" type="button">
+                  <button (click)="deleteDepartment(department.id)" class="btn btn-link btn-danger" title="Delete"
+                          type="button">
                     <i class="fa fa-times"></i>
-                  </button>-->
+                  </button>
                 </div>
               </td>
             </tr>

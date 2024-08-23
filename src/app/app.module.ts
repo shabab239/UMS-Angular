@@ -19,10 +19,8 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { LoginComponent } from './security/login/login.component';
 import { UserUpdateComponent } from './admin/user/user-update/user-update.component';
 import { FacultyListComponent } from './academy/faculty/faculty-list/faculty-list.component';
-import { FacultyCreateComponent } from './academy/faculty/faculty-create/faculty-create.component';
-import { FacultyUpdateComponent } from './academy/faculty/faculty-update/faculty-update.component';
-import { DepartmentCreateComponent } from './academy/department/department-create/department-create.component';
-import { DepartmentUpdateComponent } from './academy/department/department-update/department-update.component';
+import { FacultyFormComponent } from './academy/faculty/faculty-form/faculty-form.component';
+import { DepartmentFormComponent } from './academy/department/department-form/department-form.component';
 import { DepartmentListComponent } from './academy/department/department-list/department-list.component';
 
 @NgModule({
@@ -42,10 +40,8 @@ import { DepartmentListComponent } from './academy/department/department-list/de
     LoginComponent,
     UserUpdateComponent,
     FacultyListComponent,
-    FacultyCreateComponent,
-    FacultyUpdateComponent,
-    DepartmentCreateComponent,
-    DepartmentUpdateComponent,
+    FacultyFormComponent,
+    DepartmentFormComponent,
     DepartmentListComponent
   ],
   imports: [

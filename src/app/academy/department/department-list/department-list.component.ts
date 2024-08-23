@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {AlertService} from "../../../util/alert.service";
 import {Department} from "../model/department.model";
@@ -9,7 +9,7 @@ import {DepartmentService} from "../department.service";
   templateUrl: './department-list.component.html',
   styleUrl: './department-list.component.css'
 })
-export class DepartmentListComponent {
+export class DepartmentListComponent implements OnInit {
   departments: Department[] = [];
 
   constructor(
@@ -35,10 +35,15 @@ export class DepartmentListComponent {
     });
   }
 
-  deleteDepartment(id: number) {
+  deleteDepartment(id?: number) {
+    if (id === undefined || id === null) {
+      this.alertService.error('Department ID is required.');
+      return;
+    }
+
     this.departmentService.deleteDepartment(id).subscribe({
       next: response => {
-        this.alertService.warning('Department deleted successfully!');
+        this.alertService.success('Department deleted successfully!');
         this.loadDepartments();
       },
       error: error => {

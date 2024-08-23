@@ -47,8 +47,7 @@ export class AlertService {
 
   private showAlert(content: any, type: string) {
     if (this.notifications.length >= this.maxStack) {
-      const oldestNotification = this.notifications.shift();
-      oldestNotification.close();
+      this.dismissOldestNotification();
     }
 
     const notifyInstance = $.notify(content, {
@@ -58,9 +57,16 @@ export class AlertService {
         align: 'right',
       },
       time: 3000,
-      delay: 0,
+      delay: 3000,
+      allow_dismiss: true
     });
 
     this.notifications.push(notifyInstance);
+  }
+
+  private dismissOldestNotification() {
+    const oldestNotification = this.notifications[0];
+    oldestNotification.close();
+    this.notifications.shift();
   }
 }

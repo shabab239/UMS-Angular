@@ -100,7 +100,7 @@ export class UserCreateComponent implements OnInit {
       try {
         user.avatar = await FileUtils.convertFileToBase64(user.avatar);
       } catch (error) {
-        this.alertService.success('An error occurred while processing the avatar.');
+        this.alertService.error('An error occurred while processing the avatar.');
         return;
       }
     }

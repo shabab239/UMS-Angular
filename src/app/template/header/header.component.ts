@@ -10,21 +10,15 @@ import {Router} from "@angular/router";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  breadcrumbs: Array<{ name: string, url: string }> = [];
-  pageTitle: string = '';
 
   constructor(
-    private breadcrumbService: BreadcrumbService,
     private authService: AuthService,
     private router: Router
   ) {
   }
 
   ngOnInit(): void {
-    this.breadcrumbService.breadcrumbs.subscribe(breadcrumbs => {
-      this.breadcrumbs = breadcrumbs;
-      this.pageTitle = breadcrumbs.length ? breadcrumbs[breadcrumbs.length - 1].name : '';
-    });
+
   }
 
   logout() {

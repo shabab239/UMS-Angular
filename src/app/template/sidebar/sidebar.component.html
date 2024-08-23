@@ -23,6 +23,7 @@
   <div class="sidebar-wrapper scrollbar scrollbar-inner">
     <div class="sidebar-content">
       <ul class="nav nav-secondary">
+
         <li class="nav-item" routerLinkActive="active">
           <a data-bs-toggle="collapse" [routerLink]="['/dashboard']" routerLinkActive="active" class="collapsed"
             aria-expanded="false">
@@ -30,12 +31,14 @@
             <p>Dashboard</p>
           </a>
         </li>
+
         <li class="nav-section">
           <span class="sidebar-mini-icon">
             <i class="fa fa-ellipsis-h"></i>
           </span>
           <h4 class="text-section">Admin</h4>
         </li>
+
         <li class="nav-item" routerLinkActive="active">
           <a data-bs-toggle="collapse" href="#user">
             <i class="fas fa-user"></i>
@@ -44,35 +47,39 @@
           </a>
           <div class="collapse" id="user">
             <ul class="nav nav-collapse">
+
               <li routerLinkActive="active">
                 <a [routerLink]="['/user-create']" routerLinkActive="active">
                   <span class="sub-item">Add User</span>
                 </a>
               </li>
+
               <li routerLinkActive="active">
                 <a [routerLink]="['/user-list']" routerLinkActive="active">
                   <span class="sub-item">User List</span>
                 </a>
               </li>
+
             </ul>
           </div>
         </li>
+
         <li class="nav-item" routerLinkActive="active">
-          <a data-bs-toggle="collapse" href="#department">
+          <a data-bs-toggle="collapse" href="#academy">
             <i class="fas fa-book"></i>
-            <p>Department</p>
+            <p>Academy</p>
             <span class="caret"></span>
           </a>
-          <div class="collapse" id="department">
+          <div class="collapse" id="academy">
             <ul class="nav nav-collapse">
               <li routerLinkActive="active">
-                <a [routerLink]="['/department-create']" routerLinkActive="active">
-                  <span class="sub-item">Add Department</span>
+                <a [routerLink]="['/faculty-list']" routerLinkActive="active">
+                  <span class="sub-item">Faculties</span>
                 </a>
               </li>
               <li routerLinkActive="active">
                 <a [routerLink]="['/department-list']" routerLinkActive="active">
-                  <span class="sub-item">Department List</span>
+                  <span class="sub-item">Departments</span>
                 </a>
               </li>
             </ul>

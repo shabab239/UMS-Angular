@@ -7,8 +7,9 @@
       <div class="container">
         <div class="page-inner">
           <div class="page-header">
-            <h3 class="fw-bold mb-3">{{ pageTitle }}</h3>
-            <!--<ul class="breadcrumbs mb-3">
+            <h3 class="fw-bold mb-3">{{ breadcrumbService.pageTitle | async }}</h3>
+
+            <ul class="breadcrumbs mb-3">
               <li class="nav-home">
                 <a href="#">
                   <i class="icon-home"></i>
@@ -17,18 +18,17 @@
               <li class="separator">
                 <i class="icon-arrow-right"></i>
               </li>
-              <li class="nav-item">
-                <a href="#">Tables</a>
-              </li>
-              <li class="separator">
-                <i class="icon-arrow-right"></i>
-              </li>
-              <li class="nav-item">
-                <a href="#">Datatables</a>
-              </li>
-            </ul>-->
-          </div>
+              <ng-container *ngFor="let breadcrumb of breadcrumbService.breadcrumbs | async; let last = last">
+                <li>
+                  <span>{{ breadcrumb }}</span>
+                </li>
+                <li class="separator" *ngIf="!last">
+                  <i class="icon-arrow-right"></i>
+                </li>
+              </ng-container>
+            </ul>
 
+          </div>
           <router-outlet></router-outlet>
         </div>
       </div>

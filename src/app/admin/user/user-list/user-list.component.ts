@@ -45,7 +45,7 @@ export class UserListComponent implements OnInit {
   deleteUser(id: number) {
     this.userService.deleteUser(id).subscribe({
       next: response => {
-        this.alertService.warning('User deleted successfully!');
+        this.alertService.success('User deleted successfully!');
         this.loadUsers();
       },
       error: error => {
