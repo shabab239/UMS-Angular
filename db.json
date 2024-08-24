@@ -266,27 +266,13 @@
           "bloodGroup": "B+",
           "joiningDate": "2024-08-24",
           "type": "staff"
-        },
-        {
-          "id": "b599",
-          "name": "Shadman Labib",
-          "cell": "01700000000",
-          "email": "test@test.com",
-          "gender": "Male",
-          "address": "72, Nizam Shankar Plaza, 3rd Floor, Satmasjid Road Sanker Rd, Dhaka",
-          "status": "Active",
-          "dateOfBirth": "",
-          "bloodGroup": "",
-          "joiningDate": "",
-          "type": "user",
-          "avatar": ""
         }
       ]
     },
     {
       "id": "25bf",
       "name": "Principles of Marketing",
-      "code": "101",
+      "code": "102",
       "description": "Principles of Marketing",
       "credits": 3,
       "fee": 3500,
@@ -855,6 +841,195 @@
               "joiningDate": "",
               "type": "user",
               "avatar": ""
+            }
+          ]
+        },
+        {
+          "id": "25bf",
+          "name": "Principles of Marketing",
+          "code": "101",
+          "description": "Principles of Marketing",
+          "credits": 3,
+          "fee": 3500,
+          "department": {
+            "id": "4af5",
+            "name": "Marketing",
+            "head": {
+              "id": "b7a6",
+              "name": "Samin Ahmed",
+              "cell": "01710295968",
+              "email": "sabab239.1@gmail.com",
+              "gender": "Male",
+              "address": "Pobohati, Jhenaidah Sadar, Jhenaidah",
+              "status": "Active",
+              "dateOfBirth": "2024-08-16",
+              "bloodGroup": "B+",
+              "joiningDate": "2024-08-24",
+              "type": "staff"
+            },
+            "faculty": {
+              "id": "ac0b",
+              "name": "BBA",
+              "email": "testBBA@test.com",
+              "contact": "01700000000",
+              "dean": {
+                "id": "c4e9",
+                "name": "Shabab Ahmed",
+                "cell": "01710295968",
+                "email": "sabab239.1@gmail.com",
+                "gender": "Male",
+                "address": "Pobohati, Jhenaidah Sadar, Jhenaidah",
+                "status": "Active",
+                "dateOfBirth": "2024-08-01",
+                "bloodGroup": "B+",
+                "joiningDate": "2024-08-01",
+                "type": "admin"
+              }
+            }
+          },
+          "teachers": [
+            {
+              "id": "b7a6",
+              "name": "Samin Ahmed",
+              "cell": "01710295968",
+              "email": "sabab239.1@gmail.com",
+              "gender": "Male",
+              "address": "Pobohati, Jhenaidah Sadar, Jhenaidah",
+              "status": "Active",
+              "dateOfBirth": "2024-08-16",
+              "bloodGroup": "B+",
+              "joiningDate": "2024-08-24",
+              "type": "staff"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "af35",
+      "enrollmentDate": "2024-08-09",
+      "feesPaid": 1500,
+      "status": "Pending",
+      "student": {
+        "department": {
+          "id": "815b",
+          "name": "Accounting",
+          "head": {
+            "id": "c4e9",
+            "name": "Shabab Ahmed",
+            "cell": "01710295968",
+            "email": "sabab239.1@gmail.com",
+            "gender": "Male",
+            "address": "Pobohati, Jhenaidah Sadar, Jhenaidah",
+            "status": "Active",
+            "dateOfBirth": "2024-08-01",
+            "bloodGroup": "B+",
+            "joiningDate": "2024-08-01",
+            "type": "admin"
+          },
+          "faculty": {
+            "id": "ac0b",
+            "name": "BBA",
+            "email": "testBBA@test.com",
+            "contact": "01700000000",
+            "dean": {
+              "id": "c4e9",
+              "name": "Shabab Ahmed",
+              "cell": "01710295968",
+              "email": "sabab239.1@gmail.com",
+              "gender": "Male",
+              "address": "Pobohati, Jhenaidah Sadar, Jhenaidah",
+              "status": "Active",
+              "dateOfBirth": "2024-08-01",
+              "bloodGroup": "B+",
+              "joiningDate": "2024-08-01",
+              "type": "admin"
+            }
+          }
+        },
+        "id": "bf57",
+        "idNo": 197589,
+        "name": "SAMIN AHMED",
+        "cell": "01700000000",
+        "email": "sabab239.1@gmail.com",
+        "gender": "Male",
+        "dateOfBirth": "2024-08-01",
+        "admissionDate": "2024-08-08",
+        "session": "2023-2024",
+        "status": "Active",
+        "religion": "Islam",
+        "bloodGroup": "B+"
+      },
+      "courses": [
+        {
+          "id": "e695",
+          "name": "Principles of Accounting",
+          "code": "101",
+          "description": "Principles of Accounting",
+          "credits": 3,
+          "fee": 3500,
+          "department": {
+            "id": "815b",
+            "name": "Accounting",
+            "head": {
+              "id": "c4e9",
+              "name": "Shabab Ahmed",
+              "cell": "01710295968",
+              "email": "sabab239.1@gmail.com",
+              "gender": "Male",
+              "address": "Pobohati, Jhenaidah Sadar, Jhenaidah",
+              "status": "Active",
+              "dateOfBirth": "2024-08-01",
+              "bloodGroup": "B+",
+              "joiningDate": "2024-08-01",
+              "type": "admin"
+            },
+            "faculty": {
+              "id": "ac0b",
+              "name": "BBA",
+              "email": "testBBA@test.com",
+              "contact": "01700000000",
+              "dean": {
+                "id": "c4e9",
+                "name": "Shabab Ahmed",
+                "cell": "01710295968",
+                "email": "sabab239.1@gmail.com",
+                "gender": "Male",
+                "address": "Pobohati, Jhenaidah Sadar, Jhenaidah",
+                "status": "Active",
+                "dateOfBirth": "2024-08-01",
+                "bloodGroup": "B+",
+                "joiningDate": "2024-08-01",
+                "type": "admin"
+              }
+            }
+          },
+          "teachers": [
+            {
+              "id": "c4e9",
+              "name": "Shabab Ahmed",
+              "cell": "01710295968",
+              "email": "sabab239.1@gmail.com",
+              "gender": "Male",
+              "address": "Pobohati, Jhenaidah Sadar, Jhenaidah",
+              "status": "Active",
+              "dateOfBirth": "2024-08-01",
+              "bloodGroup": "B+",
+              "joiningDate": "2024-08-01",
+              "type": "admin"
+            },
+            {
+              "id": "b7a6",
+              "name": "Samin Ahmed",
+              "cell": "01710295968",
+              "email": "sabab239.1@gmail.com",
+              "gender": "Male",
+              "address": "Pobohati, Jhenaidah Sadar, Jhenaidah",
+              "status": "Active",
+              "dateOfBirth": "2024-08-16",
+              "bloodGroup": "B+",
+              "joiningDate": "2024-08-24",
+              "type": "staff"
             }
           ]
         },

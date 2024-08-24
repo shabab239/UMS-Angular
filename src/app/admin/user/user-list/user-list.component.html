@@ -1,20 +1,28 @@
 <div class="row">
+  <div class="col-md-12 mb-2">
+    <div class="pull-right">
+      <button class="btn btn-success" [routerLink]="['/user-create']">
+        <i class="fa fa-plus"></i> Add New
+      </button>
+    </div>
+  </div>
+</div>
+<div class="row">
   <div class="col-md-12">
     <div class="card">
       <div class="card-body">
         <div class="table-responsive">
-          <table
-            class="display table table-striped table-hover"
-            id="add-row"
-          >
+          <table class="display table table-striped table-hover" id="add-row">
             <thead>
-            <th class="col-md-1">SL</th>
-            <th></th>
-            <th>Name</th>
-            <th>Contact No.</th>
-            <th>Email</th>
-            <th class="text-center col-md-1">Status</th>
-            <th class="text-center col-md-1">Action</th>
+            <tr>
+              <th class="col-md-1">SL</th>
+              <th></th>
+              <th>Name</th>
+              <th>Contact No.</th>
+              <th>Email</th>
+              <th class="text-center col-md-1">Status</th>
+              <th class="text-center col-md-1">Action</th>
+            </tr>
             </thead>
             <tbody>
             <tr *ngFor="let user of users; let i = index;">
@@ -38,6 +46,11 @@
               </td>
               <td>
                 <div class="form-button-action">
+                  <button [routerLink]="['/user-view', user.id]" class="btn btn-link btn-primary btn-lg"
+                          title="View"
+                          type="button">
+                    <i class="fa fa-eye"></i>
+                  </button>
                   <button [routerLink]="['/user-update', user.id]" class="btn btn-link btn-primary btn-lg" title="Edit" type="button">
                     <i class="fa fa-edit"></i>
                   </button>

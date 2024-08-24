@@ -5,27 +5,37 @@
         <div class="table-responsive">
           <table class="display table table-striped table-hover" id="add-row">
             <thead>
-            <th class="col-md-1">SL</th>
-            <th>Date</th>
-            <th>Status</th>
-            <th>Student</th>
-            <th>Courses</th>
-            <th>Total Fees</th>
-            <th>Paid</th>
-            <th class="text-center col-md-1">Action</th>
+            <tr>
+              <th class="col-md-1">SL</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Student</th>
+              <th>Courses</th>
+              <th>Total Fees</th>
+              <th>Paid</th>
+              <th class="text-center col-md-1">Action</th>
+            </tr>
             </thead>
             <tbody>
             <tr *ngFor="let enrollment of enrollments; let i = index;">
               <td>{{ i + 1 }}</td>
+              <td>
+                <ng-container *ngIf="enrollment.status === 'Approved'; else inactive">
+                  <div class="badge badge-success">{{ enrollment.status || '-' }}</div>
+                </ng-container>
+                <ng-template #inactive>
+                  <div class="badge badge-danger">{{ enrollment.status || '-' }}</div>
+                </ng-template>
+              </td>
               <td>{{ enrollment.enrollmentDate || '-' }}</td>
-              <td>{{ enrollment.status || '-' }}</td>
               <td>{{ enrollment.student.name || '-' }}</td>
               <td>{{ enrollment.getCoursesNames() || '-' }}</td>
               <td>{{ enrollment.getTotalFees() || '-' }}</td>
               <td>{{ enrollment.feesPaid || '-' }}</td>
               <td>
                 <div class="form-button-action">
-                  <button [routerLink]="['/enrollment-form', enrollment.student.id, enrollment.id]" class="btn btn-link btn-primary btn-lg"
+                  <button [routerLink]="['/enrollment-form', enrollment.student.id, enrollment.id]"
+                          class="btn btn-link btn-primary btn-lg"
                           title="Edit"
                           type="button">
                     <i class="fa fa-edit"></i>
