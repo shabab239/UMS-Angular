@@ -30,7 +30,7 @@ export class StudentListComponent implements OnInit {
         this.students = response.map(student => Object.assign(new Student(), student));
       },
       error: error => {
-
+        this.alertService.error('Could not load students.');
       }
     });
   }

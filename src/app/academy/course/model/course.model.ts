@@ -7,10 +7,10 @@ export class Course {
   name?: string;
   code?: string;
   credits?: number;
-  fees?: number;
+  fee?: number;
   description?: string;
   department!: Department;
-  teacher!: User;
+  teachers!: User[];
 
   constructor() {
     this.id = undefined;
@@ -18,9 +18,13 @@ export class Course {
     this.code = undefined;
     this.description = undefined;
     this.credits = undefined;
-    this.fees = undefined;
+    this.fee = undefined;
     this.department = new Department();
-    this.teacher = new User();
+    this.teachers = [];
+  }
+
+  getTeachersNames(): string {
+    return this.teachers.map(teacher => teacher.name).join(', ');
   }
 
   validate(errors: Map<string, string>) {
@@ -34,6 +38,12 @@ export class Course {
       errors.set('code', 'Course code is required');
     } else {
       errors.delete('code');
+    }
+
+    if (!this.fee || this.fee < 0) {
+      errors.set('fee', 'Course fee is required');
+    } else {
+      errors.delete('fee');
     }
 
     if (!this.description || this.description.trim().length === 0) {
@@ -54,10 +64,10 @@ export class Course {
       errors.delete('department');
     }
 
-    if (!this.teacher.id) {
-      errors.set('teacher', 'Teacher is required');
+    if (this.teachers.length < 1) {
+      errors.set('teachers', 'At least one teacher is required');
     } else {
-      errors.delete('teacher');
+      errors.delete('teachers');
     }
 
   }

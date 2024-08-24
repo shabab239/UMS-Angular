@@ -1,0 +1,97 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Course Information</div>
+      </div>
+      <form (ngSubmit)="submitCourse()">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+
+              <div [ngClass]="{'has-error': errors.has('name')}" class="form-group">
+                <label for="name">Name</label>
+                <input class="form-control" name="name" id="name" [(ngModel)]="course.name" type="text"/>
+                <small *ngIf="errors.has('name')" class="form-text text-danger">
+                  {{ errors.get('name') }}
+                </small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors.has('code')}" class="form-group">
+                <label for="code">Code</label>
+                <input class="form-control" name="code" id="code" [(ngModel)]="course.code" type="text"/>
+                <small *ngIf="errors.has('code')" class="form-text text-danger">
+                  {{ errors.get('code') }}
+                </small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors.has('description')}" class="form-group">
+                <label for="description">Description</label>
+                <input class="form-control" name="description" id="description" [(ngModel)]="course.description" type="text"/>
+                <small *ngIf="errors.has('description')" class="form-text text-danger">
+                  {{ errors.get('description') }}
+                </small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors.has('credits')}" class="form-group">
+                <label for="credits">Credits</label>
+                <input class="form-control" name="credits" id="credits" [(ngModel)]="course.credits" type="number"/>
+                <small *ngIf="errors.has('credits')" class="form-text text-danger">
+                  {{ errors.get('credits') }}
+                </small>
+              </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+              <div [ngClass]="{'has-error': errors.has('fee')}" class="form-group">
+                <label for="fee">Fees</label>
+                <input class="form-control" name="fee" id="fee" [(ngModel)]="course.fee" type="number"/>
+                <small *ngIf="errors.has('fee')" class="form-text text-danger">
+                  {{ errors.get('fee') }}
+                </small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors.has('department')}"
+                   class="form-group">
+                <label for="department">Department</label>
+                <select class="form-select" name="department" [(ngModel)]="course.department.id" id="department">
+                  <option value="undefined" disabled>Select Head</option>
+                  <option *ngFor="let department of departments" [value]="department.id">
+                    {{ department.name }}
+                  </option>
+                </select>
+                <small *ngIf="errors.has('department')" class="form-text text-danger">
+                  {{ errors.get('department') }}
+                </small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors.has('teachers')}"
+                   class="form-group">
+                <label for="teachers">Teachers</label>
+                <select class="form-select" name="teachersIds" multiple [(ngModel)]="selectedCourseTeachers" id="teachers">
+                  <option value="undefined" disabled>Select Faculty</option>
+                  <option *ngFor="let teacher of teachers" [value]="teacher.id">
+                    {{ teacher.name }}
+                  </option>
+                </select>
+                <small *ngIf="errors.has('teachers')" class="form-text text-danger">
+                  {{ errors.get('teachers') }}
+                </small>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+        <div class="card-action">
+          <button class="btn btn-success me-2">
+            <span *ngIf="courseId; else save">Update</span>
+            <ng-template #save>Save</ng-template>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -25,6 +25,8 @@ import { DepartmentListComponent } from './academy/department/department-list/de
 import { StudentFormComponent } from './academy/student/student-form/student-form.component';
 import { StudentListComponent } from './academy/student/student-list/student-list.component';
 import { StudentViewComponent } from './academy/student/student-view/student-view.component';
+import { CourseFormComponent } from './academy/course/course-form/course-form.component';
+import { CourseListComponent } from './academy/course/course-list/course-list.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { StudentViewComponent } from './academy/student/student-view/student-vie
     DepartmentListComponent,
     StudentFormComponent,
     StudentListComponent,
-    StudentViewComponent
+    StudentViewComponent,
+    CourseFormComponent,
+    CourseListComponent
   ],
   imports: [
     BrowserModule,

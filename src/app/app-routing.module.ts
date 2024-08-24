@@ -19,6 +19,8 @@ import {FacultyListComponent} from "./academy/faculty/faculty-list/faculty-list.
 import {StudentFormComponent} from "./academy/student/student-form/student-form.component";
 import {StudentListComponent} from "./academy/student/student-list/student-list.component";
 import {StudentViewComponent} from "./academy/student/student-view/student-view.component";
+import {CourseListComponent} from "./academy/course/course-list/course-list.component";
+import {CourseFormComponent} from "./academy/course/course-form/course-form.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -133,6 +135,24 @@ const routes: Routes = [
     component: StudentViewComponent,
     canActivate: [AuthGuard],
     data: {pageTitle: "View Student", breadcrumbs: ["Student List", "View Student"]}
+  },
+  {
+    path: 'course-list',
+    component: CourseListComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "Student List", breadcrumbs: ["Course List"]}
+  },
+  {
+    path: 'course-form',
+    component: CourseFormComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "Create Student", breadcrumbs: ["Course List", "Create Course"]}
+  },
+  {
+    path: 'course-form/:id',
+    component: CourseFormComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "Update Student", breadcrumbs: ["Course List", "Update Course"]}
   },
 
   {path: '**', component: PageNotFoundComponent}, // This has to be at the end

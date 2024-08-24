@@ -6,5 +6,6 @@ export const API_URLS = {
   faculties: `${baseUrl}/faculties`,
   departments: `${baseUrl}/departments`,
   students: `${baseUrl}/students`,
+  courses: `${baseUrl}/courses`,
   tokens: `${baseUrl}/tokens`,
 };
