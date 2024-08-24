@@ -54,7 +54,7 @@
                 <strong>Enrollments:</strong>
                 <ul *ngIf="student.enrollments && student.enrollments.length > 0; else noEnrollment">
                   <li *ngFor="let enrollment of student.enrollments">
-                    {{ enrollment.course.name || '---' }} ({{ enrollment.status || '---' }})
+                    {{ enrollment.getCoursesNames() || '---' }} ({{ enrollment.status || '---' }})
                   </li>
                 </ul>
                 <ng-template #noEnrollment>

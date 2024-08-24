@@ -8,7 +8,7 @@ export class Enrollment {
   feesPaid?: number;
   status?: string;
   student!: Student;
-  course!: Course;
+  courses!: Course[];
 
   constructor() {
     this.id = undefined;
@@ -16,7 +16,15 @@ export class Enrollment {
     this.feesPaid = undefined;
     this.status = undefined;
     this.student = new Student();
-    this.course = new Course();
+    this.courses = [];
+  }
+
+  getCoursesNames(): string {
+    return this.courses.map(course => course.name).join(', ');
+  }
+
+  getTotalFees(): number {
+    return this.courses.reduce((total, course) => total + (course.fee || 0), 0);
   }
 
   validate(errors: Map<string, string>) {
@@ -27,16 +35,16 @@ export class Enrollment {
       errors.delete('student');
     }
 
-    if (!this.course.id) {
-      errors.set('course', 'Course is required');
+    if (this.courses.length < 1) {
+      errors.set('courses', 'Course is required');
     } else {
-      errors.delete('course');
+      errors.delete('courses');
     }
 
     if (this.feesPaid === undefined || this.feesPaid < 0) {
-      errors.set('fees', 'Fees must be a non-negative number');
+      errors.set('feesPaid', 'Fees is required');
     } else {
-      errors.delete('fees');
+      errors.delete('feesPaid');
     }
 
     if (!this.enrollmentDate || this.enrollmentDate.trim().length === 0) {

@@ -27,6 +27,8 @@ import { StudentListComponent } from './academy/student/student-list/student-lis
 import { StudentViewComponent } from './academy/student/student-view/student-view.component';
 import { CourseFormComponent } from './academy/course/course-form/course-form.component';
 import { CourseListComponent } from './academy/course/course-list/course-list.component';
+import { EnrollmentFormComponent } from './academy/enrollment/enrollment-form/enrollment-form.component';
+import { EnrollmentListComponent } from './academy/enrollment/enrollment-list/enrollment-list.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { CourseListComponent } from './academy/course/course-list/course-list.co
     StudentListComponent,
     StudentViewComponent,
     CourseFormComponent,
-    CourseListComponent
+    CourseListComponent,
+    EnrollmentFormComponent,
+    EnrollmentListComponent
   ],
   imports: [
     BrowserModule,

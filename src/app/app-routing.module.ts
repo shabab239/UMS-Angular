@@ -21,6 +21,8 @@ import {StudentListComponent} from "./academy/student/student-list/student-list.
 import {StudentViewComponent} from "./academy/student/student-view/student-view.component";
 import {CourseListComponent} from "./academy/course/course-list/course-list.component";
 import {CourseFormComponent} from "./academy/course/course-form/course-form.component";
+import {EnrollmentListComponent} from "./academy/enrollment/enrollment-list/enrollment-list.component";
+import {EnrollmentFormComponent} from "./academy/enrollment/enrollment-form/enrollment-form.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -140,19 +142,37 @@ const routes: Routes = [
     path: 'course-list',
     component: CourseListComponent,
     canActivate: [AuthGuard],
-    data: {pageTitle: "Student List", breadcrumbs: ["Course List"]}
+    data: {pageTitle: "Course List", breadcrumbs: ["Course List"]}
   },
   {
     path: 'course-form',
     component: CourseFormComponent,
     canActivate: [AuthGuard],
-    data: {pageTitle: "Create Student", breadcrumbs: ["Course List", "Create Course"]}
+    data: {pageTitle: "Create Course", breadcrumbs: ["Course List", "Create Course"]}
   },
   {
     path: 'course-form/:id',
     component: CourseFormComponent,
     canActivate: [AuthGuard],
-    data: {pageTitle: "Update Student", breadcrumbs: ["Course List", "Update Course"]}
+    data: {pageTitle: "Update Course", breadcrumbs: ["Course List", "Update Course"]}
+  },
+  {
+    path: 'enrollment-list',
+    component: EnrollmentListComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "Enrollment List", breadcrumbs: ["Enrollment List"]}
+  },
+  {
+    path: 'enrollment-form/:studentId',
+    component: EnrollmentFormComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "Create Enrollment", breadcrumbs: ["Enrollment List", "Create Enrollment"]}
+  },
+  {
+    path: 'enrollment-form/:studentId/:enrollmentId',
+    component: EnrollmentFormComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "Update Enrollment", breadcrumbs: ["Enrollment List", "Update Enrollment"]}
   },
 
   {path: '**', component: PageNotFoundComponent}, // This has to be at the end
