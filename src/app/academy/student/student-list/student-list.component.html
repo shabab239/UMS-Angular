@@ -16,8 +16,9 @@
             <thead>
             <tr>
               <th class="col-md-1">SL</th>
+              <th>Status</th>
               <th>Name</th>
-              <th>Email</th>
+              <!--<th>Email</th>-->
               <th>Cell</th>
               <th>Gender</th>
               <th>Department</th>
@@ -28,8 +29,16 @@
             <tbody>
             <tr *ngFor="let student of students; let i = index;">
               <td>{{ i + 1 }}</td>
+              <td>
+                <ng-container *ngIf="student.status === 'Active'; else inactive">
+                  <div class="badge badge-success">{{ student.status || '-' }}</div>
+                </ng-container>
+                <ng-template #inactive>
+                  <div class="badge badge-danger">{{ student.status || '-' }}</div>
+                </ng-template>
+              </td>
               <td>{{ student.name || '-' }}</td>
-              <td>{{ student.email || '-' }}</td>
+              <!--<td>{{ student.email || '-' }}</td>-->
               <td>{{ student.cell || '-' }}</td>
               <td>{{ student.gender || '-' }}</td>
               <td>{{ student.department.name || '-' }}</td>

@@ -73,7 +73,7 @@ const routes: Routes = [
     data: {pageTitle: "Update User", breadcrumbs: ["Update User"]}
   },
   {
-    path: 'user-view',
+    path: 'user-view/:id',
     component: UserViewComponent,
     canActivate: [AuthGuard],
     data: {pageTitle: "View User", breadcrumbs: ["View User"]}
