@@ -30,7 +30,7 @@
               <td>{{ user.cell || '-' }}</td>
               <td>{{ user.email || '-' }}</td>
               <td>
-                <ng-container *ngIf="user.status === 'Active'; else inactive">
+                <ng-container *ngIf="user.status === 'ACTIVE'; else inactive">
                   <div class="badge badge-success">{{ user.status || '-' }}</div>
                 </ng-container>
                 <ng-template #inactive>

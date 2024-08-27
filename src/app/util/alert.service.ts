@@ -46,22 +46,24 @@ export class AlertService {
   }
 
   private showAlert(content: any, type: string) {
-    if (this.notifications.length >= this.maxStack) {
-      this.dismissOldestNotification();
-    }
+    try {
+      if (this.notifications.length >= this.maxStack) {
+        this.dismissOldestNotification();
+      }
 
-    const notifyInstance = $.notify(content, {
-      type: type,
-      placement: {
-        from: 'bottom',
-        align: 'right',
-      },
-      time: 3000,
-      delay: 3000,
-      allow_dismiss: true
-    });
+      const notifyInstance = $.notify(content, {
+        type: type,
+        placement: {
+          from: 'bottom',
+          align: 'right',
+        },
+        time: 3000,
+        delay: 3000,
+        allow_dismiss: true
+      });
 
-    this.notifications.push(notifyInstance);
+      this.notifications.push(notifyInstance);
+    } catch (e) {}
   }
 
   private dismissOldestNotification() {

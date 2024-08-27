@@ -20,25 +20,22 @@ export class UserService {
     return this.http.get<ApiResponse>(`${this.apiUrl}/getAll`);
   }
 
-
-  getUser(id: number): Observable<User> {
+  getUser(id: number): Observable<ApiResponse> {
     const url = `${this.apiUrl}/${id}`;
-    return this.http.get<User>(url);
+    return this.http.get<ApiResponse>(url);
   }
 
-  createUser(User: User): Observable<User> {
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post<User>(this.apiUrl, User, {headers});
+  createUser(User: User): Observable<ApiResponse> {
+    return this.http.post<ApiResponse>(`${this.apiUrl}/save`, User);
   }
 
-  updateUser(User: User): Observable<User> {
-    const url = `${this.apiUrl}/${User.id}`;
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.put<User>(url, User, {headers});
+  updateUser(User: User): Observable<ApiResponse> {
+    const url = `${this.apiUrl}/update/${User.id}`;
+    return this.http.put<ApiResponse>(url, User);
   }
 
-  deleteUser(id: number): Observable<void> {
+  deleteUser(id: number): Observable<ApiResponse> {
     const url = `${this.apiUrl}/${id}`;
-    return this.http.delete<void>(url);
+    return this.http.delete<ApiResponse>(url);
   }
 }

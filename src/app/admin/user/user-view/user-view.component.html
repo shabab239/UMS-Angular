@@ -1,14 +1,14 @@
 <div class="row">
   <div class="col-md-12 mb-2">
     <div class="pull-right">
-      <button class="btn btn-info" [routerLink]="['/user-form', user.id]">
+      <button *ngIf="user" class="btn btn-info" [routerLink]="['/user-form', user.id]">
         <i class="fa fa-edit"></i> Edit
       </button>
     </div>
   </div>
 </div>
 
-<div class="row">
+<div *ngIf="user; else loadingOrError" class="row">
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
@@ -35,7 +35,11 @@
               <dd class="col-sm-8">{{ user.gender }}</dd>
 
               <dt class="col-sm-4">Status:</dt>
-              <dd class="col-sm-8">{{ user.status }}</dd>
+              <dd class="col-sm-8">
+                <div [ngClass]="{'badge-success': user.status === 'ACTIVE', 'badge-danger': user.status !== 'ACTIVE'}" class="badge">
+                  {{ user.status }}
+                </div>
+              </dd>
 
               <dt class="col-sm-4">Date of Birth:</dt>
               <dd class="col-sm-8">{{ user.dateOfBirth }}</dd>
@@ -48,7 +52,6 @@
 
               <dt class="col-sm-4">Address:</dt>
               <dd class="col-sm-8">{{ user.address }}</dd>
-
             </dl>
           </div>
         </div>
@@ -56,3 +59,7 @@
     </div>
   </div>
 </div>
+
+<ng-template #loadingOrError>
+  <div class="alert alert-warning">Loading user information or an error occurred.</div>
+</ng-template>

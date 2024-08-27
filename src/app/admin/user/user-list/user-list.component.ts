@@ -27,11 +27,11 @@ export class UserListComponent implements OnInit {
   loadUsers(): void {
     this.userService.getAll().subscribe({
       next: response => {
-        if (!response.successful) {
-          this.alertService.error(response.message);
-          return;
+        if (response && response.successful) {
+          this.users = response.data['users'];
+        } else {
+          this.alertService.error(response?.message || 'Failed to load users.');
         }
-        this.users = response.data['users'];
       },
       error: error => {
         this.alertService.error(error.message);
