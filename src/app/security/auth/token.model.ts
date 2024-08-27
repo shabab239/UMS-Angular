@@ -5,7 +5,6 @@ export class Token {
     public id?: number,
     public username?: string,
     public password?: string,
-    public jwtToken?: string,
     public user?: User
   ) {
   }

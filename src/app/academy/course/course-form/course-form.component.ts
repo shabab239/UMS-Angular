@@ -65,12 +65,12 @@ export class CourseFormComponent implements OnInit {
   }
 
   private loadTeachers() {
-    this.userService.getUsers().subscribe({
+    this.userService.getAll().subscribe({
       next: response => {
-        this.teachers = response;
+        this.teachers = response.data['users'];
       },
-      error: error => {
-        this.alertService.error('An error occurred while loading teachers.');
+      error: (error: string) => {
+        this.alertService.error(error);
       }
     })
   }

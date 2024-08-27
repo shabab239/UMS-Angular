@@ -3,11 +3,17 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, map, Observable, tap} from 'rxjs';
 import {Token} from "./token.model";
 import {API_URLS} from "../../config/urls";
+import {ApiResponse} from "../../util/api.response.model";
+import {StorageUtil} from "../../util/storage.util";
+import {Authority, User} from "../../admin/user/model/user.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  private currentUserSubject = new BehaviorSubject<User | null>(null);
+  public currentUser$ = this.currentUserSubject.asObservable();
 
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
   public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
@@ -16,63 +22,60 @@ export class AuthService {
     private httpClient: HttpClient
   ) {
     this.isAuthenticatedSubject.next(this.isLoggedIn());
+    this.currentUserSubject.next(this.getCurrentUser());
   }
 
   login(token: Token): Observable<boolean> {
-    let params = new HttpParams();
-    params = params.append('username', token.username!);
-    params = params.append('password', token.password!);
+    let username = token.username;
+    let password =token.password;
+    const payload = { username, password };
 
-    return this.httpClient.get<Token[]>(API_URLS.tokens, {params}).pipe( // Using this Get req temporarily as there is no backend
-      map(tokens => {
-        const foundToken = tokens.find(t => t.username === token.username);
-        if (foundToken && foundToken.password === token.password) {
-          const jwtToken = btoa(`${foundToken.username}:${foundToken.password}`); // Fake JWT token - simple base64 encoded
-          localStorage.setItem('jwtToken', jwtToken);
-          localStorage.setItem('sessionUser', JSON.stringify(foundToken.user));
+    return this.httpClient.post<ApiResponse>(API_URLS.login, payload).pipe(
+      map(response => {
+        if (response.successful) {
+          let jwt = response.data.jwt;
+          let user = response.data.user;
+          StorageUtil.saveToLocalStorage('jwt', jwt);
+          StorageUtil.saveToLocalStorage('sessionUser', user);
+
           this.isAuthenticatedSubject.next(true);
+          this.currentUserSubject.next(user);
           return true;
         } else {
           this.isAuthenticatedSubject.next(false);
+          this.currentUserSubject.next(null);
           return false;
         }
       })
     );
+  }
 
-    /*return this.httpClient.post<Token>(API_URLS.tokens, {}).pipe(
-      tap((response: Token) => {
-        if (response.token) {
-          localStorage.setItem("token", response.token);
-          localStorage.setItem("user", JSON.stringify(response.user));
-        }
-      })
-    );*/
+  getRoles(): Authority[] | null {
+    const user = this.getCurrentUser();
+    if (user) {
+      return user.authorities;
+    }
+    return null;
   }
 
   isLoggedIn(): boolean {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('jwtToken') !== null;
-    }
-    return false;
-  }
-
-  getToken(): string | null {
-    return localStorage.getItem("jwtToken");
-  }
-
-  getUser(): string | null {
-    const user = localStorage.getItem("sessionUser");
-    return user ? JSON.parse(user) : null;
-  }
-
-  getSessionInstituteId(): number | undefined { //In future this will be derived from jwt token in spring
-    const user = localStorage.getItem("sessionUser");
-    return user ? JSON.parse(user).instituteId : undefined;
+    return StorageUtil.getFromLocalStorage('jwt') !== null;
   }
 
   logout(): void {
-    localStorage.removeItem("jwtToken");
-    localStorage.removeItem("sessionUser");
+    StorageUtil.removeFromLocalStorage('jwt');
+    StorageUtil.removeFromLocalStorage('sessionUser');
+
     this.isAuthenticatedSubject.next(false);
+    this.currentUserSubject.next(null);
+  }
+
+  getCurrentUser(): User | null {
+    const user = StorageUtil.getFromLocalStorage('sessionUser');
+    return user ? user : null;
+  }
+
+  getAuthToken(): string | null {
+    return StorageUtil.getFromLocalStorage('jwt');
   }
 }

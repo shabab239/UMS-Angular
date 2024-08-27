@@ -3,6 +3,7 @@ import {User} from "../model/user.model";
 import {UserService} from "../user.service";
 import {Router} from "@angular/router";
 import {AlertService} from "../../../util/alert.service";
+import {ApiResponse} from "../../../util/api.response.model";
 
 @Component({
   selector: 'app-user-list',
@@ -15,11 +16,8 @@ export class UserListComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private router: Router,
     private alertService: AlertService
-  ) {
-
-  }
+  ) {}
 
 
   ngOnInit(): void {
@@ -27,19 +25,18 @@ export class UserListComponent implements OnInit {
   }
 
   loadUsers(): void {
-    this.userService.getUsers().subscribe({
+    this.userService.getAll().subscribe({
       next: response => {
-        this.users = response.map(user => Object.assign(new User(), user));
+        if (!response.successful) {
+          this.alertService.error(response.message);
+          return;
+        }
+        this.users = response.data['users'];
       },
       error: error => {
-
+        this.alertService.error(error.message);
       }
     });
-  }
-
-
-  createUser() {
-    this.router.navigate(['/user-create']);
   }
 
   deleteUser(id: number) {

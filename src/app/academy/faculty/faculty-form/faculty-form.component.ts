@@ -46,12 +46,12 @@ export class FacultyFormComponent implements OnInit {
   }
 
   private loadUsers() {
-    this.userService.getUsers().subscribe({
+    this.userService.getAll().subscribe({
       next: response => {
-        this.users = response;
+        this.users = response.data['users'];
       },
-      error: error => {
-        this.alertService.error('An error occurred while loading users.');
+      error: (error: string) => {
+        this.alertService.error(error);
       }
     })
   }
@@ -73,7 +73,7 @@ export class FacultyFormComponent implements OnInit {
       this.facultyService.createFaculty(this.faculty).subscribe({
         next: response => {
           this.faculty = new Faculty();
-          this.faculty.dean = new User();
+          //this.faculty.dean = new User();
           this.router.navigate(['/faculty-list']);
         },
         error: error => {
@@ -84,7 +84,7 @@ export class FacultyFormComponent implements OnInit {
       this.facultyService.updateFaculty(this.faculty).subscribe({
         next: response => {
           this.faculty = new Faculty();
-          this.faculty.dean = new User();
+          //this.faculty.dean = new User();
           this.router.navigate(['/faculty-list']);
         },
         error: error => {

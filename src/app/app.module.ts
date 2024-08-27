@@ -5,7 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './template/header/header.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {provideHttpClient, withFetch} from "@angular/common/http";
+import {
+  HTTP_INTERCEPTORS,
+  HttpClientModule,
+  provideHttpClient,
+  withFetch,
+  withInterceptorsFromDi
+} from "@angular/common/http";
 import { FooterComponent } from './template/footer/footer.component';
 import { SidebarComponent } from './template/sidebar/sidebar.component';
 import {InstituteListComponent} from "./admin/institute/institute-list/institute-list.component";
@@ -29,6 +35,7 @@ import { CourseFormComponent } from './academy/course/course-form/course-form.co
 import { CourseListComponent } from './academy/course/course-list/course-list.component';
 import { EnrollmentFormComponent } from './academy/enrollment/enrollment-form/enrollment-form.component';
 import { EnrollmentListComponent } from './academy/enrollment/enrollment-list/enrollment-list.component';
+import {AuthInterceptor} from "./security/auth/interceptor/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -67,8 +74,10 @@ import { EnrollmentListComponent } from './academy/enrollment/enrollment-list/en
   providers: [
     provideClientHydration(),
     provideHttpClient(
-      withFetch()
-    )
+      withFetch(),
+      withInterceptorsFromDi()
+    ),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

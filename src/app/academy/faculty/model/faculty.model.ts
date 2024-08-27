@@ -12,7 +12,7 @@ export class Faculty {
     this.name = undefined;
     this.email = undefined;
     this.contact = undefined;
-    this.dean = new User();
+    //this.dean = new User();
   }
 
   validate(errors: Map<string, string>) {

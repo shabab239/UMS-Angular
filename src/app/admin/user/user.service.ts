@@ -3,20 +3,23 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {API_URLS} from "../../config/urls";
 import {User} from "./model/user.model";
+import {StorageUtil} from "../../util/storage.util";
+import {ApiResponse} from "../../util/api.response.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private apiUrl = API_URLS.users;
+  private apiUrl = API_URLS.user;
 
   constructor(private http: HttpClient) {
   }
 
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.apiUrl);
+  getAll(): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(`${this.apiUrl}/getAll`);
   }
+
 
   getUser(id: number): Observable<User> {
     const url = `${this.apiUrl}/${id}`;

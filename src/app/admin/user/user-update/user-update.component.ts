@@ -14,7 +14,7 @@ export class UserUpdateComponent implements OnInit{
 
   errors: Map<string, string> = new Map<string, string>();
 
-  user: User = new User();
+  user!: User;
 
   genderOptions: { value: string, label: string }[] = [];
   statusOptions: { value: string, label: string }[] = [];
@@ -32,7 +32,7 @@ export class UserUpdateComponent implements OnInit{
     const userId = this.route.snapshot.params['id'];
     this.userService.getUser(userId).subscribe({
       next: response => {
-        this.user = Object.assign(new User(), response);
+        //this.user = Object.assign(new User(), response);
         this.user.avatar = ''; //Setting avatar base64 to empty
       },
       error: error => {
@@ -72,28 +72,10 @@ export class UserUpdateComponent implements OnInit{
   }
 
   async updateUser(): Promise<void> {
-
-    this.user.validate(this.errors);
-
-    if (this.errors.size > 0) {
-      return;
-    }
-
-    this.user.type = 'user';
-    this.user.instituteId = this.authService.getSessionInstituteId();
-
-    if (this.user.avatar instanceof File) {
-      try {
-        this.user.avatar = await FileUtils.convertFileToBase64(this.user.avatar);
-      } catch (error) {
-        this.errors.set('avatar', 'An error occurred while processing the avatar.');
-        return;
-      }
-    }
     this.userService.updateUser(this.user).subscribe({
       next: response => {
         //this.successMessage = 'User created successfully!';
-        this.user = new User();
+        //this.user = new User();
         this.router.navigate(["/user-list"]);
       },
       error: error => {

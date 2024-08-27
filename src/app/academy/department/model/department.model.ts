@@ -10,7 +10,7 @@ export class Department {
   constructor() {
     this.id = undefined;
     this.name = undefined;
-    this.head = new User();
+    //this.head = new User();
     this.faculty = new Faculty();
   }
 

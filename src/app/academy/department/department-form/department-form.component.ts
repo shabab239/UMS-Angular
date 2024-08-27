@@ -64,12 +64,12 @@ export class DepartmentFormComponent implements OnInit {
   }
 
   private loadUsers() {
-    this.userService.getUsers().subscribe({
+    this.userService.getAll().subscribe({
       next: response => {
-        this.users = response;
+        this.users = response.data['users'];
       },
-      error: error => {
-        this.alertService.error('An error occurred while loading users.');
+      error: (error: string) => {
+        this.alertService.error(error);
       }
     })
   }

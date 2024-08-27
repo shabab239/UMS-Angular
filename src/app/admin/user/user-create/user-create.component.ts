@@ -93,8 +93,7 @@ export class UserCreateComponent implements OnInit {
     }
 
     let user: User = this.userForm.value;
-    user.type = 'user';
-    user.instituteId = this.authService.getSessionInstituteId();
+    //user.type = 'user';
 
     user.avatar = undefined;
     /*if (user.avatar instanceof File) {
