@@ -1,36 +1,29 @@
-export interface User {
-  id: number
-  name: string
-  cell: string
-  status: string
-  role: string
-  university: University
-  email: string
-  gender: string
-  address: string
-  avatar: any
-  dateOfBirth: string
-  bloodGroup: string
-  joiningDate: string
-  username: any
-  password: any
-  authorities: Authority[]
-  idString: string
-  enabled: boolean
-  accountNonExpired: boolean
-  credentialsNonExpired: boolean
-  accountNonLocked: boolean
+export class User {
+  id!: number;
+  name!: string;
+  cell!: string;
+  status!: string;
+  role!: UserRole;
+
+  // Optional fields
+  email?: string;
+  gender?: string;
+  address?: string;
+  avatar?: string;
+  dateOfBirth?: Date;
+  bloodGroup?: string;
+  joiningDate?: Date;
+  username?: string;
+  password?: string;
+
+  constructor(init?: Partial<User>) {
+    Object.assign(this, init);
+  }
+
 }
 
-export interface University {
-  id: number
-  name: string
-  contact: string
-  email: string
-  establishedYear: number
-  address: string
-}
-
-export interface Authority {
-  authority: string
+export enum UserRole {
+  ROLE_ADMIN = 'ROLE_ADMIN',
+  ROLE_TEACHER = 'ROLE_TEACHER',
+  ROLE_STAFF = 'ROLE_STAFF',
 }

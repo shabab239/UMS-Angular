@@ -4,7 +4,7 @@ const baseUrl: string = 'http://localhost/api';
 export const API_URLS = {
   login: `${baseUrl}/auth/login`,
   user: `${baseUrl}/user`,
-  faculties: `${baseUrl}/faculties`,
+  faculties: `${baseUrl}/faculty`,
   departments: `${baseUrl}/departments`,
   students: `${baseUrl}/students`,
   courses: `${baseUrl}/courses`,

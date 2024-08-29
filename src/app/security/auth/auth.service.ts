@@ -5,7 +5,7 @@ import {Token} from "./token.model";
 import {API_URLS} from "../../config/urls";
 import {ApiResponse} from "../../util/api.response.model";
 import {StorageUtil} from "../../util/storage.util";
-import {Authority, User} from "../../admin/user/model/user.model";
+import {User, UserRole} from "../../admin/user/model/user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -50,10 +50,10 @@ export class AuthService {
     );
   }
 
-  getRoles(): Authority[] | null {
+  getRoles(): UserRole | null {
     const user = this.getCurrentUser();
     if (user) {
-      return user.authorities;
+      return user.role;
     }
     return null;
   }
