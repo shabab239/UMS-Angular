@@ -16,6 +16,14 @@ import {StudentViewComponent} from "./academy/student/student-view/student-view.
 import {StudentFormComponent} from "./academy/student/student-form/student-form.component";
 import {FacultyListComponent} from "./academy/faculty/faculty-list/faculty-list.component";
 import {FacultyFormComponent} from "./academy/faculty/faculty-form/faculty-form.component";
+import {DepartmentFormComponent} from "./academy/department/department-form/department-form.component";
+import {DepartmentListComponent} from "./academy/department/department-list/department-list.component";
+import {ProgramListComponent} from "./academy/program/program-list/program-list.component";
+import {ProgramFormComponent} from "./academy/program/program-form/program-form.component";
+import {SemesterListComponent} from "./academy/semester/semester-list/semester-list.component";
+import {SemesterFormComponent} from "./academy/semester/semester-form/semester-form.component";
+import {CourseFormComponent} from "./academy/course/course-form/course-form.component";
+import {CourseListComponent} from "./academy/course/course-list/course-list.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -71,7 +79,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {pageTitle: "View User", breadcrumbs: ["User List", "View User"]}
   },
-  /*{
+  {
     path: 'department-list',
     component: DepartmentListComponent,
     canActivate: [AuthGuard],
@@ -88,7 +96,7 @@ const routes: Routes = [
     component: DepartmentFormComponent,
     canActivate: [AuthGuard],
     data: {pageTitle: "Update Department", breadcrumbs: ["Department List", "Update Department"]}
-  },*/
+  },
   {
     path: 'faculty-list',
     component: FacultyListComponent,
@@ -131,7 +139,43 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {pageTitle: "View Student", breadcrumbs: ["Student List", "View Student"]}
   },
-  /*{
+  {
+    path: 'program-list',
+    component: ProgramListComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "Program List", breadcrumbs: ["Program List"]}
+  },
+  {
+    path: 'program-form',
+    component: ProgramFormComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "Create Program", breadcrumbs: ["Program List", "Create Program"]}
+  },
+  {
+    path: 'program-form/:id',
+    component: ProgramFormComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "Update Program", breadcrumbs: ["Program List", "Update Program"]}
+  },
+  {
+    path: 'semester-list',
+    component: SemesterListComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "Semester List", breadcrumbs: ["Semester List"]}
+  },
+  {
+    path: 'semester-form',
+    component: SemesterFormComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "Create Semester", breadcrumbs: ["Semester List", "Create Semester"]}
+  },
+  {
+    path: 'semester-form/:id',
+    component: SemesterFormComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "Update Semester", breadcrumbs: ["Semester List", "Update Semester"]}
+  },
+  {
     path: 'course-list',
     component: CourseListComponent,
     canActivate: [AuthGuard],
@@ -148,7 +192,7 @@ const routes: Routes = [
     component: CourseFormComponent,
     canActivate: [AuthGuard],
     data: {pageTitle: "Update Course", breadcrumbs: ["Course List", "Update Course"]}
-  },*/
+  },
 
   {path: '**', component: PageNotFoundComponent}, // This has to be at the end
 ];

@@ -3,12 +3,12 @@ import {User} from "../../../admin/user/model/user.model";
 
 
 export class Course {
-  id?: number;
+  id!: number;
 
   name!: string;
   code!: string;
   credit!: number;
-  semester!: Semester;
+  semester: Semester = new Semester();
 
   teachers: User[] = [];
 

@@ -3,6 +3,8 @@ import {API_URLS} from "../../config/urls";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Course} from "./model/course.model";
+import {ApiResponse} from "../../util/api.response.model";
+import {Semester} from "../semester/model/semester.model";
 
 @Injectable({
   providedIn: 'root'
@@ -14,29 +16,25 @@ export class CourseService {
   constructor(private http: HttpClient) {
   }
 
-  getAll(): Observable<Course[]> {
-    return this.http.get<Course[]>(this.apiUrl);
+  getAll(): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(`${this.apiUrl}/`);
   }
 
-  getCourse(id: number): Observable<Course> {
-    const url = `${this.apiUrl}/${id}`;
-    return this.http.get<Course>(url);
+  getById(id: number): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(`${this.apiUrl}/${id}`);
   }
 
-  createCourse(course: Course): Observable<Course> {
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post<Course>(this.apiUrl, course, {headers});
+  create(course: Course): Observable<ApiResponse> {
+    return this.http.post<ApiResponse>(`${this.apiUrl}/save`, course);
   }
 
-  updateCourse(course: Course): Observable<Course> {
-    const url = `${this.apiUrl}/${course.id}`;
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.put<Course>(url, course, {headers});
+  update(course: Course): Observable<ApiResponse> {
+    console.log(course);
+    return this.http.put<ApiResponse>(`${this.apiUrl}/update`, course);
   }
 
-  deleteCourse(id: number): Observable<void> {
-    const url = `${this.apiUrl}/${id}`;
-    return this.http.delete<void>(url);
+  delete(id: number): Observable<ApiResponse> {
+    return this.http.delete<ApiResponse>(`${this.apiUrl}/${id}`);
   }
 
 }

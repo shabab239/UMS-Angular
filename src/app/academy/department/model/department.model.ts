@@ -3,10 +3,10 @@ import {Faculty} from "../../faculty/model/faculty.model";
 
 
 export class Department {
-  id?: number;
+  id!: number;
 
   name!: string;
-  head?: User;
-  faculty!: Faculty;
+  head: User = new User();
+  faculty: Faculty = new Faculty();
 
 }

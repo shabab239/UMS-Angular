@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Enter Course Information</div>
+      </div>
+      <form (ngSubmit)="createOrUpdateCourse()" method="post">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div [ngClass]="{'has-error': errors['name']}" class="form-group">
+                <label for="name">Name</label>
+                <input [(ngModel)]="course.name" class="form-control" id="name" name="name" type="text"/>
+                <small *ngIf="errors['name']" class="form-text text-danger">{{ errors['name'] }}</small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors['code']}" class="form-group">
+                <label for="code">Code</label>
+                <input [(ngModel)]="course.code" class="form-control" id="code" name="code" type="text"/>
+                <small *ngIf="errors['code']" class="form-text text-danger">{{ errors['code'] }}</small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors['credit']}" class="form-group">
+                <label for="credit">Credit</label>
+                <input [(ngModel)]="course.credit" class="form-control" id="credit" name="credit" type="number"/>
+                <small *ngIf="errors['credit']" class="form-text text-danger">{{ errors['credit'] }}</small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors['semester']}" class="form-group">
+                <label for="semester">Semester</label>
+                <ng-select
+                  [(ngModel)]="course.semester.id"
+                  [items]="semesterOptions"
+                  bindLabel="label"
+                  bindValue="value"
+                  placeholder="Select Semester"
+                  [searchable]="true"
+                  id="semester"
+                  name="semester">
+                </ng-select>
+                <small *ngIf="errors['semester']" class="form-text text-danger">{{ errors['semester'] }}</small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors['teachers']}" class="form-group">
+                <label for="teachers">Teachers</label>
+                <ng-select
+                  [(ngModel)]="course.teachers"
+                  [items]="teacherOptions"
+                  bindLabel="name"
+                  bindValue="id"
+                  placeholder="Select Teachers"
+                  [multiple]="true"
+                  [searchable]="true"
+                  id="teachers"
+                  name="teachers">
+                </ng-select>
+                <small *ngIf="errors['teachers']" class="form-text text-danger">{{ errors['teachers'] }}</small>
+              </div>
+
+              <div class="form-group">
+                <label for="description">Description (Optional)</label>
+                <textarea [(ngModel)]="course.description" class="form-control" id="description" name="description" rows="3"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-action">
+          <button class="btn btn-success me-2">
+            <span *ngIf="course.id; else save">Update</span>
+            <ng-template #save>Save</ng-template>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -60,7 +60,7 @@ export class UserFormComponent implements OnInit {
     }
   }
 
-  createUser(): void {
+  createOrUpdateUser(): void {
 
     const userObservable: Observable<ApiResponse> = this.userId
       ? this.userService.update(this.user, this.avatarFile)

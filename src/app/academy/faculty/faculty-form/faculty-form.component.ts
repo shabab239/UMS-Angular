@@ -65,7 +65,7 @@ export class FacultyFormComponent implements OnInit {
     });
   }
 
-  createFaculty(): void {
+  createOrUpdateFaculty(): void {
     const facultyObservable = this.facultyId
       ? this.facultyService.update(this.faculty)
       : this.facultyService.create(this.faculty);

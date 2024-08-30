@@ -1,0 +1,69 @@
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <div class="pull-left">
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="searchTerm"
+          placeholder="Filter..."
+        />
+      </div>
+    </div>
+    <div class="pull-right">
+      <button class="btn btn-success" [routerLink]="['/course-form']">
+        <i class="fa fa-plus"></i> Add New
+      </button>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="display table table-striped table-hover">
+            <thead>
+            <tr>
+              <th class="col-md-1">SL</th>
+              <th>Name</th>
+              <th>Code</th>
+              <th>Program</th>
+              <th>Teachers</th>
+              <th class="text-center col-md-1">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let course of filteredCourses(); let i = index;">
+              <td>{{ i + 1 }}</td>
+              <td>{{ course.name || '-' }}</td>
+              <td>{{ course.code || '-' }}</td>
+              <td>{{ course.semester.name || '-' }}</td>
+              <td>
+                <ul>
+                  <li *ngFor="let teacher of course.teachers">
+                    {{ teacher.name || '-' }}
+                  </li>
+                </ul>
+              </td>
+              <td>
+                <div class="form-button-action">
+                  <button [routerLink]="['/course-view', course.id]" class="btn btn-link btn-primary btn-lg" title="View" type="button">
+                    <i class="fa fa-eye"></i>
+                  </button>
+                  <button [routerLink]="['/course-form', course.id]" class="btn btn-link btn-primary btn-lg" title="Edit" type="button">
+                    <i class="fa fa-edit"></i>
+                  </button>
+                  <button (click)="deleteCourse(course.id)" class="btn btn-link btn-danger" title="Delete" type="button">
+                    <i class="fa fa-times"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

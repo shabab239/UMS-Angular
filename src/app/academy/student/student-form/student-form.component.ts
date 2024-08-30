@@ -63,7 +63,7 @@ export class StudentFormComponent implements OnInit {
     }
   }
 
-  createStudent(): void {
+  createOrUpdateStudent(): void {
     const studentObservable: Observable<ApiResponse> = this.studentId
       ? this.studentService.update(this.student, this.avatarFile)
       : this.studentService.create(this.student, this.avatarFile);

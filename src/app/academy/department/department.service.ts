@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {API_URLS} from "../../config/urls";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Department} from "./model/department.model";
+import {ApiResponse} from "../../util/api.response.model";
 
 @Injectable({
   providedIn: 'root'
@@ -14,28 +15,25 @@ export class DepartmentService {
   constructor(private http: HttpClient) {
   }
 
-  getDepartments(): Observable<Department[]> {
-    return this.http.get<Department[]>(this.apiUrl);
+  getAll(): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(`${this.apiUrl}/`);
   }
 
-  getDepartment(id: number): Observable<Department> {
-    const url = `${this.apiUrl}/${id}`;
-    return this.http.get<Department>(url);
+  getById(id: number): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(`${this.apiUrl}/${id}`);
   }
 
-  createDepartment(department: Department): Observable<Department> {
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post<Department>(this.apiUrl, department, {headers});
+  create(department: Department): Observable<ApiResponse> {
+    const url = `${this.apiUrl}/save`;
+    return this.http.post<ApiResponse>(url, department);
   }
 
-  updateDepartment(department: Department): Observable<Department> {
-    const url = `${this.apiUrl}/${department.id}`;
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.put<Department>(url, department, {headers});
+  update(department: Department): Observable<ApiResponse> {
+    const url = `${this.apiUrl}/update`;
+    return this.http.put<ApiResponse>(url, department);
   }
 
-  deleteDepartment(id: number): Observable<void> {
-    const url = `${this.apiUrl}/${id}`;
-    return this.http.delete<void>(url);
+  delete(id: number): Observable<ApiResponse> {
+    return this.http.delete<ApiResponse>(`${this.apiUrl}/${id}`);
   }
 }

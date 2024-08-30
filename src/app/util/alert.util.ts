@@ -9,9 +9,7 @@ export class AlertUtil {
 
   static showError(error: any, alertService: AlertService): void {
     console.log(error);
-    if (error.status === 401) {
-      alertService.error('Please login again');
-    } else if (error.message) {
+    if (error.message) {
       alertService.error(error.message);
     } else {
       alertService.error(error.error?.message || `An error occurred`);

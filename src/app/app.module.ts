@@ -24,6 +24,14 @@ import {StudentFormComponent} from "./academy/student/student-form/student-form.
 import {NgSelectModule} from "@ng-select/ng-select";
 import { FacultyFormComponent } from './academy/faculty/faculty-form/faculty-form.component';
 import { FacultyListComponent } from './academy/faculty/faculty-list/faculty-list.component';
+import { DepartmentListComponent } from './academy/department/department-list/department-list.component';
+import { DepartmentFormComponent } from './academy/department/department-form/department-form.component';
+import { ProgramListComponent } from './academy/program/program-list/program-list.component';
+import { ProgramFormComponent } from './academy/program/program-form/program-form.component';
+import { SemesterListComponent } from './academy/semester/semester-list/semester-list.component';
+import { SemesterFormComponent } from './academy/semester/semester-form/semester-form.component';
+import { CourseFormComponent } from './academy/course/course-form/course-form.component';
+import { CourseListComponent } from './academy/course/course-list/course-list.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +52,15 @@ import { FacultyListComponent } from './academy/faculty/faculty-list/faculty-lis
     StudentFormComponent,
     StudentViewComponent,
     FacultyFormComponent,
-    FacultyListComponent
+    FacultyListComponent,
+    DepartmentListComponent,
+    DepartmentFormComponent,
+    ProgramListComponent,
+    ProgramFormComponent,
+    SemesterListComponent,
+    SemesterFormComponent,
+    CourseFormComponent,
+    CourseListComponent
   ],
   imports: [
     BrowserModule,
