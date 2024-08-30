@@ -3,52 +3,55 @@ import {Router} from "@angular/router";
 import {AlertService} from "../../../util/alert.service";
 import {Student} from "../model/student.model";
 import {StudentService} from "../student.service";
+import {ApiResponse} from "../../../util/api.response.model";
+import {AlertUtil} from "../../../util/alert.util";
 
 @Component({
   selector: 'app-student-list',
   templateUrl: './student-list.component.html',
-  styleUrl: './student-list.component.css'
+  styleUrls: ['./student-list.component.css']
 })
 export class StudentListComponent implements OnInit {
+
   students: Student[] = [];
 
   constructor(
     private studentService: StudentService,
-    private router: Router,
     private alertService: AlertService
-  ) {
-
-  }
+  ) {}
 
   ngOnInit(): void {
     this.loadStudents();
   }
 
   loadStudents(): void {
-    this.studentService.getStudents().subscribe({
-      next: response => {
-        this.students = response.map(student => Object.assign(new Student(), student));
+    this.studentService.getAll().subscribe({
+      next: (response: ApiResponse) => {
+        if (response && response.successful) {
+          this.students = response.data['students'];
+        } else {
+          AlertUtil.showError(response, this.alertService);
+        }
       },
       error: error => {
-        this.alertService.error('Could not load students.');
+        AlertUtil.showError(error, this.alertService);
       }
     });
   }
 
-  deleteStudent(id?: number) {
-    if (id === undefined || id === null) {
-      this.alertService.error('Student ID is required.');
-      return;
-    }
-
-    this.studentService.deleteStudent(id).subscribe({
-      next: response => {
-        this.alertService.success('Student deleted successfully!');
-        this.loadStudents();
+  deleteStudent(id: number): void {
+    this.studentService.delete(id).subscribe({
+      next: (response: ApiResponse) => {
+        if (response && response.successful) {
+          this.loadStudents();
+          AlertUtil.showSuccess(response, this.alertService);
+        } else {
+          AlertUtil.showError(response, this.alertService);
+        }
       },
       error: error => {
-        this.alertService.error('Could not delete student.');
+        AlertUtil.showError(error, this.alertService);
       }
-    })
+    });
   }
 }

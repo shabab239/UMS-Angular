@@ -9,7 +9,7 @@ import {Department} from "./model/department.model";
 })
 export class DepartmentService {
 
-  private apiUrl = API_URLS.departments;
+  private apiUrl = API_URLS.department;
 
   constructor(private http: HttpClient) {
   }

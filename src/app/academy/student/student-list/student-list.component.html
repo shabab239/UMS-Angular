@@ -12,23 +12,27 @@
     <div class="card">
       <div class="card-body">
         <div class="table-responsive">
-          <table class="display table table-striped table-hover" >
+          <table class="display table table-striped table-hover">
             <thead>
             <tr>
               <th class="col-md-1">SL</th>
-              <th>Status</th>
+              <th>ID Number</th>
               <th>Name</th>
-              <!--<th>Email</th>-->
-              <th>Cell</th>
-              <th>Gender</th>
-              <th>Department</th>
-              <th>Session</th>
+              <th>Contact No.</th>
+              <th>Email</th>
+              <th>Semester</th>
+              <th>Status</th>
               <th class="text-center col-md-1">Action</th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let student of students; let i = index;">
               <td>{{ i + 1 }}</td>
+              <td>{{ student.idNo || '-' }}</td>
+              <td>{{ student.name || '-' }}</td>
+              <td>{{ student.cell || '-' }}</td>
+              <td>{{ student.email || '-' }}</td>
+              <td>{{ student.semester.name || '-' }} ({{ student.semester.session || '-' }})</td>
               <td>
                 <ng-container *ngIf="student.status === 'Active'; else inactive">
                   <div class="badge badge-success">{{ student.status || '-' }}</div>
@@ -37,30 +41,18 @@
                   <div class="badge badge-danger">{{ student.status || '-' }}</div>
                 </ng-template>
               </td>
-              <td>{{ student.name || '-' }}</td>
-              <!--<td>{{ student.email || '-' }}</td>-->
-              <td>{{ student.cell || '-' }}</td>
-              <td>{{ student.gender || '-' }}</td>
-              <td>{{ student.department.name || '-' }}</td>
-              <td>{{ student.session || '-' }}</td>
-              <td class="text-center">
+              <td>
                 <div class="form-button-action">
                   <button [routerLink]="['/student-view', student.id]" class="btn btn-link btn-primary btn-lg"
                           title="View"
                           type="button">
                     <i class="fa fa-eye"></i>
                   </button>
-                  <button [routerLink]="['/student-form', student.id]" class="btn btn-link btn-primary btn-lg"
-                          title="Edit"
-                          type="button">
+                  <button [routerLink]="['/student-form', student.id]" class="btn btn-link btn-primary btn-lg" title="Edit" type="button">
                     <i class="fa fa-edit"></i>
                   </button>
-                  <button (click)="deleteStudent(student.id)" class="btn btn-link btn-danger" title="Delete"
-                          type="button">
+                  <button (click)="deleteStudent(student.id)" class="btn btn-link btn-danger" title="Delete" type="button">
                     <i class="fa fa-times"></i>
-                  </button>
-                  <button [routerLink]="['/enrollment-form', student.id]" class="btn btn-xs btn-info" type="button">
-                    Enroll
                   </button>
                 </div>
               </td>

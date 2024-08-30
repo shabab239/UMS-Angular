@@ -7,22 +7,13 @@ import {InstituteCreateComponent} from "./admin/institute/institute-create/insti
 import {InstituteViewComponent} from "./admin/institute/institute-view/institute-view.component";
 import {UserListComponent} from "./admin/user/user-list/user-list.component";
 import {LoginComponent} from "./security/login/login.component";
-import {UserCreateComponent} from "./admin/user/user-create/user-create.component";
+import {UserFormComponent} from "./admin/user/user-form/user-form.component";
 import {UserViewComponent} from "./admin/user/user-view/user-view.component";
 import {BreadcrumbService} from "./util/breadcrumb.service";
 import {AuthGuard} from "./security/auth/guard/auth.guard";
-import {UserUpdateComponent} from "./admin/user/user-update/user-update.component";
-import {DepartmentFormComponent} from "./academy/department/department-form/department-form.component";
-import {DepartmentListComponent} from "./academy/department/department-list/department-list.component";
-import {FacultyFormComponent} from "./academy/faculty/faculty-form/faculty-form.component";
-import {FacultyListComponent} from "./academy/faculty/faculty-list/faculty-list.component";
-import {StudentFormComponent} from "./academy/student/student-form/student-form.component";
 import {StudentListComponent} from "./academy/student/student-list/student-list.component";
 import {StudentViewComponent} from "./academy/student/student-view/student-view.component";
-import {CourseListComponent} from "./academy/course/course-list/course-list.component";
-import {CourseFormComponent} from "./academy/course/course-form/course-form.component";
-import {EnrollmentListComponent} from "./academy/enrollment/enrollment-list/enrollment-list.component";
-import {EnrollmentFormComponent} from "./academy/enrollment/enrollment-form/enrollment-form.component";
+import {StudentFormComponent} from "./academy/student/student-form/student-form.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -61,24 +52,24 @@ const routes: Routes = [
     data: {pageTitle: "User List", breadcrumbs: ["User List"]}
   },
   {
-    path: 'user-create',
-    component: UserCreateComponent,
+    path: 'user-form',
+    component: UserFormComponent,
     canActivate: [AuthGuard],
-    data: {pageTitle: "Create User", breadcrumbs: ["Create User"]}
+    data: {pageTitle: "Create User", breadcrumbs: ["User List", "Create User"]}
   },
   {
-    path: 'user-update/:id',
-    component: UserUpdateComponent,
+    path: 'user-form/:id',
+    component: UserFormComponent,
     canActivate: [AuthGuard],
-    data: {pageTitle: "Update User", breadcrumbs: ["Update User"]}
+    data: {pageTitle: "Update User", breadcrumbs: ["User List", "Update User"]}
   },
   {
     path: 'user-view/:id',
     component: UserViewComponent,
     canActivate: [AuthGuard],
-    data: {pageTitle: "View User", breadcrumbs: ["View User"]}
+    data: {pageTitle: "View User", breadcrumbs: ["User List", "View User"]}
   },
-  {
+  /*{
     path: 'department-list',
     component: DepartmentListComponent,
     canActivate: [AuthGuard],
@@ -113,7 +104,7 @@ const routes: Routes = [
     component: FacultyFormComponent,
     canActivate: [AuthGuard],
     data: {pageTitle: "Update Faculty", breadcrumbs: ["Faculty List", "Update Faculty"]}
-  },
+  },*/
   {
     path: 'student-list',
     component: StudentListComponent,
@@ -138,7 +129,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {pageTitle: "View Student", breadcrumbs: ["Student List", "View Student"]}
   },
-  {
+  /*{
     path: 'course-list',
     component: CourseListComponent,
     canActivate: [AuthGuard],
@@ -155,25 +146,7 @@ const routes: Routes = [
     component: CourseFormComponent,
     canActivate: [AuthGuard],
     data: {pageTitle: "Update Course", breadcrumbs: ["Course List", "Update Course"]}
-  },
-  {
-    path: 'enrollment-list',
-    component: EnrollmentListComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Enrollment List", breadcrumbs: ["Enrollment List"]}
-  },
-  {
-    path: 'enrollment-form/:studentId',
-    component: EnrollmentFormComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Create Enrollment", breadcrumbs: ["Enrollment List", "Create Enrollment"]}
-  },
-  {
-    path: 'enrollment-form/:studentId/:enrollmentId',
-    component: EnrollmentFormComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Update Enrollment", breadcrumbs: ["Enrollment List", "Update Enrollment"]}
-  },
+  },*/
 
   {path: '**', component: PageNotFoundComponent}, // This has to be at the end
 ];

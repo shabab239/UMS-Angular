@@ -27,3 +27,9 @@ export enum UserRole {
   ROLE_TEACHER = 'ROLE_TEACHER',
   ROLE_STAFF = 'ROLE_STAFF',
 }
+
+export const UserRoleMap: { [key in UserRole]: string } = {
+  [UserRole.ROLE_ADMIN]: 'Admin',
+  [UserRole.ROLE_TEACHER]: 'Teacher',
+  [UserRole.ROLE_STAFF]: 'Staff',
+};

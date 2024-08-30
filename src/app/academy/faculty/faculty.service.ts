@@ -9,7 +9,7 @@ import {Faculty} from "./model/faculty.model";
 })
 export class FacultyService {
 
-  private apiUrl = API_URLS.faculties;
+  private apiUrl = API_URLS.faculty;
 
   constructor(private http: HttpClient) {
   }

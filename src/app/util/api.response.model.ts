@@ -1,6 +1,6 @@
-export interface ApiResponse {
-  message: string
-  data: any
-  errors: any
-  successful: boolean
+export class ApiResponse {
+  message?: string
+  data?: any
+  errors?: { [key: string]: string }
+  successful?: boolean
 }

@@ -3,7 +3,6 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {API_URLS} from "../../config/urls";
 import {User} from "./model/user.model";
-import {StorageUtil} from "../../util/storage.util";
 import {ApiResponse} from "../../util/api.response.model";
 
 @Injectable({
@@ -17,25 +16,37 @@ export class UserService {
   }
 
   getAll(): Observable<ApiResponse> {
-    return this.http.get<ApiResponse>(`${this.apiUrl}/getAll`);
+    return this.http.get<ApiResponse>(`${this.apiUrl}/`);
   }
 
-  getUser(id: number): Observable<ApiResponse> {
-    const url = `${this.apiUrl}/${id}`;
-    return this.http.get<ApiResponse>(url);
+  getById(id: number): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(`${this.apiUrl}/${id}`);
   }
 
-  createUser(User: User): Observable<ApiResponse> {
-    return this.http.post<ApiResponse>(`${this.apiUrl}/save`, User);
+  create(user: User, avatarFile?: File): Observable<ApiResponse> {
+    const formData = new FormData();
+    formData.append('user', new Blob([JSON.stringify(user)], {type: 'application/json'}));
+
+    if (avatarFile) {
+      formData.append('avatar', avatarFile);
+    }
+
+    return this.http.post<ApiResponse>(`${this.apiUrl}/save`, formData);
   }
 
-  updateUser(User: User): Observable<ApiResponse> {
-    const url = `${this.apiUrl}/update/${User.id}`;
-    return this.http.put<ApiResponse>(url, User);
+  update(user: User, avatarFile?: File): Observable<ApiResponse> {
+
+    const formData = new FormData();
+    formData.append('user', new Blob([JSON.stringify(user)], {type: 'application/json'}));
+
+    if (avatarFile) {
+      formData.append('avatar', avatarFile);
+    }
+
+    return this.http.put<ApiResponse>(`${this.apiUrl}/update`, formData);
   }
 
-  deleteUser(id: number): Observable<ApiResponse> {
-    const url = `${this.apiUrl}/${id}`;
-    return this.http.delete<ApiResponse>(url);
+  delete(id: number): Observable<ApiResponse> {
+    return this.http.delete<ApiResponse>(`${this.apiUrl}/${id}`);
   }
 }

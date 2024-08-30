@@ -3,7 +3,6 @@ import {AlertService} from "../../../util/alert.service";
 import {ActivatedRoute} from "@angular/router";
 import {User} from "../model/user.model";
 import {UserService} from "../user.service";
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-user-view',
@@ -30,7 +29,7 @@ export class UserViewComponent implements OnInit {
   }
 
   private loadUser(userId: number): void {
-    this.userService.getUser(userId).subscribe({
+    this.userService.getById(userId).subscribe({
       next: response => {
         if (response && response.successful) {
           this.user = response.data['user'];

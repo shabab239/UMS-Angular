@@ -1,0 +1,107 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Enter User Information</div>
+      </div>
+      <form (ngSubmit)="createUser()" method="post" enctype="multipart/form-data">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div [ngClass]="{'has-error': errors['name']}" class="form-group">
+                <label for="name">Name</label>
+                <input [(ngModel)]="user.name" class="form-control" id="name" name="name" type="text"/>
+                <small *ngIf="errors['name']" class="form-text text-danger">{{ errors['name'] }}</small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors['cell']}" class="form-group">
+                <label for="cell">Cell</label>
+                <input [(ngModel)]="user.cell" class="form-control" id="cell" name="cell" type="text"/>
+                <small *ngIf="errors['cell']" class="form-text text-danger">{{ errors['cell'] }}</small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors['email']}" class="form-group">
+                <label for="email">Email</label>
+                <input [(ngModel)]="user.email" class="form-control" id="email" name="email" type="text"/>
+                <small *ngIf="errors['email']" class="form-text text-danger">{{ errors['email'] }}</small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors['status']}" class="form-group">
+                <label for="status">Status</label>
+                <select [(ngModel)]="user.status" class="form-select" id="status" name="status">
+                  <option disabled value="">Select Status</option>
+                  <option *ngFor="let option of statusOptions" [value]="option.value">{{ option.label }}</option>
+                </select>
+                <small *ngIf="errors['status']" class="form-text text-danger">{{ errors['status'] }}</small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors['role']}" class="form-group">
+                <label for="role">Role</label>
+                <select [(ngModel)]="user.role" class="form-select" id="role" name="role">
+                  <option disabled value="">Select Status</option>
+                  <option *ngFor="let option of roleOptions" [value]="option.value">{{ option.label }}</option>
+                </select>
+                <small *ngIf="errors['role']" class="form-text text-danger">{{ errors['role'] }}</small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors['gender']}" class="form-group">
+                <label>Gender</label><br/>
+                <div class="d-flex">
+                  <div *ngFor="let option of genderOptions" class="form-check">
+                    <input [(ngModel)]="user.gender" [value]="option.value" class="form-check-input"
+                           id="{{ option.value }}" name="gender" type="radio"/>
+                    <label class="form-check-label" for="{{ option.value }}">
+                      {{ option.label }}
+                    </label>
+                  </div>
+                </div>
+                <small *ngIf="errors['gender']" class="form-text text-danger">{{ errors['gender'] }}</small>
+              </div>
+
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="avatar">Avatar</label><br />
+                <input type="file" (change)="onAvatarPicked($event)" [(ngModel)]="user.avatar"
+                       class="form-control-file" id="avatar" name="avatar" accept=".png, .jpg, .jpeg" />
+              </div>
+
+              <div class="form-group">
+                <label for="dateOfBirth">Date of Birth</label>
+                <input [(ngModel)]="user.dateOfBirth" class="form-control" id="dateOfBirth" name="dateOfBirth"
+                       type="date"/>
+              </div>
+
+              <div class="form-group">
+                <label for="joiningDate">Joining Date</label>
+                <input [(ngModel)]="user.joiningDate" class="form-control" id="joiningDate"
+                       name="joiningDate" type="date"/>
+              </div>
+
+              <div class="form-group">
+                <label for="bloodGroup">Blood Group</label>
+                <select [(ngModel)]="user.bloodGroup" class="form-select" id="bloodGroup" name="bloodGroup">
+                  <option disabled value="">Select Blood Group</option>
+                  <option *ngFor="let option of bloodGroupOptions" [value]="option.value">{{ option.label }}</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="address">Address</label>
+                <textarea [(ngModel)]="user.address" class="form-control" id="address" name="address"
+                          rows="5"></textarea>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="card-action">
+          <button class="btn btn-success me-2">
+            <span *ngIf="user.id; else save">Update</span>
+            <ng-template #save>Save</ng-template>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

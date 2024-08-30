@@ -1,6 +1,4 @@
-// header.component.ts
 import {Component, OnInit} from '@angular/core';
-import {BreadcrumbService} from "../../util/breadcrumb.service";
 import {AuthService} from "../../security/auth/auth.service";
 import {Router} from "@angular/router";
 
@@ -12,7 +10,7 @@ import {Router} from "@angular/router";
 export class HeaderComponent implements OnInit {
 
   constructor(
-    private authService: AuthService,
+    protected authService: AuthService,
     private router: Router
   ) {
   }

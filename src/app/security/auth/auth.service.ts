@@ -5,36 +5,30 @@ import {Token} from "./token.model";
 import {API_URLS} from "../../config/urls";
 import {ApiResponse} from "../../util/api.response.model";
 import {StorageUtil} from "../../util/storage.util";
-import {User, UserRole} from "../../admin/user/model/user.model";
-
+import {User, UserRole, UserRoleMap} from "../../admin/user/model/user.model";
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private currentUserSubject = new BehaviorSubject<User | null>(null);
+  private currentUserSubject = new BehaviorSubject<User | null>(this.getStoredUser());
   public currentUser$ = this.currentUserSubject.asObservable();
 
-  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.isLoggedIn());
   public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
   constructor(
     private httpClient: HttpClient
-  ) {
-    this.isAuthenticatedSubject.next(this.isLoggedIn());
-    this.currentUserSubject.next(this.getCurrentUser());
-  }
+  ) {}
 
   login(token: Token): Observable<boolean> {
-    let username = token.username;
-    let password =token.password;
-    const payload = { username, password };
+    const payload = { username: token.username, password: token.password };
 
     return this.httpClient.post<ApiResponse>(API_URLS.login, payload).pipe(
       map(response => {
         if (response.successful) {
-          let jwt = response.data.jwt;
-          let user = response.data.user;
+          const jwt = response.data.jwt;
+          const user = response.data.user;
           StorageUtil.saveToLocalStorage('jwt', jwt);
           StorageUtil.saveToLocalStorage('sessionUser', user);
 
@@ -50,12 +44,25 @@ export class AuthService {
     );
   }
 
-  getRoles(): UserRole | null {
-    const user = this.getCurrentUser();
-    if (user) {
-      return user.role;
-    }
-    return null;
+  getRole(): Observable<UserRole | null> {
+    return this.currentUser$.pipe(
+      map(user => user ? user.role : null)
+    );
+  }
+
+  getRoleFromMap(): Observable<string | null> {
+    return this.currentUser$.pipe(
+      map(user => user ? UserRoleMap[user.role] : null)
+    );
+  }
+
+
+  getCurrentUser(): Observable<User | null> {
+    return this.currentUser$;
+  }
+
+  private getStoredUser(): User | null {
+    return StorageUtil.getFromLocalStorage('sessionUser');
   }
 
   isLoggedIn(): boolean {
@@ -70,12 +77,8 @@ export class AuthService {
     this.currentUserSubject.next(null);
   }
 
-  getCurrentUser(): User | null {
-    const user = StorageUtil.getFromLocalStorage('sessionUser');
-    return user ? user : null;
-  }
-
   getAuthToken(): string | null {
     return StorageUtil.getFromLocalStorage('jwt');
   }
+
 }

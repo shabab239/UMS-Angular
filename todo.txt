@@ -1,2 +1,3 @@
 handle avatar in user-update
 <div *ngIf="user; else loadingOrError" class="row"> add global spinner
+hide delete button for self in list

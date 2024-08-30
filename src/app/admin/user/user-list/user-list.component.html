@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-12 mb-2">
     <div class="pull-right">
-      <button class="btn btn-success" [routerLink]="['/user-create']">
+      <button class="btn btn-success" [routerLink]="['/user-form']">
         <i class="fa fa-plus"></i> Add New
       </button>
     </div>
@@ -30,7 +30,7 @@
               <td>{{ user.cell || '-' }}</td>
               <td>{{ user.email || '-' }}</td>
               <td>
-                <ng-container *ngIf="user.status === 'ACTIVE'; else inactive">
+                <ng-container *ngIf="user.status === 'Active'; else inactive">
                   <div class="badge badge-success">{{ user.status || '-' }}</div>
                 </ng-container>
                 <ng-template #inactive>
@@ -44,7 +44,7 @@
                           type="button">
                     <i class="fa fa-eye"></i>
                   </button>
-                  <button [routerLink]="['/user-update', user.id]" class="btn btn-link btn-primary btn-lg" title="Edit" type="button">
+                  <button [routerLink]="['/user-form', user.id]" class="btn btn-link btn-primary btn-lg" title="Edit" type="button">
                     <i class="fa fa-edit"></i>
                   </button>
                   <button (click)="deleteUser(user.id)" class="btn btn-link btn-danger" title="Delete" type="button">

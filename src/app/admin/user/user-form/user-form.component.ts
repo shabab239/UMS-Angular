@@ -1,21 +1,20 @@
 import {Component, OnInit} from '@angular/core';
-import {Student} from '../model/student.model';
-import {StudentService} from '../student.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {AlertService} from '../../../util/alert.service';
-import {ApiResponse} from '../../../util/api.response.model';
-import {AlertUtil} from '../../../util/alert.util';
-import {Observable} from 'rxjs';
-import {SemesterService} from "../../semester/semester.service";
+import {User} from '../model/user.model';
+import {UserService} from '../user.service';
+import {ActivatedRoute, Router} from "@angular/router";
+import {AlertService} from "../../../util/alert.service";
+import {Observable} from "rxjs";
+import {ApiResponse} from "../../../util/api.response.model";
+import {AlertUtil} from "../../../util/alert.util";
 
 @Component({
-  selector: 'app-student-form',
-  templateUrl: './student-form.component.html',
-  styleUrls: ['./student-form.component.css']
+  selector: 'app-user-create',
+  templateUrl: './user-form.component.html',
+  styleUrls: ['./user-form.component.css']
 })
-export class StudentFormComponent implements OnInit {
-  student: Student = new Student();
-  studentId?: number;
+export class UserFormComponent implements OnInit {
+  user: User = new User();
+  userId?: number;
   avatarFile?: File;
 
   errors: { [key: string]: string } = {};
@@ -23,11 +22,10 @@ export class StudentFormComponent implements OnInit {
   genderOptions: { value: string, label: string }[] = [];
   statusOptions: { value: string, label: string }[] = [];
   bloodGroupOptions: { value: string, label: string }[] = [];
-  semesterOptions: { value: number, label: string }[] = [];
+  roleOptions: { value: string, label: string }[] = [];
 
   constructor(
-    private studentService: StudentService,
-    private semesterService: SemesterService,
+    private userService: UserService,
     private router: Router,
     private route: ActivatedRoute,
     private alertService: AlertService
@@ -37,14 +35,13 @@ export class StudentFormComponent implements OnInit {
   ngOnInit(): void {
     this.loadOptions();
 
-    this.studentId = this.route.snapshot.params['id'];
-    if (this.studentId) {
-      this.studentService.getById(this.studentId).subscribe({
+    this.userId = this.route.snapshot.params['id'];
+    if (this.userId) {
+      this.userService.getById(this.userId).subscribe({
         next: response => {
           if (response && response.successful) {
-            this.student = response.data['student'];
-            this.student.avatar = undefined;
-            console.log(this.student);
+            this.user = response.data['user'];
+            this.user.avatar = undefined;
           } else {
             AlertUtil.showError(response, this.alertService);
           }
@@ -52,7 +49,7 @@ export class StudentFormComponent implements OnInit {
         error: error => {
           AlertUtil.showError(error, this.alertService);
         }
-      });
+      })
     }
   }
 
@@ -63,18 +60,19 @@ export class StudentFormComponent implements OnInit {
     }
   }
 
-  createStudent(): void {
-    const studentObservable: Observable<ApiResponse> = this.studentId
-      ? this.studentService.update(this.student, this.avatarFile)
-      : this.studentService.create(this.student, this.avatarFile);
+  createUser(): void {
 
-    studentObservable.subscribe({
+    const userObservable: Observable<ApiResponse> = this.userId
+      ? this.userService.update(this.user, this.avatarFile)
+      : this.userService.create(this.user, this.avatarFile);
+
+    userObservable.subscribe({
       next: (response: ApiResponse) => {
         if (response && response.successful) {
-          this.student = new Student();
+          this.user = new User();
           this.errors = {};
           AlertUtil.showSuccess(response, this.alertService);
-          this.router.navigate(['/student-list']);
+          this.router.navigate(['/user-list']);
         } else {
           this.errors = response?.errors || {};
           AlertUtil.showError(response, this.alertService);
@@ -84,27 +82,17 @@ export class StudentFormComponent implements OnInit {
         AlertUtil.showError(error, this.alertService);
       }
     });
+
   }
 
-  loadOptions(): void {
-    this.semesterService.getAll().subscribe({
-      next: (response: ApiResponse) => {
-        if (response && response.successful) {
-          this.semesterOptions = response.data['semesters'].map((semester: any) => ({
-            value: semester.id,
-            label: semester.name + " (" + semester.session + ")"
-          }));
-        } else {
-          this.errors = response?.errors || {};
-          AlertUtil.showError(response, this.alertService);
-        }
-      },
-      error: error => {
-        AlertUtil.showError(error, this.alertService);
-      }
-    })
-
+  loadOptions() {
     // will fetch later from server
+    this.roleOptions = [
+      {value: 'ROLE_ADMIN', label: 'Admin'},
+      {value: 'ROLE_STAFF', label: 'Staff'},
+      {value: 'ROLE_TEACHER', label: 'Teacher'}
+    ];
+
     this.genderOptions = [
       {value: 'Male', label: 'Male'},
       {value: 'Female', label: 'Female'},
@@ -116,7 +104,7 @@ export class StudentFormComponent implements OnInit {
       {value: 'Inactive', label: 'Inactive'},
       {value: 'Pending', label: 'Pending'},
       {value: 'Suspended', label: 'Suspended'},
-      {value: 'Graduated', label: 'Graduated'}
+      {value: 'Archived', label: 'Archived'}
     ];
 
     this.bloodGroupOptions = [
@@ -131,3 +119,4 @@ export class StudentFormComponent implements OnInit {
     ];
   }
 }
+

@@ -9,7 +9,7 @@ import {API_URLS} from "../../config/urls";
 })
 export class InstituteService {
 
-  private apiUrl = API_URLS.institutes;
+  private apiUrl = API_URLS.institute;
 
   constructor(private http: HttpClient) { }
 

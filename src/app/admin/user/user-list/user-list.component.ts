@@ -4,6 +4,7 @@ import {UserService} from "../user.service";
 import {Router} from "@angular/router";
 import {AlertService} from "../../../util/alert.service";
 import {ApiResponse} from "../../../util/api.response.model";
+import {AlertUtil} from "../../../util/alert.util";
 
 @Component({
   selector: 'app-user-list',
@@ -26,27 +27,31 @@ export class UserListComponent implements OnInit {
 
   loadUsers(): void {
     this.userService.getAll().subscribe({
-      next: response => {
+      next: (response: ApiResponse) => {
         if (response && response.successful) {
           this.users = response.data['users'];
         } else {
-          this.alertService.error(response?.message || 'Failed to load users.');
+          AlertUtil.showError(response, this.alertService);
         }
       },
       error: error => {
-        this.alertService.error(error.message);
+        AlertUtil.showError(error, this.alertService);
       }
     });
   }
 
   deleteUser(id: number) {
-    this.userService.deleteUser(id).subscribe({
-      next: response => {
-        this.alertService.success('User deleted successfully!');
-        this.loadUsers();
+    this.userService.delete(id).subscribe({
+      next: (response: ApiResponse) => {
+        if (response && response.successful) {
+          this.loadUsers();
+          AlertUtil.showSuccess(response, this.alertService);
+        } else {
+          AlertUtil.showError(response, this.alertService);
+        }
       },
       error: error => {
-        this.alertService.error('Could not delete user.');
+        AlertUtil.showError(error, this.alertService);
       }
     })
   }

@@ -3,11 +3,14 @@ const baseUrl: string = 'http://localhost/api';
 
 export const API_URLS = {
   login: `${baseUrl}/auth/login`,
+  institute: `${baseUrl}/institute`,
   user: `${baseUrl}/user`,
-  faculties: `${baseUrl}/faculty`,
-  departments: `${baseUrl}/departments`,
-  students: `${baseUrl}/students`,
-  courses: `${baseUrl}/courses`,
-  enrollments: `${baseUrl}/enrollments`,
-  institutes: `${baseUrl}/institutes`,
+
+  faculty: `${baseUrl}/faculty`,
+  department: `${baseUrl}/department`,
+  program: `${baseUrl}/program`,
+  semester: `${baseUrl}/semester`,
+  course: `${baseUrl}/course`,
+  student: `${baseUrl}/student`,
+  fee: `${baseUrl}/fee`,
 };

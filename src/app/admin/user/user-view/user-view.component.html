@@ -16,8 +16,8 @@
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col-md-4 text-center">
-            <img *ngIf="user.avatar" [src]="user.avatar" class="img-fluid rounded-circle" alt="User Avatar">
+          <div class="col-md-4 text-center"> <!--TODO dynamic server url-->
+            <img *ngIf="user.avatar" src="http://localhost/{{user.avatar}}" class="img-fluid rounded-circle" alt="User Avatar">
             <div *ngIf="!user.avatar" class="placeholder-avatar">No Avatar</div>
           </div>
           <div class="col-md-8">
@@ -36,7 +36,7 @@
 
               <dt class="col-sm-4">Status:</dt>
               <dd class="col-sm-8">
-                <div [ngClass]="{'badge-success': user.status === 'ACTIVE', 'badge-danger': user.status !== 'ACTIVE'}" class="badge">
+                <div [ngClass]="{'badge-success': user.status === 'Active', 'badge-danger': user.status !== 'Active'}" class="badge">
                   {{ user.status }}
                 </div>
               </dd>
