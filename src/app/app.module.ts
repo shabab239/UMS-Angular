@@ -22,6 +22,8 @@ import {AuthInterceptor} from "./security/auth/interceptor/auth.interceptor";
 import {StudentViewComponent} from './academy/student/student-view/student-view.component';
 import {StudentFormComponent} from "./academy/student/student-form/student-form.component";
 import {NgSelectModule} from "@ng-select/ng-select";
+import { FacultyFormComponent } from './academy/faculty/faculty-form/faculty-form.component';
+import { FacultyListComponent } from './academy/faculty/faculty-list/faculty-list.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import {NgSelectModule} from "@ng-select/ng-select";
     LoginComponent,
     StudentListComponent,
     StudentFormComponent,
-    StudentViewComponent
+    StudentViewComponent,
+    FacultyFormComponent,
+    FacultyListComponent
   ],
   imports: [
     BrowserModule,

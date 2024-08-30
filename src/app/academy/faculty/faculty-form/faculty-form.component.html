@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Enter Faculty Information</div>
+      </div>
+      <form (ngSubmit)="createFaculty()" method="post">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div [ngClass]="{'has-error': errors['name']}" class="form-group">
+                <label for="name">Name</label>
+                <input [(ngModel)]="faculty.name" class="form-control" id="name" name="name" type="text"/>
+                <small *ngIf="errors['name']" class="form-text text-danger">{{ errors['name'] }}</small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors['email']}" class="form-group">
+                <label for="email">Email</label>
+                <input [(ngModel)]="faculty.email" class="form-control" id="email" name="email" type="text"/>
+                <small *ngIf="errors['email']" class="form-text text-danger">{{ errors['email'] }}</small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors['contact']}" class="form-group">
+                <label for="contact">Contact Number</label>
+                <input [(ngModel)]="faculty.contact" class="form-control" id="contact" name="contact" type="text"/>
+                <small *ngIf="errors['contact']" class="form-text text-danger">{{ errors['contact'] }}</small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors['dean']}" class="form-group">
+                <label for="dean">Dean</label>
+                <ng-select
+                  [(ngModel)]="faculty.dean.id"
+                  [items]="deanOptions"
+                  bindLabel="name"
+                  bindValue="id"
+                  placeholder="Select Dean"
+                  [searchable]="true"
+                  id="dean"
+                  name="dean">
+                </ng-select>
+                <small *ngIf="errors['dean']" class="form-text text-danger">{{ errors['dean'] }}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-action">
+          <button class="btn btn-success me-2">
+            <span *ngIf="faculty.id; else save">Update</span>
+            <ng-template #save>Save</ng-template>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

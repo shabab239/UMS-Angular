@@ -9,7 +9,7 @@ export class Student {
   cell!: string;
   admissionDate!: Date;
   status!: string;
-  semester!: Semester;
+  semester: Semester = new Semester();
 
   /* Optional */
   gender?: string;

@@ -14,6 +14,8 @@ import {AuthGuard} from "./security/auth/guard/auth.guard";
 import {StudentListComponent} from "./academy/student/student-list/student-list.component";
 import {StudentViewComponent} from "./academy/student/student-view/student-view.component";
 import {StudentFormComponent} from "./academy/student/student-form/student-form.component";
+import {FacultyListComponent} from "./academy/faculty/faculty-list/faculty-list.component";
+import {FacultyFormComponent} from "./academy/faculty/faculty-form/faculty-form.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -86,7 +88,7 @@ const routes: Routes = [
     component: DepartmentFormComponent,
     canActivate: [AuthGuard],
     data: {pageTitle: "Update Department", breadcrumbs: ["Department List", "Update Department"]}
-  },
+  },*/
   {
     path: 'faculty-list',
     component: FacultyListComponent,
@@ -104,7 +106,7 @@ const routes: Routes = [
     component: FacultyFormComponent,
     canActivate: [AuthGuard],
     data: {pageTitle: "Update Faculty", breadcrumbs: ["Faculty List", "Update Faculty"]}
-  },*/
+  },
   {
     path: 'student-list',
     component: StudentListComponent,

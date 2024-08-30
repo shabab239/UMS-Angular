@@ -4,7 +4,7 @@
     <!-- Logo Header -->
     <div class="logo-header" data-background-color="dark">
       <a href="#" class="logo">
-        <img src="assets/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand" height="20" />
+        <img src="assets/img/kaiadmin/logo_ums_light.png" alt="navbar brand" class="navbar-brand" height="40" />
       </a>
       <div class="nav-toggle">
         <button class="btn btn-toggle toggle-sidebar">
@@ -67,21 +67,6 @@
           <div class="collapse" id="academy">
             <ul class="nav nav-collapse">
               <li routerLinkActive="active">
-                <a [routerLink]="['/student-list']" routerLinkActive="active">
-                  <span class="sub-item">Students</span>
-                </a>
-              </li>
-              <li routerLinkActive="active">
-                <a [routerLink]="['/course-list']" routerLinkActive="active">
-                  <span class="sub-item">Courses</span>
-                </a>
-              </li>
-              <li routerLinkActive="active">
-                <a [routerLink]="['/enrollment-list']" routerLinkActive="active">
-                  <span class="sub-item">Enrollments</span>
-                </a>
-              </li>
-              <li routerLinkActive="active">
                 <a [routerLink]="['/faculty-list']" routerLinkActive="active">
                   <span class="sub-item">Faculties</span>
                 </a>
@@ -91,9 +76,64 @@
                   <span class="sub-item">Departments</span>
                 </a>
               </li>
+              <li routerLinkActive="active">
+                <a [routerLink]="['/program-list']" routerLinkActive="active">
+                  <span class="sub-item">Programs</span>
+                </a>
+              </li>
+              <li routerLinkActive="active">
+                <a [routerLink]="['/semester-list']" routerLinkActive="active">
+                  <span class="sub-item">Semesters</span>
+                </a>
+              </li>
+              <li routerLinkActive="active">
+                <a [routerLink]="['/course-list']" routerLinkActive="active">
+                  <span class="sub-item">Courses</span>
+                </a>
+              </li>
+              <li routerLinkActive="active">
+                <a [routerLink]="['/student-list']" routerLinkActive="active">
+                  <span class="sub-item">Students</span>
+                </a>
+              </li>
             </ul>
           </div>
         </li>
+
+        <li class="nav-item" routerLinkActive="active">
+          <a data-bs-toggle="collapse" href="#accounts">
+            <i class="fas fa-piggy-bank"></i>
+            <p>Accounts</p>
+            <span class="caret"></span>
+          </a>
+          <div class="collapse" id="accounts">
+            <ul class="nav nav-collapse">
+              <li routerLinkActive="active">
+                <a [routerLink]="['/fee-list']" routerLinkActive="active">
+                  <span class="sub-item">Fees</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="nav-item" routerLinkActive="active">
+          <a data-bs-toggle="collapse" href="#exam">
+            <i class="fas fa-user-shield"></i>
+            <p>Examination</p>
+            <span class="caret"></span>
+          </a>
+          <div class="collapse" id="exam">
+            <ul class="nav nav-collapse">
+              <li routerLinkActive="active">
+                <a [routerLink]="['/exam-list']" routerLinkActive="active">
+                  <span class="sub-item">Exams</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
       </ul>
     </div>
   </div>

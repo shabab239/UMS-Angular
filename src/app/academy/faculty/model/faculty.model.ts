@@ -1,10 +1,10 @@
 import {User} from "../../../admin/user/model/user.model";
 
 export class Faculty {
-  id?: number;
+  id!: number;
 
   name!: string;
-  dean?: User;
+  dean: User = new User();
 
   /* Optional fields */
   email?: string;
