@@ -34,7 +34,7 @@ import { CourseFormComponent } from './academy/course/course-form/course-form.co
 import { CourseListComponent } from './academy/course/course-list/course-list.component';
 import { ExaminationListComponent } from './academy/examination/examination-list/examination-list.component';
 import { ExaminationFormComponent } from './academy/examination/examination-form/examination-form.component';
-import { ExaminationViewComponent } from './academy/examination/examination-view/examination-view.component';
+import { ExaminationMarksEntryComponent } from './academy/examination/examination-marks-entry/examination-marks-entry.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +66,7 @@ import { ExaminationViewComponent } from './academy/examination/examination-view
     CourseListComponent,
     ExaminationListComponent,
     ExaminationFormComponent,
-    ExaminationViewComponent
+    ExaminationMarksEntryComponent
   ],
   imports: [
     BrowserModule,

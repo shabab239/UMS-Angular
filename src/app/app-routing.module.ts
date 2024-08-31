@@ -26,7 +26,7 @@ import {CourseFormComponent} from "./academy/course/course-form/course-form.comp
 import {CourseListComponent} from "./academy/course/course-list/course-list.component";
 import {ExaminationFormComponent} from "./academy/examination/examination-form/examination-form.component";
 import {ExaminationListComponent} from "./academy/examination/examination-list/examination-list.component";
-import {ExaminationViewComponent} from "./academy/examination/examination-view/examination-view.component";
+import {ExaminationMarksEntryComponent} from "./academy/examination/examination-marks-entry/examination-marks-entry.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -215,10 +215,10 @@ const routes: Routes = [
     data: {pageTitle: "Update Examination", breadcrumbs: ["Examination List", "Update Examination"]}
   },
   {
-    path: 'examination-view/:id',
-    component: ExaminationViewComponent,
+    path: 'examination-marks-entry/:id',
+    component: ExaminationMarksEntryComponent,
     canActivate: [AuthGuard],
-    data: {pageTitle: "View Examination", breadcrumbs: ["Examination List", "View Examination"]}
+    data: {pageTitle: "Marks Entry", breadcrumbs: ["Examination List", "Marks Entry"]}
   },
 
   {path: '**', component: PageNotFoundComponent}, // This has to be at the end

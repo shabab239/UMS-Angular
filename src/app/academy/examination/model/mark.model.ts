@@ -1,18 +1,18 @@
-import { Examination } from "../../examination/model/examination.model";
-import { Student } from "../../student/model/student.model";
-import { Course } from "../../course/model/course.model";
-import {UserRole} from "../../../admin/user/model/user.model";
+import {Course} from "../../course/model/course.model";
+import {Student} from "../../student/model/student.model";
+import {Examination} from "./examination.model";
 
-export class Result {
+export class Mark {
   id!: number;
   examination: Examination = new Examination();
   student: Student = new Student();
   course: Course = new Course();
-  markMid!: number;
-  markAttendance!: number;
-  markWritten!: number;
-  sessionalType!: SessionalType;
-  markSessional!: number;
+  markMid?: number;
+  markAttendance?: number;
+  markWritten?: number;
+  sessionalType?: SessionalType;
+  markSessional?: number;
+  totalMark?: number;
   grade?: string;
   status?: string;
 

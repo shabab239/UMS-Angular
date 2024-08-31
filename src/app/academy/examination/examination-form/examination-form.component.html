@@ -1,1 +1,50 @@
-<p>examination-form works!</p>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Enter Examination Information</div>
+      </div>
+      <form (ngSubmit)="createOrUpdateExamination()" method="post">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div [ngClass]="{'has-error': errors['name']}" class="form-group">
+                <label for="name">Name</label>
+                <input [(ngModel)]="examination.name" class="form-control" id="name" name="name" type="text"/>
+                <small *ngIf="errors['name']" class="form-text text-danger">{{ errors['name'] }}</small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors['date']}" class="form-group">
+                <label for="date">Date</label>
+                <input [(ngModel)]="examination.date" class="form-control" id="date" name="date" type="date"/>
+                <small *ngIf="errors['date']" class="form-text text-danger">{{ errors['date'] }}</small>
+              </div>
+
+              <div [ngClass]="{'has-error': errors['semester']}" class="form-group">
+                <label for="semester">Semester</label>
+                <ng-select
+                  [(ngModel)]="examination.semester.id"
+                  [items]="semesterOptions"
+                  bindLabel="label"
+                  bindValue="value"
+                  placeholder="Select Semester"
+                  [searchable]="true"
+                  id="semester"
+                  name="semester">
+                </ng-select>
+                <small *ngIf="errors['semester']" class="form-text text-danger">{{ errors['semester'] }}</small>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="card-action">
+          <button class="btn btn-success me-2">
+            <span *ngIf="examination.id; else save">Update</span>
+            <ng-template #save>Save</ng-template>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

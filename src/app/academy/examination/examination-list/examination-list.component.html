@@ -30,9 +30,9 @@
               <td>{{ examination.semester.name || '-' }} ({{ examination.semester.session || '-' }})</td>
               <td>
                 <div class="form-button-action">
-                  <button [routerLink]="['/examination-view', examination.id]" class="btn btn-link btn-primary btn-lg"
-                          title="View" type="button">
-                    <i class="fa fa-eye"></i>
+                  <button [routerLink]="['/examination-marks-entry', examination.id]" class="btn btn-primary btn-sm"
+                          title="Marks Entry" type="button">
+                    Marks
                   </button>
                   <button [routerLink]="['/examination-form', examination.id]" class="btn btn-link btn-primary btn-lg"
                           title="Edit" type="button">

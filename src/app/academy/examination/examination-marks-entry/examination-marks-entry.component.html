@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <h4>Examination Details</h4>
+          <p><strong>Name:</strong> {{ examination.name }}</p>
+          <p><strong>Date:</strong> {{ examination.date | date }}</p>
+          <p><strong>Semester:</strong> {{ examination.semester.name }}</p>
+        </div>
+
+        <div class="col-md-6">
+          <label for="courseSelect">Select Course:</label>
+          <select (change)="loadMarks(examination.id, $event)" class="form-control" id="courseSelect">
+            <option value="">-- Select a course --</option>
+            <option *ngFor="let course of courses" [value]="course.id">{{ course.name }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" *ngIf="selectedCourse">
+  <div class="card-body">
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <h5>Students for {{ selectedCourse.name }}</h5>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th>Student</th>
+              <th>Midterm</th>
+              <th>Attendance</th>
+              <th>Written</th>
+              <th>Sessional Type</th>
+              <th>Sessional Marks</th>
+              <th>Total</th>
+              <th>Grade</th>
+              <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let mark of marks">
+              <td>{{ mark.student.name }}</td>
+              <td>
+                <input [(ngModel)]="mark.markMid" class="form-control" type="number" (ngModelChange)="calculateTotals()"
+                       [ngClass]="{'border-danger': markErrors.has(mark.id)}">
+              </td>
+              <td>
+                <input [(ngModel)]="mark.markAttendance" class="form-control" type="number" (ngModelChange)="calculateTotals()"
+                       [ngClass]="{'border-danger': markErrors.has(mark.id)}">
+              </td>
+              <td>
+                <input [(ngModel)]="mark.markWritten" class="form-control" type="number" (ngModelChange)="calculateTotals()"
+                       [ngClass]="{'border-danger': markErrors.has(mark.id)}">
+              </td>
+              <td>
+                <select [(ngModel)]="mark.sessionalType" class="form-control"
+                        [ngClass]="{'border-danger': markErrors.has(mark.id)}">
+                  <option *ngFor="let option of sessionalTypeOptions" [value]="option.value">{{ option.label }}</option>
+                </select>
+              </td>
+              <td>
+                <input [(ngModel)]="mark.markSessional" class="form-control" type="number" (ngModelChange)="calculateTotals()"
+                       [ngClass]="{'border-danger': markErrors.has(mark.id)}">
+              </td>
+              <td>
+                {{ mark.totalMark }}
+                <div *ngIf="markErrors.has(mark.id)" class="text-danger">Total marks cannot exceed 100</div>
+              </td>
+              <td>{{ mark.grade }}</td>
+              <td>{{ mark.status }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <button (click)="saveMarks()" class="btn btn-success">Save Results</button>
+        <button [routerLink]="['/examination-list']" class="ms-2 btn btn-info">Back</button>
+      </div>
+    </div>
+  </div>
+</div>
