@@ -12,5 +12,7 @@ export const API_URLS = {
   semester: `${baseUrl}/semester`,
   course: `${baseUrl}/course`,
   student: `${baseUrl}/student`,
+  examination: `${baseUrl}/examination`,
+  result: `${baseUrl}/result`,
   fee: `${baseUrl}/fee`,
 };

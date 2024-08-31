@@ -32,6 +32,9 @@ import { SemesterListComponent } from './academy/semester/semester-list/semester
 import { SemesterFormComponent } from './academy/semester/semester-form/semester-form.component';
 import { CourseFormComponent } from './academy/course/course-form/course-form.component';
 import { CourseListComponent } from './academy/course/course-list/course-list.component';
+import { ExaminationListComponent } from './academy/examination/examination-list/examination-list.component';
+import { ExaminationFormComponent } from './academy/examination/examination-form/examination-form.component';
+import { ExaminationViewComponent } from './academy/examination/examination-view/examination-view.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +63,10 @@ import { CourseListComponent } from './academy/course/course-list/course-list.co
     SemesterListComponent,
     SemesterFormComponent,
     CourseFormComponent,
-    CourseListComponent
+    CourseListComponent,
+    ExaminationListComponent,
+    ExaminationFormComponent,
+    ExaminationViewComponent
   ],
   imports: [
     BrowserModule,

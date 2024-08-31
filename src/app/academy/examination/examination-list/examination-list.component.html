@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <div class="pull-right">
+      <button class="btn btn-success" [routerLink]="['/examination-form']">
+        <i class="fa fa-plus"></i> Add New
+      </button>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="display table table-striped table-hover">
+            <thead>
+            <tr>
+              <th class="col-md-1">SL</th>
+              <th>Name</th>
+              <th>Date</th>
+              <th>Semester</th>
+              <th class="text-center col-md-2">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let examination of examinations; let i = index;">
+              <td>{{ i + 1 }}</td>
+              <td>{{ examination.name || '-' }}</td>
+              <td>{{ examination.date | date: 'dd/MM/yyyy' || '-' }}</td>
+              <td>{{ examination.semester.name || '-' }} ({{ examination.semester.session || '-' }})</td>
+              <td>
+                <div class="form-button-action">
+                  <button [routerLink]="['/examination-view', examination.id]" class="btn btn-link btn-primary btn-lg"
+                          title="View" type="button">
+                    <i class="fa fa-eye"></i>
+                  </button>
+                  <button [routerLink]="['/examination-form', examination.id]" class="btn btn-link btn-primary btn-lg"
+                          title="Edit" type="button">
+                    <i class="fa fa-edit"></i>
+                  </button>
+                  <button (click)="deleteExamination(examination.id)" class="btn btn-link btn-danger" title="Delete" type="button">
+                    <i class="fa fa-times"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

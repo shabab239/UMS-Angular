@@ -24,6 +24,9 @@ import {SemesterListComponent} from "./academy/semester/semester-list/semester-l
 import {SemesterFormComponent} from "./academy/semester/semester-form/semester-form.component";
 import {CourseFormComponent} from "./academy/course/course-form/course-form.component";
 import {CourseListComponent} from "./academy/course/course-list/course-list.component";
+import {ExaminationFormComponent} from "./academy/examination/examination-form/examination-form.component";
+import {ExaminationListComponent} from "./academy/examination/examination-list/examination-list.component";
+import {ExaminationViewComponent} from "./academy/examination/examination-view/examination-view.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -192,6 +195,30 @@ const routes: Routes = [
     component: CourseFormComponent,
     canActivate: [AuthGuard],
     data: {pageTitle: "Update Course", breadcrumbs: ["Course List", "Update Course"]}
+  },
+  {
+    path: 'examination-list',
+    component: ExaminationListComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "Examination List", breadcrumbs: ["Examination List"]}
+  },
+  {
+    path: 'examination-form',
+    component: ExaminationFormComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "Create Examination", breadcrumbs: ["Examination List", "Create Examination"]}
+  },
+  {
+    path: 'examination-form/:id',
+    component: ExaminationFormComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "Update Examination", breadcrumbs: ["Examination List", "Update Examination"]}
+  },
+  {
+    path: 'examination-view/:id',
+    component: ExaminationViewComponent,
+    canActivate: [AuthGuard],
+    data: {pageTitle: "View Examination", breadcrumbs: ["Examination List", "View Examination"]}
   },
 
   {path: '**', component: PageNotFoundComponent}, // This has to be at the end

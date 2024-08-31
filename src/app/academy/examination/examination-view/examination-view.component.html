@@ -1,0 +1,55 @@
+<div class="card">
+  <div class="card-header">
+    <h3>Examination Details</h3>
+  </div>
+  <div class="card-body">
+    <p><strong>Name:</strong> {{ examination.name }}</p>
+    <p><strong>Date:</strong> {{ examination.date | date }}</p>
+    <p><strong>Semester:</strong> {{ examination.semester.name }} ({{ examination.semester.session }})</p>
+  </div>
+</div>
+
+<div class="card mt-4">
+  <div class="card-header">
+    <h3>Results</h3>
+  </div>
+  <div class="card-body">
+    <div *ngIf="results.length > 0; else noResults">
+      <div class="table-responsive">
+        <table class="display table table-striped table-hover">
+          <thead>
+          <tr>
+            <th>SL</th>
+            <th>Student</th>
+            <th>Course</th>
+            <th>Mid Marks</th>
+            <th>Attendance Marks</th>
+            <th>Written Marks</th>
+            <th>Sessional Type</th>
+            <th>Sessional Marks</th>
+            <th>Grade</th>
+            <th>Status</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let result of results; let i = index;">
+            <td>{{ i + 1 }}</td>
+            <td>{{ result.student.name }}</td>
+            <td>{{ result.course.name }}</td>
+            <td>{{ result.markMid }}</td>
+            <td>{{ result.markAttendance }}</td>
+            <td>{{ result.markWritten }}</td>
+            <td>{{ result.sessionalType }}</td>
+            <td>{{ result.markSessional }}</td>
+            <td>{{ result.grade || '-' }}</td>
+            <td>{{ result.status || '-' }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <ng-template #noResults>
+      <p>No results found for this examination.</p>
+    </ng-template>
+  </div>
+</div>

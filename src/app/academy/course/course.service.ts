@@ -20,6 +20,10 @@ export class CourseService {
     return this.http.get<ApiResponse>(`${this.apiUrl}/`);
   }
 
+  getAllByExamination(examinationId: number): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(`${this.apiUrl}/getAllByExamination?examinationId=${examinationId}`);
+  }
+
   getById(id: number): Observable<ApiResponse> {
     return this.http.get<ApiResponse>(`${this.apiUrl}/${id}`);
   }
