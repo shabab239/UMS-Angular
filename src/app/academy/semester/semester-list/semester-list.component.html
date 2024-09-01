@@ -46,8 +46,8 @@
                 <td>{{ semester.program.name || '-' }}</td>
                 <td>
                   <div class="form-button-action">
-                    <button [routerLink]="['/semester-view', semester.id]" class="btn btn-link btn-primary btn-lg" title="View" type="button">
-                      <i class="fa fa-eye"></i>
+                    <button (click)="openFeeModal(semester)" class="btn btn-primary btn-sm" title="Fee" type="button">
+                      Fee
                     </button>
                     <button [routerLink]="['/semester-form', semester.id]" class="btn btn-link btn-primary btn-lg" title="Edit" type="button">
                       <i class="fa fa-edit"></i>
@@ -66,3 +66,39 @@
     </div>
   </div>
 </div>
+
+<ng-template #feeModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Add Fees</h4>
+    <button type="button" class="btn-close" (click)="modal.dismiss('cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div *ngFor="let fee of fees; let i = index" class="d-flex mb-2">
+        <ng-select
+          [(ngModel)]="fee.type"
+          [ngModelOptions]="{standalone: true}"
+          [items]="feeTypeOptions"
+          bindLabel="label"
+          bindValue="value"
+          placeholder="Select Fee Type"
+          class="me-2"
+          required>
+        </ng-select>
+        <input
+          [(ngModel)]="fee.amount"
+          [ngModelOptions]="{standalone: true}"
+          class="form-control me-2"
+          type="number"
+          placeholder="Amount"
+          required />
+        <button type="button" class="btn btn-danger" (click)="removeFee(i)">Remove</button>
+      </div>
+      <button type="button" class="btn btn-secondary" (click)="addFee()">Add Another Fee</button>
+      <!--<button type="button" class="btn btn-success" (click)="saveFees()">Save</button>-->
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('cancel')">Close</button>
+  </div>
+</ng-template>

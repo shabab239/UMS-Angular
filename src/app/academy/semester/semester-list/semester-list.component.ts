@@ -1,10 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {SemesterService} from '../semester.service';
 import {AlertService} from "../../../util/alert.service";
 import {AlertUtil} from "../../../util/alert.util";
 import {ApiResponse} from "../../../util/api.response.model";
 import {Semester} from '../model/semester.model';
+import {Fee, FeeTypeOptions} from "../../fee/model/fee.model";
+import {ModalService} from "../../../util/modal.service";
 
 @Component({
   selector: 'app-semester-list',
@@ -18,15 +20,58 @@ export class SemesterListComponent implements OnInit {
   searchTerm: string = '';
   groupedSemesters: { [key: string]: Semester[] } = {};
 
+  feeTypeOptions = FeeTypeOptions;
+  fees: Fee[] = [];
+  @ViewChild('feeModal', { static: true }) feeModal!: TemplateRef<any>;
+
   constructor(
     private semesterService: SemesterService,
     private router: Router,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private modalService: ModalService
   ) {
   }
 
   ngOnInit(): void {
     this.loadSemesters();
+  }
+
+  addFee(): void {
+    this.fees.push(new Fee());
+  }
+
+  removeFee(index: number): void {
+    this.fees.splice(index, 1);
+  }
+
+  openFeeModal(semester: Semester): void {
+    this.fees = [];
+    this.modalService.open(this.feeModal, { ariaLabelledBy: 'modal-basic-title' }).result.then(() => {
+      this.saveFees(semester.id);
+    }, () => {});
+  }
+
+  saveFees(semesterId: number): void {
+    const feesToSave = this.fees.map(fee => ({
+      ...fee,
+      semester: { id: semesterId }
+    }));
+
+    /*this.feeService.createFees(feesToSave).subscribe({
+      next: (response: ApiResponse) => {
+        if (response && response.successful) {
+          AlertUtil.showSuccess(response, this.alertService);
+          this.modalService.dismiss();
+          this.loadSemesters();
+        } else {
+          this.errors = response?.errors || {};
+          AlertUtil.showError(response, this.alertService);
+        }
+      },
+      error: error => {
+        AlertUtil.showError(error, this.alertService);
+      }
+    });*/
   }
 
   loadSemesters(): void {
