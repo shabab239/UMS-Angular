@@ -43,15 +43,21 @@
               </td>
               <td>
                 <div class="form-button-action">
+                  <button (click)="openFeeModal(student.semester)" class="btn btn-primary btn-sm" title="Fee"
+                          type="button">
+                    Fee
+                  </button>
                   <button [routerLink]="['/student-view', student.id]" class="btn btn-link btn-primary btn-lg"
                           title="View"
                           type="button">
                     <i class="fa fa-eye"></i>
                   </button>
-                  <button [routerLink]="['/student-form', student.id]" class="btn btn-link btn-primary btn-lg" title="Edit" type="button">
+                  <button [routerLink]="['/student-form', student.id]" class="btn btn-link btn-primary btn-lg"
+                          title="Edit" type="button">
                     <i class="fa fa-edit"></i>
                   </button>
-                  <button (click)="deleteStudent(student.id)" class="btn btn-link btn-danger" title="Delete" type="button">
+                  <button (click)="deleteStudent(student.id)" class="btn btn-link btn-danger" title="Delete"
+                          type="button">
                     <i class="fa fa-times"></i>
                   </button>
                 </div>
@@ -64,3 +70,57 @@
     </div>
   </div>
 </div>
+
+
+<ng-template #feeModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Fees</h4>
+    <button type="button" class="btn-close" (click)="modal.dismiss('cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <table>
+        <thead>
+        <tr>
+          <th>Type</th>
+          <th>Amount</th>
+          <th>Paid</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let fee of fees; let i = index">
+          <td>
+            <input
+              [(ngModel)]="fee.type"
+              [ngModelOptions]="{standalone: true}"
+              class="form-control me-2"
+              type="text"
+              placeholder="Type"
+              [disabled]="true"/>
+          </td>
+          <td>
+            <input
+              [(ngModel)]="fee.amount"
+              [ngModelOptions]="{standalone: true}"
+              class="form-control me-2"
+              type="number"
+              placeholder="Amount"
+              [disabled]="true"/>
+          </td>
+          <td>
+            <input
+              class="form-control me-2"
+              type="number"
+              placeholder="Paid Amount"
+              required/>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <button type="button" class="ms-2 btn btn-success" (click)="modal.close()">Pay</button>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('cancel')">Cancel</button>
+  </div>
+</ng-template>

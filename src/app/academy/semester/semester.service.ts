@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ApiResponse} from "../../util/api.response.model";
 import {Semester} from "./model/semester.model";
+import {Fee} from "../fee/model/fee.model";
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,10 @@ export class SemesterService {
 
   delete(id: number): Observable<ApiResponse> {
     return this.http.delete<ApiResponse>(`${this.apiUrl}/${id}`);
+  }
+
+  saveFees(fees: Fee[]): Observable<ApiResponse> {
+    return this.http.post<ApiResponse>(`${this.apiUrl}/saveFees`, fees);
   }
 
 }

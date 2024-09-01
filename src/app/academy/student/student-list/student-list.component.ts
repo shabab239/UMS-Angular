@@ -1,10 +1,14 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
 import {AlertService} from "../../../util/alert.service";
 import {Student} from "../model/student.model";
 import {StudentService} from "../student.service";
 import {ApiResponse} from "../../../util/api.response.model";
 import {AlertUtil} from "../../../util/alert.util";
+import {Semester} from "../../semester/model/semester.model";
+import {ModalService} from "../../../util/modal.service";
+import {Fee} from "../../fee/model/fee.model";
+import {SemesterService} from "../../semester/semester.service";
 
 @Component({
   selector: 'app-student-list',
@@ -14,10 +18,16 @@ import {AlertUtil} from "../../../util/alert.util";
 export class StudentListComponent implements OnInit {
 
   students: Student[] = [];
+  semesters: Semester[] = [];
+
+  fees: Fee[] = [];
+  @ViewChild('feeModal', {static: true}) feeModal!: TemplateRef<any>;
 
   constructor(
     private studentService: StudentService,
-    private alertService: AlertService
+    private semesterService: SemesterService,
+    private alertService: AlertService,
+    private modalService: ModalService
   ) {}
 
   ngOnInit(): void {
@@ -52,6 +62,15 @@ export class StudentListComponent implements OnInit {
       error: error => {
         AlertUtil.showError(error, this.alertService);
       }
+    });
+  }
+
+  openFeeModal(semester: Semester): void {
+    this.fees = semester.fees ? [...semester.fees] : [];
+    this.modalService.open(this.feeModal, {ariaLabelledBy: 'modal-basic-title'}).result.then(() => {
+      // Pay fee
+    }, () => {
+      // Handle dismissal
     });
   }
 }

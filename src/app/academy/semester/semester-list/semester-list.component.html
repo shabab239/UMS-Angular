@@ -74,31 +74,48 @@
   </div>
   <div class="modal-body">
     <form>
-      <div *ngFor="let fee of fees; let i = index" class="d-flex mb-2">
-        <ng-select
-          [(ngModel)]="fee.type"
-          [ngModelOptions]="{standalone: true}"
-          [items]="feeTypeOptions"
-          bindLabel="label"
-          bindValue="value"
-          placeholder="Select Fee Type"
-          class="me-2"
-          required>
-        </ng-select>
-        <input
-          [(ngModel)]="fee.amount"
-          [ngModelOptions]="{standalone: true}"
-          class="form-control me-2"
-          type="number"
-          placeholder="Amount"
-          required />
-        <button type="button" class="btn btn-danger" (click)="removeFee(i)">Remove</button>
-      </div>
+      <table>
+        <thead>
+        <tr>
+          <th>Type</th>
+          <th>Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  *ngFor="let fee of fees; let i = index">
+          <td>
+            <ng-select
+              [(ngModel)]="fee.type"
+              [ngModelOptions]="{standalone: true}"
+              [items]="feeTypeOptions"
+              bindLabel="label"
+              bindValue="value"
+              placeholder="Select Fee Type"
+              class="me-2"
+              required>
+            </ng-select>
+          </td>
+          <td>
+            <input
+              [(ngModel)]="fee.amount"
+              [ngModelOptions]="{standalone: true}"
+              class="form-control me-2"
+              type="number"
+              placeholder="Amount"
+              required />
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)="removeFee(i)">Remove</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
       <button type="button" class="btn btn-secondary" (click)="addFee()">Add Another Fee</button>
-      <!--<button type="button" class="btn btn-success" (click)="saveFees()">Save</button>-->
+      <button type="button" class="ms-2 btn btn-success" (click)="modal.close()">Save</button>
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('cancel')">Close</button>
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('cancel')">Cancel</button>
   </div>
 </ng-template>
+

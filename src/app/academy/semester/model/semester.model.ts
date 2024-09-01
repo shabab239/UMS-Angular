@@ -1,4 +1,5 @@
 import {Program} from "../../program/model/program.model";
+import {Fee} from "../../fee/model/fee.model";
 
 
 export class Semester {
@@ -8,5 +9,6 @@ export class Semester {
   session!: string;
   code!: string;
   program: Program = new Program();
+  fees: Fee[] = [];
 
 }

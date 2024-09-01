@@ -22,7 +22,7 @@ export class SemesterListComponent implements OnInit {
 
   feeTypeOptions = FeeTypeOptions;
   fees: Fee[] = [];
-  @ViewChild('feeModal', { static: true }) feeModal!: TemplateRef<any>;
+  @ViewChild('feeModal', {static: true}) feeModal!: TemplateRef<any>;
 
   constructor(
     private semesterService: SemesterService,
@@ -45,19 +45,22 @@ export class SemesterListComponent implements OnInit {
   }
 
   openFeeModal(semester: Semester): void {
-    this.fees = [];
-    this.modalService.open(this.feeModal, { ariaLabelledBy: 'modal-basic-title' }).result.then(() => {
+    this.fees = semester.fees ? [...semester.fees] : [];
+    this.modalService.open(this.feeModal, {ariaLabelledBy: 'modal-basic-title'}).result.then(() => {
       this.saveFees(semester.id);
-    }, () => {});
+    }, () => {
+      // Handle dismissal
+    });
   }
 
-  saveFees(semesterId: number): void {
-    const feesToSave = this.fees.map(fee => ({
-      ...fee,
-      semester: { id: semesterId }
-    }));
 
-    /*this.feeService.createFees(feesToSave).subscribe({
+  saveFees(semesterId: number): void {
+    this.fees.forEach(fee => {
+      let semester = new Semester();
+      semester.id = semesterId;
+      fee.semester = semester;
+    })
+    this.semesterService.saveFees(this.fees).subscribe({
       next: (response: ApiResponse) => {
         if (response && response.successful) {
           AlertUtil.showSuccess(response, this.alertService);
@@ -71,7 +74,7 @@ export class SemesterListComponent implements OnInit {
       error: error => {
         AlertUtil.showError(error, this.alertService);
       }
-    });*/
+    });
   }
 
   loadSemesters(): void {
