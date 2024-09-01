@@ -44,4 +44,12 @@ export class ExaminationService {
   delete(id: number): Observable<ApiResponse> {
     return this.http.delete<ApiResponse>(`${this.baseUrl}/${id}`);
   }
+
+  processExamination(examinationId: number): Observable<ApiResponse> {
+    return this.http.post<ApiResponse>(`${this.baseUrl}/processExamination?examinationId=${examinationId}`, {});
+  }
+
+  getResult(studentId: number): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(`${this.baseUrl}/getResult/${studentId}`, {});
+  }
 }

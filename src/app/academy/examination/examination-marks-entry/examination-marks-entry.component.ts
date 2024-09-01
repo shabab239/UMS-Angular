@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Examination} from '../model/examination.model';
-import {Result, SessionalType, sessionalTypeOptions} from '../../result/model/result.model';
+import {sessionalTypeOptions} from '../model/mark.model';
 import {ExaminationService} from '../examination.service';
 import {ActivatedRoute} from '@angular/router';
 import {AlertService} from '../../../util/alert.service';
@@ -123,4 +123,20 @@ export class ExaminationMarksEntryComponent implements OnInit {
       }
     });
   }
+
+  processExamination(): void {
+    this.examinationService.processExamination(this.examination.id).subscribe({
+      next: response => {
+        if (response && response.successful) {
+          AlertUtil.showSuccess(response, this.alertService);
+        } else {
+          AlertUtil.showError(response, this.alertService);
+        }
+      },
+      error: error => {
+        AlertUtil.showError(error, this.alertService);
+      }
+    });
+  }
+
 }

@@ -17,6 +17,7 @@
             <tr>
               <th class="col-md-1">SL</th>
               <th>Name</th>
+              <th>Role</th>
               <th>Contact No.</th>
               <th>Email</th>
               <th class="text-center col-md-1">Status</th>
@@ -27,10 +28,11 @@
             <tr *ngFor="let user of users; let i = index;">
               <td>{{ i + 1 }}</td>
               <td>{{ user.name || '-' }}</td>
+              <td>{{ user.role.split('_')[1] || '-' }}</td>
               <td>{{ user.cell || '-' }}</td>
               <td>{{ user.email || '-' }}</td>
               <td>
-                <ng-container *ngIf="user.status === 'ACTIVE'; else inactive">
+                <ng-container *ngIf="user.status === 'Active'; else inactive">
                   <div class="badge badge-success">{{ user.status || '-' }}</div>
                 </ng-container>
                 <ng-template #inactive>

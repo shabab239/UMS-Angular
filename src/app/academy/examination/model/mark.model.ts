@@ -13,6 +13,7 @@ export class Mark {
   sessionalType?: SessionalType;
   markSessional?: number;
   totalMark?: number;
+  gpa?: number;
   grade?: string;
   status?: string;
 

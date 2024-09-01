@@ -84,6 +84,42 @@
   </div>
 </div>
 
+<div *ngIf="student; else loadingOrError" class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Result(s)</div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>Semester</th>
+                  <th>Exam</th>
+                  <th>CGPA</th>
+                  <th>Grade</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let result of results">
+                  <td>{{ result.examination.semester.name }} ({{ result.examination.semester.session }})</td>
+                  <td>{{ result.examination.name }}</td>
+                  <td>{{ result.cgpa}}</td>
+                  <td>{{ result.grade }}</td>
+                  <td>{{ result.status }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <ng-template #loadingOrError>
   <div class="alert alert-warning">Loading student information or an error occurred.</div>
 </ng-template>
