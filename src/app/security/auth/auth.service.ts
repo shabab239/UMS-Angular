@@ -61,7 +61,7 @@ export class AuthService {
     return this.currentUser$;
   }
 
-  private getStoredUser(): User | null {
+  public getStoredUser(): User | null {
     return StorageUtil.getFromLocalStorage('sessionUser');
   }
 

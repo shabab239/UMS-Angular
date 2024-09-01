@@ -27,6 +27,7 @@ import {CourseListComponent} from "./academy/course/course-list/course-list.comp
 import {ExaminationFormComponent} from "./academy/examination/examination-form/examination-form.component";
 import {ExaminationListComponent} from "./academy/examination/examination-list/examination-list.component";
 import {ExaminationMarksEntryComponent} from "./academy/examination/examination-marks-entry/examination-marks-entry.component";
+import {RoleGuard} from "./security/auth/guard/role.guard";
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -36,189 +37,189 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Dashboard", breadcrumbs: ["Dashboard"]},
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Dashboard", breadcrumbs: ["Dashboard"], roles: ['Admin', 'Staff', 'Teacher']},
     children: []
   },
   {
     path: 'institute-list',
     component: InstituteListComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Institute List", breadcrumbs: ["Institute List"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Institute List", breadcrumbs: ["Institute List"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'institute-create',
     component: InstituteCreateComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Create Institute", breadcrumbs: ["Create Institute"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Create Institute", breadcrumbs: ["Create Institute"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'institute-view',
     component: InstituteViewComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "View Institute", breadcrumbs: ["View Institute"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "View Institute", breadcrumbs: ["View Institute"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'user-list',
     component: UserListComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "User List", breadcrumbs: ["User List"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "User List", breadcrumbs: ["User List"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'user-form',
     component: UserFormComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Create User", breadcrumbs: ["User List", "Create User"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Create User", breadcrumbs: ["User List", "Create User"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'user-form/:id',
     component: UserFormComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Update User", breadcrumbs: ["User List", "Update User"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Update User", breadcrumbs: ["User List", "Update User"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'user-view/:id',
     component: UserViewComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "View User", breadcrumbs: ["User List", "View User"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "View User", breadcrumbs: ["User List", "View User"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'department-list',
     component: DepartmentListComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Department List", breadcrumbs: ["Department List"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Department List", breadcrumbs: ["Department List"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'department-form',
     component: DepartmentFormComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Create Department", breadcrumbs: ["Department List", "Create Department"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Create Department", breadcrumbs: ["Department List", "Create Department"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'department-form/:id',
     component: DepartmentFormComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Update Department", breadcrumbs: ["Department List", "Update Department"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Update Department", breadcrumbs: ["Department List", "Update Department"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'faculty-list',
     component: FacultyListComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Faculty List", breadcrumbs: ["Faculty List"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Faculty List", breadcrumbs: ["Faculty List"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'faculty-form',
     component: FacultyFormComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Create Faculty", breadcrumbs: ["Faculty List", "Create Faculty"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Create Faculty", breadcrumbs: ["Faculty List", "Create Faculty"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'faculty-form/:id',
     component: FacultyFormComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Update Faculty", breadcrumbs: ["Faculty List", "Update Faculty"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Update Faculty", breadcrumbs: ["Faculty List", "Update Faculty"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'student-list',
     component: StudentListComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Student List", breadcrumbs: ["Student List"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Student List", breadcrumbs: ["Student List"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'student-form',
     component: StudentFormComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Create Student", breadcrumbs: ["Student List", "Create Student"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Create Student", breadcrumbs: ["Student List", "Create Student"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'student-form/:id',
     component: StudentFormComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Update Student", breadcrumbs: ["Student List", "Update Student"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Update Student", breadcrumbs: ["Student List", "Update Student"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'student-view/:id',
     component: StudentViewComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "View Student", breadcrumbs: ["Student List", "View Student"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "View Student", breadcrumbs: ["Student List", "View Student"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'program-list',
     component: ProgramListComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Program List", breadcrumbs: ["Program List"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Program List", breadcrumbs: ["Program List"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'program-form',
     component: ProgramFormComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Create Program", breadcrumbs: ["Program List", "Create Program"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Create Program", breadcrumbs: ["Program List", "Create Program"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'program-form/:id',
     component: ProgramFormComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Update Program", breadcrumbs: ["Program List", "Update Program"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Update Program", breadcrumbs: ["Program List", "Update Program"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'semester-list',
     component: SemesterListComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Semester List", breadcrumbs: ["Semester List"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Semester List", breadcrumbs: ["Semester List"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'semester-form',
     component: SemesterFormComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Create Semester", breadcrumbs: ["Semester List", "Create Semester"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Create Semester", breadcrumbs: ["Semester List", "Create Semester"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'semester-form/:id',
     component: SemesterFormComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Update Semester", breadcrumbs: ["Semester List", "Update Semester"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Update Semester", breadcrumbs: ["Semester List", "Update Semester"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'course-list',
     component: CourseListComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Course List", breadcrumbs: ["Course List"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Course List", breadcrumbs: ["Course List"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'course-form',
     component: CourseFormComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Create Course", breadcrumbs: ["Course List", "Create Course"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Create Course", breadcrumbs: ["Course List", "Create Course"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'course-form/:id',
     component: CourseFormComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Update Course", breadcrumbs: ["Course List", "Update Course"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Update Course", breadcrumbs: ["Course List", "Update Course"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'examination-list',
     component: ExaminationListComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Examination List", breadcrumbs: ["Examination List"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Examination List", breadcrumbs: ["Examination List"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'examination-form',
     component: ExaminationFormComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Create Examination", breadcrumbs: ["Examination List", "Create Examination"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Create Examination", breadcrumbs: ["Examination List", "Create Examination"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'examination-form/:id',
     component: ExaminationFormComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Update Examination", breadcrumbs: ["Examination List", "Update Examination"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Update Examination", breadcrumbs: ["Examination List", "Update Examination"], roles: ['Admin', 'Staff', 'Teacher']}
   },
   {
     path: 'examination-marks-entry/:id',
     component: ExaminationMarksEntryComponent,
-    canActivate: [AuthGuard],
-    data: {pageTitle: "Marks Entry", breadcrumbs: ["Examination List", "Marks Entry"]}
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Marks Entry", breadcrumbs: ["Examination List", "Marks Entry"], roles: ['Admin', 'Staff', 'Teacher']}
   },
 
   {path: '**', component: PageNotFoundComponent}, // This has to be at the end

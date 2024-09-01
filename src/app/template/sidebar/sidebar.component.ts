@@ -13,8 +13,7 @@ export class SidebarComponent implements OnInit {
   protected readonly UserRole = UserRole;
 
   constructor(
-    protected authService: AuthService,
-    protected userRole: UserRole,
+    protected authService: AuthService
   ) {
   }
 
