@@ -1,4 +1,3 @@
-
 <div class="row">
   <div class="col-md-12 mb-2">
     <div class="pull-left">
@@ -35,26 +34,31 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let semester of filteredSemesters(); let i = index;">
-              <td>{{ i + 1 }}</td>
-              <td>{{ semester.name || '-' }}</td>
-              <td>{{ semester.session || '-' }}</td>
-              <td>{{ semester.code || '-' }}</td>
-              <td>{{ semester.program.name || '-' }}</td>
-              <td>
-                <div class="form-button-action">
-                  <button [routerLink]="['/semester-view', semester.id]" class="btn btn-link btn-primary btn-lg" title="View" type="button">
-                    <i class="fa fa-eye"></i>
-                  </button>
-                  <button [routerLink]="['/semester-form', semester.id]" class="btn btn-link btn-primary btn-lg" title="Edit" type="button">
-                    <i class="fa fa-edit"></i>
-                  </button>
-                  <button (click)="deleteSemester(semester.id)" class="btn btn-link btn-danger" title="Delete" type="button">
-                    <i class="fa fa-times"></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
+            <ng-container *ngFor="let session of (filteredSemesters() | keyvalue)">
+              <tr>
+                <td colspan="6" class="bg-secondary text-white">{{ session.key }}</td>
+              </tr>
+              <tr *ngFor="let semester of session.value; let i = index;">
+                <td>{{ i + 1 }}</td>
+                <td>{{ semester.name || '-' }}</td>
+                <td>{{ semester.session || '-' }}</td>
+                <td>{{ semester.code || '-' }}</td>
+                <td>{{ semester.program.name || '-' }}</td>
+                <td>
+                  <div class="form-button-action">
+                    <button [routerLink]="['/semester-view', semester.id]" class="btn btn-link btn-primary btn-lg" title="View" type="button">
+                      <i class="fa fa-eye"></i>
+                    </button>
+                    <button [routerLink]="['/semester-form', semester.id]" class="btn btn-link btn-primary btn-lg" title="Edit" type="button">
+                      <i class="fa fa-edit"></i>
+                    </button>
+                    <button (click)="deleteSemester(semester.id)" class="btn btn-link btn-danger" title="Delete" type="button">
+                      <i class="fa fa-times"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </ng-container>
             </tbody>
           </table>
         </div>

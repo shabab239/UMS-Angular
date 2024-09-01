@@ -16,6 +16,7 @@ export class SemesterListComponent implements OnInit {
   errors: { [key: string]: string } = {};
 
   searchTerm: string = '';
+  groupedSemesters: { [key: string]: Semester[] } = {};
 
   constructor(
     private semesterService: SemesterService,
@@ -33,6 +34,7 @@ export class SemesterListComponent implements OnInit {
       next: (response: ApiResponse) => {
         if (response && response.successful) {
           this.semesters = response.data['semesters'];
+          this.sortAndGroupSemesters();
         } else {
           this.errors = response?.errors || {};
           AlertUtil.showError(response, this.alertService);
@@ -44,16 +46,34 @@ export class SemesterListComponent implements OnInit {
     });
   }
 
+  sortAndGroupSemesters(): void {
+    this.semesters.sort((a, b) => a.session.localeCompare(b.session));
+
+    this.groupedSemesters = this.semesters.reduce((acc, semester) => {
+      const session = semester.session;
+      if (!acc[session]) {
+        acc[session] = [];
+      }
+      acc[session].push(semester);
+      return acc;
+    }, {} as { [key: string]: Semester[] });
+  }
+
   filteredSemesters() {
     if (!this.searchTerm) {
-      return this.semesters;
+      return this.groupedSemesters;
     }
-    return this.semesters.filter(semester =>
-      semester.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      semester.session.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      semester.code.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      semester.program.name.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );
+    const filtered = Object.keys(this.groupedSemesters).reduce((acc, session) => {
+      acc[session] = this.groupedSemesters[session].filter(semester =>
+        semester.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        semester.session.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        semester.code.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        semester.program.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+      return acc;
+    }, {} as { [key: string]: Semester[] });
+
+    return filtered;
   }
 
   deleteSemester(id: number): void {
