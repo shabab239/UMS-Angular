@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <div *ngIf="journalEntries.length === 0">
+          <p>No journal entries found.</p>
+        </div>
+        <div *ngIf="journalEntries.length > 0" class="table-responsive">
+          <table class="display table table-striped table-hover">
+            <thead>
+            <tr>
+              <th>Date</th>
+              <th>Account Name</th>
+              <th>Description</th>
+              <th>Debit</th>
+              <th>Credit</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let entry of journalEntries; let i = index">
+              <td *ngIf="i % 2 == 0">{{ entry.date | date: 'short' }}</td>
+              <td *ngIf="i % 2 != 0"></td>
+              <td>{{ entry.accountName }}</td>
+              <td>{{ entry.description }}</td>
+              <td>{{ entry.debit | currency }}</td>
+              <td>{{ entry.credit | currency }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

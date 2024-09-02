@@ -15,4 +15,5 @@ export const API_URLS = {
   examination: `${baseUrl}/examination`,
   result: `${baseUrl}/result`,
   fee: `${baseUrl}/fee`,
+  accounting: `${baseUrl}/accounting`,
 };

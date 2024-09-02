@@ -24,7 +24,6 @@ export class StudentListComponent implements OnInit {
 
   constructor(
     private studentService: StudentService,
-    private semesterService: SemesterService,
     private alertService: AlertService,
     private modalService: ModalService
   ) {}

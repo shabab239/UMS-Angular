@@ -101,7 +101,7 @@
         </li>
 
 
-        <li *ngIf="(authService.getRole() | async) !== UserRole.ROLE_ADMIN" class="nav-item" routerLinkActive="active">
+        <li class="nav-item" routerLinkActive="active">
           <a data-bs-toggle="collapse" href="#accounts">
             <i class="fas fa-piggy-bank"></i>
             <p>Accounts</p>
@@ -110,10 +110,12 @@
           <div class="collapse" id="accounts">
             <ul class="nav nav-collapse">
               <li routerLinkActive="active">
-                <a >
+                <a [routerLink]="['/journal']" routerLinkActive="active">
                   <span class="sub-item">Journal</span>
                 </a>
-                <a >
+              </li>
+              <li routerLinkActive="active">
+                <a [routerLink]="['/balance-sheet']" routerLinkActive="active">
                   <span class="sub-item">Balance Sheet</span>
                 </a>
               </li>

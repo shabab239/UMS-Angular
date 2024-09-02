@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="display table table-striped table-hover">
+            <thead>
+            <tr>
+              <th>
+                <div class="pull-left">ASSETS</div>
+                <div class="pull-right">DEBIT BALANCE</div>
+              </th>
+              <th>
+                <div class="pull-left">EQUITIES & LIABILITIES</div>
+                <div class="pull-right">CREDIT BALANCE</div>
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let row of getRows()">
+              <td>
+                <div *ngIf="row.left" class="pull-left">
+                  {{ row.left.name }}
+                </div>
+                <div *ngIf="row.left" class="pull-right">
+                  {{ row.left.balance | bracketCurrency }}
+                </div>
+              </td>
+              <td>
+                <div *ngIf="row.right" class="pull-left">
+                  {{ row.right.name }}
+                </div>
+                <div *ngIf="row.right" class="pull-right">
+                  {{ row.right.balance | bracketCurrency }}
+                </div>
+              </td>
+            </tr>
+
+            <tr *ngIf="balanceSheet?.leftSide?.length === 0 && balanceSheet?.rightSide?.length === 0">
+              <td colspan="2" class="text-center">
+                No balance sheet data available.
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <div class="pull-left">TOTAL DEBIT</div>
+                <div class="pull-right">{{ totalDebit }}</div>
+              </td>
+              <td>
+                <div class="pull-left">TOTAL CREDIT</div>
+                <div class="pull-right">{{ totalCredit }}</div>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="2" class="bg-success">
+                <strong>{{ status }}</strong>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -31,6 +31,8 @@ import {RoleGuard} from "./security/auth/guard/role.guard";
 import {
   ExaminationResultViewComponent
 } from "./academy/examination/examination-result-view/examination-result-view.component";
+import {JournalComponent} from "./accounting/journal/journal.component";
+import {BalanceSheetComponent} from "./accounting/balance-sheet/balance-sheet.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -229,6 +231,18 @@ const routes: Routes = [
     component: ExaminationResultViewComponent,
     canActivate: [AuthGuard, RoleGuard],
     data: {pageTitle: "Result View", breadcrumbs: ["Examination List", "Result View"], roles: ['Admin', 'Staff', 'Teacher']}
+  },
+  {
+    path: 'journal',
+    component: JournalComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Journal Entries", breadcrumbs: ["Accounting", "Journal Entries"], roles: ['Admin', 'Staff', 'Teacher']}
+  },
+  {
+    path: 'balance-sheet',
+    component: BalanceSheetComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Balance Sheet", breadcrumbs: ["Accounting", "Balance Sheet"], roles: ['Admin', 'Staff', 'Teacher']}
   },
 
   {path: '**', component: PageNotFoundComponent}, // This has to be at the end

@@ -36,6 +36,9 @@ import { ExaminationListComponent } from './academy/examination/examination-list
 import { ExaminationFormComponent } from './academy/examination/examination-form/examination-form.component';
 import { ExaminationMarksEntryComponent } from './academy/examination/examination-marks-entry/examination-marks-entry.component';
 import { ExaminationResultViewComponent } from './academy/examination/examination-result-view/examination-result-view.component';
+import { JournalComponent } from './accounting/journal/journal.component';
+import { BalanceSheetComponent } from './accounting/balance-sheet/balance-sheet.component';
+import {BracketCurrencyPipe} from "./pipe/BracketCurrencyPipe";
 
 @NgModule({
   declarations: [
@@ -68,7 +71,10 @@ import { ExaminationResultViewComponent } from './academy/examination/examinatio
     ExaminationListComponent,
     ExaminationFormComponent,
     ExaminationMarksEntryComponent,
-    ExaminationResultViewComponent
+    ExaminationResultViewComponent,
+    JournalComponent,
+    BalanceSheetComponent,
+    BracketCurrencyPipe
   ],
   imports: [
     BrowserModule,
