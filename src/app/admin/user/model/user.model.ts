@@ -1,3 +1,5 @@
+import {University} from "../../institute/model/university.model";
+
 export class User {
   id!: number;
   name!: string;
@@ -15,6 +17,7 @@ export class User {
   joiningDate?: Date;
   username?: string;
   password?: string;
+  university?: University;
 
   constructor(init?: Partial<User>) {
     Object.assign(this, init);

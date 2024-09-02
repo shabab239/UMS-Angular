@@ -10,8 +10,6 @@ import {Router} from "@angular/router";
 })
 export class SidebarComponent implements OnInit {
 
-  protected readonly UserRole = UserRole;
-
   constructor(
     protected authService: AuthService
   ) {

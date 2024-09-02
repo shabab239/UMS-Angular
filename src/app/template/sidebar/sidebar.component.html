@@ -4,7 +4,7 @@
     <!-- Logo Header -->
     <div class="logo-header" data-background-color="dark">
       <a href="#" class="logo">
-        <img src="assets/img/kaiadmin/logo_ums_light.png" alt="navbar brand" class="navbar-brand" height="40" />
+        <img src="assets/img/kaiadmin/logo_ums_light.png" alt="navbar brand" class="navbar-brand" height="40"/>
       </a>
       <div class="nav-toggle">
         <button class="btn btn-toggle toggle-sidebar">
@@ -26,7 +26,7 @@
 
         <li class="nav-item" routerLinkActive="active">
           <a data-bs-toggle="collapse" [routerLink]="['/dashboard']" routerLinkActive="active" class="collapsed"
-            aria-expanded="false">
+             aria-expanded="false">
             <i class="fas fa-home"></i>
             <p>Dashboard</p>
           </a>
@@ -39,26 +39,28 @@
           <h4 class="text-section">Admin</h4>
         </li>
 
-        <li class="nav-item" routerLinkActive="active">
-          <a data-bs-toggle="collapse" href="#user">
-            <i class="fas fa-user"></i>
-            <p>User</p>
-            <span class="caret"></span>
-          </a>
-          <div class="collapse" id="user">
-            <ul class="nav nav-collapse">
+        <li class="nav-item" routerLinkActive="active" *ngIf="(authService.getRole() | async) as role">
+          <ng-container *ngIf="role === 'ROLE_ADMIN'">
+            <a data-bs-toggle="collapse" href="#user">
+              <i class="fas fa-user"></i>
+              <p>User</p>
+              <span class="caret"></span>
+            </a>
+            <div class="collapse" id="user">
+              <ul class="nav nav-collapse">
 
-              <li routerLinkActive="active">
-                <a [routerLink]="['/user-list']" routerLinkActive="active">
-                  <span class="sub-item">User List</span>
-                </a>
-              </li>
+                <li routerLinkActive="active">
+                  <a [routerLink]="['/user-list']" routerLinkActive="active">
+                    <span class="sub-item">User List</span>
+                  </a>
+                </li>
 
-            </ul>
-          </div>
+              </ul>
+            </div>
+          </ng-container>
         </li>
 
-        <li class="nav-item" routerLinkActive="active">
+        <li class="nav-item" routerLinkActive="active" *ngIf="(authService.getRole() | async) as role">
           <a data-bs-toggle="collapse" href="#academy">
             <i class="fas fa-book"></i>
             <p>Academy</p>
@@ -66,26 +68,28 @@
           </a>
           <div class="collapse" id="academy">
             <ul class="nav nav-collapse">
-              <li routerLinkActive="active">
-                <a [routerLink]="['/faculty-list']" routerLinkActive="active">
-                  <span class="sub-item">Faculties</span>
-                </a>
-              </li>
-              <li routerLinkActive="active">
-                <a [routerLink]="['/department-list']" routerLinkActive="active">
-                  <span class="sub-item">Departments</span>
-                </a>
-              </li>
-              <li routerLinkActive="active">
-                <a [routerLink]="['/program-list']" routerLinkActive="active">
-                  <span class="sub-item">Programs</span>
-                </a>
-              </li>
-              <li routerLinkActive="active">
-                <a [routerLink]="['/semester-list']" routerLinkActive="active">
-                  <span class="sub-item">Semesters</span>
-                </a>
-              </li>
+              <ng-container *ngIf="role === 'ROLE_ADMIN'">
+                <li routerLinkActive="active">
+                  <a [routerLink]="['/faculty-list']" routerLinkActive="active">
+                    <span class="sub-item">Faculties</span>
+                  </a>
+                </li>
+                <li routerLinkActive="active">
+                  <a [routerLink]="['/department-list']" routerLinkActive="active">
+                    <span class="sub-item">Departments</span>
+                  </a>
+                </li>
+                <li routerLinkActive="active">
+                  <a [routerLink]="['/program-list']" routerLinkActive="active">
+                    <span class="sub-item">Programs</span>
+                  </a>
+                </li>
+                <li routerLinkActive="active">
+                  <a [routerLink]="['/semester-list']" routerLinkActive="active">
+                    <span class="sub-item">Semesters</span>
+                  </a>
+                </li>
+              </ng-container>
               <li routerLinkActive="active">
                 <a [routerLink]="['/course-list']" routerLinkActive="active">
                   <span class="sub-item">Courses</span>
@@ -101,27 +105,30 @@
         </li>
 
 
-        <li class="nav-item" routerLinkActive="active">
-          <a data-bs-toggle="collapse" href="#accounts">
-            <i class="fas fa-piggy-bank"></i>
-            <p>Accounts</p>
-            <span class="caret"></span>
-          </a>
-          <div class="collapse" id="accounts">
-            <ul class="nav nav-collapse">
-              <li routerLinkActive="active">
-                <a [routerLink]="['/journal']" routerLinkActive="active">
-                  <span class="sub-item">Journal</span>
-                </a>
-              </li>
-              <li routerLinkActive="active">
-                <a [routerLink]="['/balance-sheet']" routerLinkActive="active">
-                  <span class="sub-item">Balance Sheet</span>
-                </a>
-              </li>
-            </ul>
-          </div>
+        <li class="nav-item" routerLinkActive="active" *ngIf="(authService.getRole() | async) as role">
+          <ng-container *ngIf="role !== 'ROLE_TEACHER'">
+            <a data-bs-toggle="collapse" href="#accounts">
+              <i class="fas fa-piggy-bank"></i>
+              <p>Accounts</p>
+              <span class="caret"></span>
+            </a>
+            <div class="collapse" id="accounts">
+              <ul class="nav nav-collapse">
+                <li routerLinkActive="active">
+                  <a [routerLink]="['/journal']" routerLinkActive="active">
+                    <span class="sub-item">Journal</span>
+                  </a>
+                </li>
+                <li routerLinkActive="active">
+                  <a [routerLink]="['/balance-sheet']" routerLinkActive="active">
+                    <span class="sub-item">Balance Sheet</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </ng-container>
         </li>
+
 
         <li class="nav-item" routerLinkActive="active">
           <a data-bs-toggle="collapse" href="#exam">

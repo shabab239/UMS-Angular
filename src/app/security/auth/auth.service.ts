@@ -65,6 +65,15 @@ export class AuthService {
     return StorageUtil.getFromLocalStorage('sessionUser');
   }
 
+  public getUniversityName(): string | null {
+    let user = StorageUtil.getFromLocalStorage('sessionUser');
+    if (user != null) {
+      return user.university.name;
+    } else {
+      return null;
+    }
+  }
+
   isLoggedIn(): boolean {
     return StorageUtil.getFromLocalStorage('jwt') !== null;
   }

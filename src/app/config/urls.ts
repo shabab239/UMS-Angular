@@ -6,6 +6,7 @@ export const API_URLS = {
   institute: `${baseUrl}/institute`,
   user: `${baseUrl}/user`,
 
+  dashboard: `${baseUrl}/admin/dashboard`,
   faculty: `${baseUrl}/faculty`,
   department: `${baseUrl}/department`,
   program: `${baseUrl}/program`,

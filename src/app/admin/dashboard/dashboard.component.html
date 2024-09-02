@@ -1,1 +1,75 @@
-Coming Soon...
+<div class="dashboard-container" *ngIf="dashboardData">
+  <div class="row">
+    <!-- Users Card -->
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          <h3>Users</h3>
+        </div>
+        <div class="card-body">
+          <p class="card-count">{{ dashboardData.users?.length || 0 }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Students Card -->
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          <h3>Students</h3>
+        </div>
+        <div class="card-body">
+          <p class="card-count">{{ dashboardData.students?.length || 0 }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Faculties Card -->
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          <h3>Faculties</h3>
+        </div>
+        <div class="card-body">
+          <p class="card-count">{{ dashboardData.faculties?.length || 0 }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Programs Card -->
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          <h3>Programs</h3>
+        </div>
+        <div class="card-body">
+          <p class="card-count">{{ dashboardData.programs?.length || 0 }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Semesters Card -->
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          <h3>Semesters</h3>
+        </div>
+        <div class="card-body">
+          <p class="card-count">{{ dashboardData.semesters?.length || 0 }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Courses Card -->
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          <h3>Courses</h3>
+        </div>
+        <div class="card-body">
+          <p class="card-count">{{ dashboardData.courses?.length || 0 }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

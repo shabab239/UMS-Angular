@@ -21,7 +21,7 @@ export class AppComponent implements OnInit{
   ) {}
 
   ngOnInit() {
-
+    //this.authService.logout();
   }
 
   navigateTo(route: string): void {
