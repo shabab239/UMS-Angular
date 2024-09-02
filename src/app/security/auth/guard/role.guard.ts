@@ -26,6 +26,7 @@ export class RoleGuard implements CanActivate {
       return true;
     } else {
       this.alertService.error("Not authorized");
+      this.authService.logout();
       this.router.navigate(['/login']);
       return false;
     }

@@ -1,17 +1,17 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {API_URLS} from "../../config/urls";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ApiResponse} from "../../util/api.response.model";
-import {Semester} from "./model/semester.model";
-import {Fee} from "../fee/model/fee.model";
+import {Semester} from "../semester/model/semester.model";
+import {Fee} from "./model/fee.model";
 
 @Injectable({
   providedIn: 'root'
 })
-export class SemesterService {
+export class FeeService {
 
-  private apiUrl = API_URLS.semester;
+  private apiUrl = API_URLS.fee;
 
   constructor(private http: HttpClient) {
   }
@@ -34,6 +34,10 @@ export class SemesterService {
 
   delete(id: number): Observable<ApiResponse> {
     return this.http.delete<ApiResponse>(`${this.apiUrl}/${id}`);
+  }
+
+  saveFees(semesterId: number, fees: Fee[]): Observable<ApiResponse> {
+    return this.http.post<ApiResponse>(`${this.apiUrl}/saveFees?semesterId=${semesterId}`, fees);
   }
 
 }

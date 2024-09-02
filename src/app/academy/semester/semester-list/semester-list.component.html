@@ -3,15 +3,15 @@
     <div class="pull-left">
       <div class="form-group">
         <input
-          type="text"
-          class="form-control"
           [(ngModel)]="searchTerm"
+          class="form-control"
           placeholder="Filter..."
+          type="text"
         />
       </div>
     </div>
     <div class="pull-right">
-      <button class="btn btn-success" [routerLink]="['/semester-form']">
+      <button [routerLink]="['/semester-form']" class="btn btn-success">
         <i class="fa fa-plus"></i> Add New
       </button>
     </div>
@@ -36,7 +36,7 @@
             <tbody>
             <ng-container *ngFor="let session of (filteredSemesters() | keyvalue)">
               <tr>
-                <td colspan="6" class="bg-secondary text-white">{{ session.key }}</td>
+                <td class="bg-secondary text-white" colspan="6">{{ session.key }}</td>
               </tr>
               <tr *ngFor="let semester of session.value; let i = index;">
                 <td>{{ i + 1 }}</td>
@@ -49,10 +49,12 @@
                     <button (click)="openFeeModal(semester)" class="btn btn-primary btn-sm" title="Fee" type="button">
                       Fee
                     </button>
-                    <button [routerLink]="['/semester-form', semester.id]" class="btn btn-link btn-primary btn-lg" title="Edit" type="button">
+                    <button [routerLink]="['/semester-form', semester.id]" class="btn btn-link btn-primary btn-lg"
+                            title="Edit" type="button">
                       <i class="fa fa-edit"></i>
                     </button>
-                    <button (click)="deleteSemester(semester.id)" class="btn btn-link btn-danger" title="Delete" type="button">
+                    <button (click)="deleteSemester(semester.id)" class="btn btn-link btn-danger" title="Delete"
+                            type="button">
                       <i class="fa fa-times"></i>
                     </button>
                   </div>
@@ -70,52 +72,55 @@
 <ng-template #feeModal let-modal>
   <div class="modal-header">
     <h4 class="modal-title">Add Fees</h4>
-    <button type="button" class="btn-close" (click)="modal.dismiss('cross click')"></button>
+    <button (click)="modal.dismiss('cross click')" class="btn-close" type="button"></button>
   </div>
   <div class="modal-body">
     <form>
-      <table>
-        <thead>
-        <tr>
-          <th>Type</th>
-          <th>Amount</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr  *ngFor="let fee of fees; let i = index">
-          <td>
-            <ng-select
-              [(ngModel)]="fee.type"
-              [ngModelOptions]="{standalone: true}"
-              [items]="feeTypeOptions"
-              bindLabel="label"
-              bindValue="value"
-              placeholder="Select Fee Type"
-              class="me-2"
-              required>
-            </ng-select>
-          </td>
-          <td>
-            <input
-              [(ngModel)]="fee.amount"
-              [ngModelOptions]="{standalone: true}"
-              class="form-control me-2"
-              type="number"
-              placeholder="Amount"
-              required />
-          </td>
-          <td>
-            <button type="button" class="btn btn-danger" (click)="removeFee(i)">Remove</button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-      <button type="button" class="btn btn-secondary" (click)="addFee()">Add Another Fee</button>
-      <button type="button" class="ms-2 btn btn-success" (click)="modal.close()">Save</button>
+      <div *ngIf="fees.length === 0; else feeTable">
+        No Fee Added
+      </div>
+      <ng-template #feeTable>
+        <table>
+          <thead>
+          <tr>
+            <th>Type</th>
+            <th>Amount</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let fee of fees; let i = index">
+            <td>
+              <ng-select
+                [(ngModel)]="fee.type"
+                [items]="feeTypeOptions"
+                [ngModelOptions]="{standalone: true}"
+                bindLabel="label"
+                bindValue="value"
+                class="me-2"
+                placeholder="Select Fee Type"
+                required>
+              </ng-select>
+            </td>
+            <td>
+              <input
+                [(ngModel)]="fee.amount"
+                [ngModelOptions]="{standalone: true}"
+                class="form-control me-2"
+                placeholder="Amount"
+                required
+                type="number"/>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </ng-template>
+      <br>
+      <button (click)="addFee()" class="btn btn-secondary" type="button">Add Another Fee</button>
+      <button *ngIf="fees.length > 0;" (click)="modal.close()" class="ms-2 btn btn-success" type="button">Save</button>
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('cancel')">Cancel</button>
+    <button (click)="modal.dismiss('cancel')" class="btn btn-secondary" type="button">Cancel</button>
   </div>
 </ng-template>
 

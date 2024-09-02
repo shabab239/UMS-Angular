@@ -7,6 +7,7 @@ import {ApiResponse} from "../../../util/api.response.model";
 import {Semester} from '../model/semester.model';
 import {Fee, FeeTypeOptions} from "../../fee/model/fee.model";
 import {ModalService} from "../../../util/modal.service";
+import {FeeService} from "../../fee/fee.service";
 
 @Component({
   selector: 'app-semester-list',
@@ -26,6 +27,7 @@ export class SemesterListComponent implements OnInit {
 
   constructor(
     private semesterService: SemesterService,
+    private feeService: FeeService,
     private router: Router,
     private alertService: AlertService,
     private modalService: ModalService
@@ -60,9 +62,7 @@ export class SemesterListComponent implements OnInit {
       semester.id = semesterId;
       fee.semester = semester;
     })
-    console.log(semesterId)
-    console.log(this.fees)
-    this.semesterService.saveFees(semesterId, this.fees).subscribe({
+    this.feeService.saveFees(semesterId, this.fees).subscribe({
       next: (response: ApiResponse) => {
         if (response && response.successful) {
           AlertUtil.showSuccess(response, this.alertService);
