@@ -28,6 +28,9 @@ import {ExaminationFormComponent} from "./academy/examination/examination-form/e
 import {ExaminationListComponent} from "./academy/examination/examination-list/examination-list.component";
 import {ExaminationMarksEntryComponent} from "./academy/examination/examination-marks-entry/examination-marks-entry.component";
 import {RoleGuard} from "./security/auth/guard/role.guard";
+import {
+  ExaminationResultViewComponent
+} from "./academy/examination/examination-result-view/examination-result-view.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -220,6 +223,12 @@ const routes: Routes = [
     component: ExaminationMarksEntryComponent,
     canActivate: [AuthGuard, RoleGuard],
     data: {pageTitle: "Marks Entry", breadcrumbs: ["Examination List", "Marks Entry"], roles: ['Admin', 'Staff', 'Teacher']}
+  },
+  {
+    path: 'examination-result-view/:id',
+    component: ExaminationResultViewComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: {pageTitle: "Result View", breadcrumbs: ["Examination List", "Result View"], roles: ['Admin', 'Staff', 'Teacher']}
   },
 
   {path: '**', component: PageNotFoundComponent}, // This has to be at the end

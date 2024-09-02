@@ -1,16 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {Examination} from '../model/examination.model';
-import {sessionalTypeOptions} from '../model/mark.model';
+import {Mark, sessionalTypeOptions} from '../model/mark.model';
 import {ExaminationService} from '../examination.service';
 import {ActivatedRoute} from '@angular/router';
 import {AlertService} from '../../../util/alert.service';
 import {AlertUtil} from '../../../util/alert.util';
-import {ResultService} from '../../result/result.service';
-import {StudentService} from '../../student/student.service';
-import {Student} from '../../student/model/student.model';
 import {Course} from '../../course/model/course.model';
 import {CourseService} from '../../course/course.service';
-import {Mark} from "../model/mark.model";
 
 @Component({
   selector: 'app-examination-view',
@@ -31,7 +27,8 @@ export class ExaminationMarksEntryComponent implements OnInit {
     private courseService: CourseService,
     private route: ActivatedRoute,
     private alertService: AlertService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     const examId = this.route.snapshot.params['id'];

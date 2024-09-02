@@ -52,4 +52,9 @@ export class ExaminationService {
   getResult(studentId: number): Observable<ApiResponse> {
     return this.http.get<ApiResponse>(`${this.baseUrl}/getResult/${studentId}`, {});
   }
+
+  getResultsByExamination(examinationId: number): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(`${this.baseUrl}/getResultsByExamination/${examinationId}`, {});
+  }
+
 }

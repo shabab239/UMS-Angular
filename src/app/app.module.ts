@@ -35,6 +35,7 @@ import { CourseListComponent } from './academy/course/course-list/course-list.co
 import { ExaminationListComponent } from './academy/examination/examination-list/examination-list.component';
 import { ExaminationFormComponent } from './academy/examination/examination-form/examination-form.component';
 import { ExaminationMarksEntryComponent } from './academy/examination/examination-marks-entry/examination-marks-entry.component';
+import { ExaminationResultViewComponent } from './academy/examination/examination-result-view/examination-result-view.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { ExaminationMarksEntryComponent } from './academy/examination/examinatio
     CourseListComponent,
     ExaminationListComponent,
     ExaminationFormComponent,
-    ExaminationMarksEntryComponent
+    ExaminationMarksEntryComponent,
+    ExaminationResultViewComponent
   ],
   imports: [
     BrowserModule,
