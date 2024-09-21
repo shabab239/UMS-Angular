@@ -1,26 +1,24 @@
-import {Component, OnInit} from '@angular/core';
-import {JournalEntry} from "../model/journal.model";
-import {ApiResponse} from "../../util/api.response.model";
-import {AccountingService} from "../accounting.service";
-import {AlertService} from "../../util/alert.service";
-import {AlertUtil} from "../../util/alert.util";
+import { Component, OnInit } from '@angular/core';
+import { JournalEntry } from '../model/journal.model';
+import { ApiResponse } from '../../util/api.response.model';
+import { AccountingService } from '../accounting.service';
+import { AlertService } from '../../util/alert.service';
+import { AlertUtil } from '../../util/alert.util';
 
 @Component({
   selector: 'app-journal',
   templateUrl: './journal.component.html',
-  styleUrl: './journal.component.css'
+  styleUrls: ['./journal.component.css']
 })
 export class JournalComponent implements OnInit {
 
   journalEntries: JournalEntry[] = [];
-
   errors: { [key: string]: string } = {};
 
   constructor(
     private accountingService: AccountingService,
     private alertService: AlertService
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.loadJournal();
@@ -42,4 +40,20 @@ export class JournalComponent implements OnInit {
     });
   }
 
+  parseDate(dateString: string): Date {
+    const [day, month, year, hour, minute] = dateString.split(/[- :]/);
+    return new Date(+year, +month - 1, +day, +hour, +minute);
+  }
+
+  getTotalDebit(): number {
+    return this.journalEntries.reduce((total, entry) => total + entry.debit, 0);
+  }
+
+  getTotalCredit(): number {
+    return this.journalEntries.reduce((total, entry) => total + entry.credit, 0);
+  }
+
+  isEqual(): boolean {
+    return this.getTotalDebit() === this.getTotalCredit();
+  }
 }

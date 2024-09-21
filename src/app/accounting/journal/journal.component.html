@@ -18,12 +18,22 @@
             </thead>
             <tbody>
             <tr *ngFor="let entry of journalEntries; let i = index">
-              <td *ngIf="i % 2 == 0">{{ entry.date | date: 'short' }}</td>
+              <td *ngIf="i % 2 == 0">{{ parseDate(entry.date) | date: 'short' }}</td>
               <td *ngIf="i % 2 != 0"></td>
               <td>{{ entry.accountName }}</td>
               <td>{{ entry.description }}</td>
-              <td>{{ entry.debit | currency }}</td>
-              <td>{{ entry.credit | currency }}</td>
+              <td>{{ entry.debit | tkCurrency }}</td>
+              <td>{{ entry.credit | tkCurrency }}</td>
+            </tr>
+            <tr>
+              <td colspan="3"><strong>Grand Total</strong></td>
+              <td><strong>{{ getTotalDebit() | tkCurrency }}</strong></td>
+              <td><strong>{{ getTotalCredit() | tkCurrency }}</strong></td>
+            </tr>
+            <tr>
+              <td colspan="5" [ngClass]="{'bg-success': isEqual(), 'bg-danger': !isEqual()}">
+                <strong>{{ isEqual() ? 'BALANCE IS EQUAL' : 'BALANCE IS NOT EQUAL' }}</strong>
+              </td>
             </tr>
             </tbody>
           </table>

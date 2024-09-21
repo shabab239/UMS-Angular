@@ -50,7 +50,7 @@ export class ExaminationService {
   }
 
   getResult(studentId: number): Observable<ApiResponse> {
-    return this.http.get<ApiResponse>(`${this.baseUrl}/getResult/${studentId}`, {});
+    return this.http.get<ApiResponse>(`${this.baseUrl}/getResult?studentId=${studentId}`, {});
   }
 
   getResultsByExamination(examinationId: number): Observable<ApiResponse> {

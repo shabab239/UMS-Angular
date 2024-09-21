@@ -84,6 +84,7 @@ export class SemesterListComponent implements OnInit {
       next: (response: ApiResponse) => {
         if (response && response.successful) {
           this.semesters = response.data['semesters'];
+          console.log(this.semesters);
           this.sortAndGroupSemesters();
         } else {
           this.errors = response?.errors || {};

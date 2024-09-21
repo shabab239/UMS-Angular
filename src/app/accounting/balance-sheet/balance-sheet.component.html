@@ -44,18 +44,18 @@
 
             <tr>
               <td>
-                <div class="pull-left">TOTAL DEBIT</div>
-                <div class="pull-right">{{ totalDebit }}</div>
+                <div class="pull-left"><strong>TOTAL DEBIT</strong></div>
+                <div class="pull-right"><strong>{{ totalDebit | tkCurrency }}</strong></div>
               </td>
               <td>
-                <div class="pull-left">TOTAL CREDIT</div>
-                <div class="pull-right">{{ totalCredit }}</div>
+                <div class="pull-left"><strong>TOTAL CREDIT</strong></div>
+                <div class="pull-right"><strong>{{ totalCredit | tkCurrency }}</strong></div>
               </td>
             </tr>
 
             <tr>
-              <td colspan="2" class="bg-success">
-                <strong>{{ status }}</strong>
+              <td colspan="2" [ngClass]="{'bg-success': isEqual(), 'bg-danger': !isEqual()}">
+                <strong>{{ isEqual() ? 'BALANCE IS EQUAL' : 'BALANCE IS NOT EQUAL' }}</strong>
               </td>
             </tr>
             </tbody>

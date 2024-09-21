@@ -39,6 +39,7 @@ import { ExaminationResultViewComponent } from './academy/examination/examinatio
 import { JournalComponent } from './accounting/journal/journal.component';
 import { BalanceSheetComponent } from './accounting/balance-sheet/balance-sheet.component';
 import {BracketCurrencyPipe} from "./pipe/BracketCurrencyPipe";
+import {TkCurrencyPipe} from "./pipe/TkCurrencyPipe";
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import {BracketCurrencyPipe} from "./pipe/BracketCurrencyPipe";
     ExaminationResultViewComponent,
     JournalComponent,
     BalanceSheetComponent,
-    BracketCurrencyPipe
+    BracketCurrencyPipe,
+    TkCurrencyPipe
   ],
   imports: [
     BrowserModule,

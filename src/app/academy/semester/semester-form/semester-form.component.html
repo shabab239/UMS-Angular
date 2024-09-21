@@ -31,12 +31,17 @@
                 <ng-select
                   [(ngModel)]="semester.program.id"
                   [items]="programOptions"
-                  bindLabel="name"
-                  bindValue="id"
-                  placeholder="Select Program"
                   [searchable]="true"
+                  bindValue="id"
                   id="program"
-                  name="program">
+                  name="program"
+                  placeholder="Select Program">
+                  <ng-template let-item="item" ng-label-tmp>
+                    {{ item.name }} - {{ item.department.name }}
+                  </ng-template>
+                  <ng-template let-item="item" ng-option-tmp>
+                    {{ item.name }} - {{ item.department.name }}
+                  </ng-template>
                 </ng-select>
                 <small *ngIf="errors['program']" class="form-text text-danger">{{ errors['program'] }}</small>
               </div>

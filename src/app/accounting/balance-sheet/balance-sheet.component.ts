@@ -13,7 +13,6 @@ export class BalanceSheetComponent implements OnInit {
   balanceSheet: BalanceSheet = new BalanceSheet();
   totalDebit: number = 0;
   totalCredit: number = 0;
-  status: string = 'BALANCE IS EQUAL';
 
   constructor(
     private accountingService: AccountingService,
@@ -30,7 +29,6 @@ export class BalanceSheetComponent implements OnInit {
         this.balanceSheet.leftSide = response.data['leftSide'];
         this.balanceSheet.rightSide = response.data['rightSide'];
         this.calculateTotals();
-        this.checkStatus();
       },
       error: (error) => {
         AlertUtil.showError(error, this.alertService);
@@ -56,7 +54,7 @@ export class BalanceSheetComponent implements OnInit {
     this.totalCredit = this.balanceSheet.rightSide.reduce((total, account) => total - account.balance, 0);
   }
 
-  checkStatus() {
-    this.status = this.totalDebit === this.totalCredit ? 'BALANCE IS EQUAL' : 'BALANCE IS NOT EQUAL';
+  isEqual(): boolean {
+    return this.totalDebit === this.totalCredit;
   }
 }
