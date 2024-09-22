@@ -62,7 +62,7 @@ export class SemesterListComponent implements OnInit {
       semester.id = semesterId;
       fee.semester = semester;
     })
-    this.feeService.saveFees(semesterId, this.fees).subscribe({
+    this.feeService.saveFees(this.fees).subscribe({
       next: (response: ApiResponse) => {
         if (response && response.successful) {
           AlertUtil.showSuccess(response, this.alertService);

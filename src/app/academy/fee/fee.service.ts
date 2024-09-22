@@ -36,8 +36,8 @@ export class FeeService {
     return this.http.delete<ApiResponse>(`${this.apiUrl}/${id}`);
   }
 
-  saveFees(semesterId: number, fees: Fee[]): Observable<ApiResponse> {
-    return this.http.post<ApiResponse>(`${this.apiUrl}/saveFees?semesterId=${semesterId}`, fees);
+  saveFees(fees: Fee[]): Observable<ApiResponse> {
+    return this.http.post<ApiResponse>(`${this.apiUrl}/saveFees`, fees);
   }
 
 }
