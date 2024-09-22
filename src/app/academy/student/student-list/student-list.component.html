@@ -1,23 +1,4 @@
 <div class="row">
-  <div class="col-md-12 mb-2">
-    <div class="pull-left">
-      <div class="form-group">
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="searchTerm"
-          placeholder="Filter..."
-        />
-      </div>
-    </div>
-    <div class="pull-right">
-      <button class="btn btn-success" [routerLink]="['/student-form']">
-        <i class="fa fa-plus"></i> Add New
-      </button>
-    </div>
-  </div>
-</div>
-<div class="row">
   <div class="col-md-12">
     <div class="card">
       <div class="card-body">
@@ -81,7 +62,6 @@
   </div>
 </div>
 
-
 <ng-template #feeModal let-modal>
   <div class="modal-header">
     <h4 class="modal-title">Fees</h4>
@@ -119,6 +99,8 @@
           </td>
           <td>
             <input
+              [(ngModel)]="fee.amount"
+              [ngModelOptions]="{standalone: true}"
               class="form-control me-2"
               type="number"
               placeholder="Paid Amount"

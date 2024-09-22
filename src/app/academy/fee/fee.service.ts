@@ -40,4 +40,9 @@ export class FeeService {
     return this.http.post<ApiResponse>(`${this.apiUrl}/saveFees`, fees);
   }
 
+  collectFees(fees: Fee[]): Observable<ApiResponse> {
+    console.log(fees);
+    return this.http.post<ApiResponse>(`${this.apiUrl}/collectFees`, fees);
+  }
+
 }

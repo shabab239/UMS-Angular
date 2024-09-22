@@ -1,13 +1,14 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { AlertService } from "../../../util/alert.service";
-import { Student } from "../model/student.model";
-import { StudentService } from "../student.service";
-import { ApiResponse } from "../../../util/api.response.model";
-import { AlertUtil } from "../../../util/alert.util";
-import { Semester } from "../../semester/model/semester.model";
-import { ModalService } from "../../../util/modal.service";
-import { Fee } from "../../fee/model/fee.model";
-import { SemesterService } from "../../semester/semester.service";
+// src/app/academy/student/student-list/student-list.component.ts
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {AlertService} from '../../../util/alert.service';
+import {Student} from '../model/student.model';
+import {StudentService} from '../student.service';
+import {ApiResponse} from '../../../util/api.response.model';
+import {AlertUtil} from '../../../util/alert.util';
+import {Semester} from '../../semester/model/semester.model';
+import {ModalService} from '../../../util/modal.service';
+import {Fee} from '../../fee/model/fee.model';
+import {FeeService} from "../../fee/fee.service";
 
 @Component({
   selector: 'app-student-list',
@@ -20,13 +21,15 @@ export class StudentListComponent implements OnInit {
   fees: Fee[] = [];
   searchTerm: string = ''; // Search term for filtering students
 
-  @ViewChild('feeModal', { static: true }) feeModal!: TemplateRef<any>;
+  @ViewChild('feeModal', {static: true}) feeModal!: TemplateRef<any>;
 
   constructor(
     private studentService: StudentService,
+    private feeService: FeeService,
     private alertService: AlertService,
     private modalService: ModalService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.loadStudents();
@@ -65,10 +68,26 @@ export class StudentListComponent implements OnInit {
 
   openFeeModal(semester: Semester): void {
     this.fees = semester.fees ? [...semester.fees] : [];
-    this.modalService.open(this.feeModal, { ariaLabelledBy: 'modal-basic-title' }).result.then(() => {
+    this.modalService.open(this.feeModal, {ariaLabelledBy: 'modal-basic-title'}).result.then(() => {
       // Pay fee
+      this.collectFees();
     }, () => {
       // Handle dismissal
+    });
+  }
+
+  collectFees(): void {
+    this.feeService.collectFees(this.fees).subscribe({
+      next: (response: ApiResponse) => {
+        if (response && response.successful) {
+          AlertUtil.showSuccess(response, this.alertService);
+        } else {
+          AlertUtil.showError(response, this.alertService);
+        }
+      },
+      error: error => {
+        AlertUtil.showError(error, this.alertService);
+      }
     });
   }
 
