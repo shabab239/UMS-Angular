@@ -34,7 +34,7 @@
               </td>
               <td>
                 <div class="form-button-action">
-                  <button (click)="openFeeModal(student.semester)" class="btn btn-primary btn-sm" title="Fee"
+                  <button (click)="openFeeModal(student.id)" class="btn btn-primary btn-sm" title="Fee"
                           type="button">
                     Fee
                   </button>
@@ -78,10 +78,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let fee of fees; let i = index">
+        <tr *ngFor="let imposedFee of imposedFees; let i = index">
           <td>
             <input
-              [(ngModel)]="fee.type"
+              [(ngModel)]="imposedFee.fee.type"
               [ngModelOptions]="{standalone: true}"
               class="form-control me-2"
               type="text"
@@ -90,7 +90,7 @@
           </td>
           <td>
             <input
-              [(ngModel)]="fee.amount"
+              [(ngModel)]="imposedFee.fee.amount"
               [ngModelOptions]="{standalone: true}"
               class="form-control me-2"
               type="number"
@@ -99,7 +99,7 @@
           </td>
           <td>
             <input
-              [(ngModel)]="fee.amount"
+              [(ngModel)]="imposedFee.amount"
               [ngModelOptions]="{standalone: true}"
               class="form-control me-2"
               type="number"

@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {ApiResponse} from "../../util/api.response.model";
 import {Semester} from "../semester/model/semester.model";
 import {Fee} from "./model/fee.model";
+import {FeeImposed} from "./model/fee.imposed.model";
 
 @Injectable({
   providedIn: 'root'
@@ -36,13 +37,16 @@ export class FeeService {
     return this.http.delete<ApiResponse>(`${this.apiUrl}/${id}`);
   }
 
+  getImposedFees(studentId: number): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(`${this.apiUrl}/getImposedFees?studentId=${studentId}`);
+  }
+
   saveFees(fees: Fee[]): Observable<ApiResponse> {
     return this.http.post<ApiResponse>(`${this.apiUrl}/saveFees`, fees);
   }
 
-  collectFees(fees: Fee[]): Observable<ApiResponse> {
-    console.log(fees);
-    return this.http.post<ApiResponse>(`${this.apiUrl}/collectFees`, fees);
+  collectFees(imposedFees: FeeImposed[]): Observable<ApiResponse> {
+    return this.http.post<ApiResponse>(`${this.apiUrl}/collectFees`, imposedFees);
   }
 
 }

@@ -7,8 +7,8 @@ import {ApiResponse} from '../../../util/api.response.model';
 import {AlertUtil} from '../../../util/alert.util';
 import {Semester} from '../../semester/model/semester.model';
 import {ModalService} from '../../../util/modal.service';
-import {Fee} from '../../fee/model/fee.model';
 import {FeeService} from "../../fee/fee.service";
+import {FeeImposed} from "../../fee/model/fee.imposed.model";
 
 @Component({
   selector: 'app-student-list',
@@ -18,7 +18,7 @@ import {FeeService} from "../../fee/fee.service";
 export class StudentListComponent implements OnInit {
   students: Student[] = [];
   semesters: Semester[] = [];
-  fees: Fee[] = [];
+  imposedFees: FeeImposed[] = [];
   searchTerm: string = ''; // Search term for filtering students
 
   @ViewChild('feeModal', {static: true}) feeModal!: TemplateRef<any>;
@@ -66,18 +66,29 @@ export class StudentListComponent implements OnInit {
     });
   }
 
-  openFeeModal(semester: Semester): void {
-    this.fees = semester.fees ? [...semester.fees] : [];
-    this.modalService.open(this.feeModal, {ariaLabelledBy: 'modal-basic-title'}).result.then(() => {
-      // Pay fee
-      this.collectFees();
-    }, () => {
-      // Handle dismissal
+  openFeeModal(studentId: number): void {
+    this.feeService.getImposedFees(studentId).subscribe({
+      next: (response: ApiResponse) => {
+        if (response && response.successful) {
+          this.imposedFees = response.data['imposedFees'];
+          console.log(this.imposedFees);
+          this.modalService.open(this.feeModal, {ariaLabelledBy: 'modal-basic-title'}).result.then(() => {
+            this.collectFees();
+          }, () => {
+            // Handle dismissal
+          });
+        } else {
+          AlertUtil.showError(response, this.alertService);
+        }
+      },
+      error: error => {
+        AlertUtil.showError(error, this.alertService);
+      }
     });
   }
 
   collectFees(): void {
-    this.feeService.collectFees(this.fees).subscribe({
+    this.feeService.collectFees(this.imposedFees).subscribe({
       next: (response: ApiResponse) => {
         if (response && response.successful) {
           AlertUtil.showSuccess(response, this.alertService);
