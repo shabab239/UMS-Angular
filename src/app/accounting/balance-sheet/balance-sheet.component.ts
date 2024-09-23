@@ -3,6 +3,8 @@ import {AccountingService} from "../accounting.service";
 import {BalanceSheet} from "../model/balance-sheet.model";
 import {AlertService} from "../../util/alert.service";
 import {AlertUtil} from "../../util/alert.util";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
 @Component({
   selector: 'app-balance-sheet',
@@ -56,5 +58,13 @@ export class BalanceSheetComponent implements OnInit {
 
   isEqual(): boolean {
     return this.totalDebit === this.totalCredit;
+  }
+
+  generatePDF(): void {
+    const doc = new jsPDF()
+
+    autoTable(doc, { html: '#balance-sheet' })
+
+    doc.save('table.pdf')
   }
 }

@@ -4,6 +4,8 @@ import { ApiResponse } from '../../util/api.response.model';
 import { AccountingService } from '../accounting.service';
 import { AlertService } from '../../util/alert.service';
 import { AlertUtil } from '../../util/alert.util';
+import jsPDF from 'jspdf'
+import autoTable from 'jspdf-autotable'
 
 @Component({
   selector: 'app-journal',
@@ -56,4 +58,13 @@ export class JournalComponent implements OnInit {
   isEqual(): boolean {
     return this.getTotalDebit() === this.getTotalCredit();
   }
+
+  generatePDF(): void {
+    const doc = new jsPDF()
+
+    autoTable(doc, { html: '#journal-entries' })
+
+    doc.save('table.pdf')
+  }
+
 }
