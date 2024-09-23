@@ -61,10 +61,12 @@ export class BalanceSheetComponent implements OnInit {
   }
 
   generatePDF(): void {
-    const doc = new jsPDF()
+    const doc = new jsPDF();
 
-    autoTable(doc, { html: '#balance-sheet' })
+    doc.text('Balance Sheet', 14, 20);
 
-    doc.save('table.pdf')
+    autoTable(doc, { html: '#balance-sheet', startY: 30 });
+
+    doc.save('table.pdf');
   }
 }

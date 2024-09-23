@@ -60,11 +60,13 @@ export class JournalComponent implements OnInit {
   }
 
   generatePDF(): void {
-    const doc = new jsPDF()
+    const doc = new jsPDF();
 
-    autoTable(doc, { html: '#journal-entries' })
+    doc.text('Journal Entries', 14, 20);
 
-    doc.save('table.pdf')
+    autoTable(doc, { html: '#journal-entries', startY: 30});
+
+    doc.save('table.pdf');
   }
 
 }
